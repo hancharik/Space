@@ -9,6 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 import javax.swing.JPanel;
@@ -30,6 +31,7 @@ public class StartPanel extends JPanel implements ActionListener, ChangeListener
     
     JButton bigScreenButton;
     JButton littleScreenButton;
+    JButton fullScreenButton;
     
     JSlider numberOfParticles;
     
@@ -62,16 +64,19 @@ public class StartPanel extends JPanel implements ActionListener, ChangeListener
        littleScreenButton.setBounds(10, 60, 120, 40);
        littleScreenButton.addActionListener(this);
        add(littleScreenButton);
-       
+       fullScreenButton = new JButton("Full Screen");
+       fullScreenButton.setBounds(10, 110, 120, 40);
+       fullScreenButton.addActionListener(this);
+       add(fullScreenButton);
        
         numberOfParticles = new JSlider(JSlider.VERTICAL, 1, 600, 9);
         numberOfParticles.addChangeListener(this);
         numberOfParticles.setMajorTickSpacing(100);
         numberOfParticles.setPaintTicks(true);
-        numberOfParticles.setBounds(10, 120, 40, 200);
+        numberOfParticles.setBounds(10, 160, 40, 200);
         add(numberOfParticles);
-        numOfParticles = new JLabel("Num of particles");
-        numOfParticles.setBounds(10, 340, 100, 40);
+        numOfParticles = new JLabel("# of particles");
+        numOfParticles.setBounds(10, 390, 100, 40);
         add(numOfParticles);
         
         
@@ -223,9 +228,18 @@ public class StartPanel extends JPanel implements ActionListener, ChangeListener
              arena.Arena.screen.dispose();
             arena.Arena.screen = new Aframe();
        	}
+            if (obj == fullScreenButton){
+            
+            
+            arena.Arena.screen.dispose();
+            arena.Arena.screen = new Aframe();
+            arena.Arena.screen.setExtendedState(JFrame.MAXIMIZED_BOTH); 
+            arena.Arena.height = arena.Arena.screen.getHeight();
+            arena.Arena.width= arena.Arena.screen.getWidth();
+            arena.Arena.screen.setVisible(true);
+       	}
         
-        
-        
+       
         if (obj == quitButton){
             
            //System.exit();
