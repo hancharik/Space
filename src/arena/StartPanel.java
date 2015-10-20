@@ -17,8 +17,8 @@ import javax.swing.JPanel;
  */
 public class StartPanel extends JPanel implements ActionListener{
 
-    JButton easyStartButton;
-    JButton hardStartButton;
+    JButton startPlanetButton;
+    JButton startParticleButton;
     JButton quitButton;
     
     
@@ -29,14 +29,14 @@ public class StartPanel extends JPanel implements ActionListener{
        super();
        setLayout(null);
        setBackground(Color.black);
-       easyStartButton = new JButton("Start Easy Level");
-       easyStartButton.setBounds(380, 80, 200, 100);
-       easyStartButton.addActionListener(this);
-       add(easyStartButton); 
-       hardStartButton = new JButton("Start Hard Level");
-       hardStartButton.setBounds(380, 200, 200, 100);
-       hardStartButton.addActionListener(this);
-       add(hardStartButton); 
+       startPlanetButton = new JButton("Start Planets");
+       startPlanetButton.setBounds(380, 80, 200, 100);
+       startPlanetButton.addActionListener(this);
+       add(startPlanetButton); 
+       startParticleButton = new JButton("Start Particles");
+       startParticleButton.setBounds(380, 200, 200, 100);
+       startParticleButton.addActionListener(this);
+       add(startParticleButton); 
         
        quitButton = new JButton("quit");
        quitButton.setBounds(380, 360, 320, 100);
@@ -53,16 +53,16 @@ public class StartPanel extends JPanel implements ActionListener{
     
         
         
-       	if (obj == easyStartButton){
+       	if (obj == startPlanetButton){
             
-           arena.Arena.level = 1;
+          arena.Arena.globalSingularGravity = true;
            arena.Arena.screen.start(); 
             
        	}
         
-        if (obj == hardStartButton){
+        if (obj == startParticleButton){
             
-           arena.Arena.level = 9;
+           arena.Arena.globalSingularGravity = false;
            arena.Arena.screen.start(); 
             
        	}
