@@ -57,7 +57,7 @@ public class Abutton extends JButton{
      public void makeHero(){
        
    
-       this.setIcon(new ImageIcon("images/Stan.png"));
+       this.setIcon(new ImageIcon("images/rms.png"));
        
   }  
    

@@ -23,7 +23,7 @@ public class Apanel extends JPanel implements ActionListener, KeyListener{
     
     int playerSize = arena.Arena.globalPlayerSize;
     int amountOfEnemies = arena.Arena.globalAmountOfEnemies;
-    int heroSize = playerSize*arena.Arena.globalPlayerSizeMultiplier;
+    int heroSize = arena.Arena.globalHeroSize;
      //int heroSize = amountOfEnemies;
     
     int enemySpeed = arena.Arena.globalEnemySpeed;
@@ -94,7 +94,9 @@ public class Apanel extends JPanel implements ActionListener, KeyListener{
         hero.setBackground(Color.green);
         hero.addActionListener(this);
         hero.addKeyListener(this);
-       // hero.makeHero();
+        if(arena.Arena.showStallman){
+        hero.makeHero();
+        }
         add(hero);   
     }
   

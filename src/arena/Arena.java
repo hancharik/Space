@@ -17,11 +17,18 @@ public class Arena {
     public static Aframe screen;
     public static int level = 1;
     
-    public static int globalPlayerSize = 6;
+    public static int globalPlayerSize = 16;
     public static int globalPlayerSizeMultiplier = 3;
    public static int globalAmountOfEnemies = 1000;
+   
+   
+   
     public static boolean globalSingularGravity = true;
      public static boolean particles = false;
+     public static boolean showStallman = false;
+     
+     
+     public static int globalHeroSize = globalPlayerSize * globalPlayerSizeMultiplier;
     public static int globalEnemySpeed = 1;
     
    public static int globalheroSpeed = 10;

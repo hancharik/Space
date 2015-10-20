@@ -20,6 +20,7 @@ public class StartPanel extends JPanel implements ActionListener{
     JButton startPlanetButton;
     JButton startAtomButton;
     JButton startChainedParticleButton;
+    JButton showrms;
     JButton quitButton;
     
     
@@ -42,6 +43,10 @@ public class StartPanel extends JPanel implements ActionListener{
        startChainedParticleButton.setBounds(380, 200, 200, 100);
        startChainedParticleButton.addActionListener(this);
        add(startChainedParticleButton); 
+       showrms = new JButton("Show Stallman");
+       showrms.setBounds(580, 200, 200, 100);
+       showrms.addActionListener(this);
+       add(showrms); 
         
        quitButton = new JButton("quit");
        quitButton.setBounds(380, 360, 320, 100);
@@ -64,8 +69,8 @@ public class StartPanel extends JPanel implements ActionListener{
            
           
            
-              arena.Arena.globalPlayerSize = 6;
-    arena.Arena.globalPlayerSizeMultiplier = 2;
+              arena.Arena.globalPlayerSize = 4;
+    arena.Arena.globalPlayerSizeMultiplier = 8;
    arena.Arena.globalAmountOfEnemies = 6000;
     arena.Arena.globalSingularGravity = true;
     arena.Arena.particles = true;
@@ -78,7 +83,7 @@ public class StartPanel extends JPanel implements ActionListener{
            
            
            
-           
+           checkForStallman();
            
           arena.Arena.screen.start();  
            
@@ -98,7 +103,7 @@ public class StartPanel extends JPanel implements ActionListener{
           arena.Arena.globalSingularGravity = true;
           arena.Arena.particles = false;
                    
-              arena.Arena.globalPlayerSize = 26;
+              arena.Arena.globalPlayerSize = 12;
     arena.Arena.globalPlayerSizeMultiplier = 3;
    arena.Arena.globalAmountOfEnemies = (int)(Math.random() * 9) + 1;
     arena.Arena.globalSingularGravity = true;
@@ -109,6 +114,7 @@ public class StartPanel extends JPanel implements ActionListener{
   arena.Arena.globalTimerSpeed = 40;
   arena.Arena.globalSpeedlimit = 32;// + heroSize;// douglas adams is max
    arena.Arena.globalMinSpeed = 6;
+   checkForStallman();
     arena.Arena.screen.start(); 
        	}// end start planet button
         
@@ -144,10 +150,31 @@ public class StartPanel extends JPanel implements ActionListener{
   arena.Arena.globalTimerSpeed = 1;
   arena.Arena.globalSpeedlimit = 12;// + heroSize;// douglas adams is max
    arena.Arena.globalMinSpeed = 2;
+   checkForStallman();
     arena.Arena.screen.start(); 
            
             
        	}
+        
+        
+        if (obj == showrms){
+            
+            
+            if(showrms.getText().equals("Hide Stallman")){
+              showrms.setText("Show Stallman");
+           arena.Arena.showStallman = false;   
+            }else{
+            
+           //System.exit();
+            showrms.setText("Hide Stallman");
+           arena.Arena.showStallman = true;
+            }
+       	}
+        
+        
+        
+        
+        
         
         if (obj == quitButton){
             
@@ -156,12 +183,20 @@ public class StartPanel extends JPanel implements ActionListener{
             
        	}
         
-    }
+    } // end action event
     
     
-    
+  public void checkForStallman(){
+      
+      if(arena.Arena.showStallman){
+       arena.Arena.globalHeroSize = 60;   
+      }
+      
+      
+      
+  }  
     
     
 
     
-}
+} // end
