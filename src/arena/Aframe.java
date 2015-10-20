@@ -18,9 +18,9 @@ public class Aframe extends JFrame{
     int width = arena.Arena.width;
     
     
-    BucketPanel bucket;// = new BucketPanel();
+   
     Apanel gamePanel;// = new Apanel();
-    Abutton[] stuffBucket = new Abutton[arena.Arena.level];
+   
     StartPanel startPanel;// = new StartPanel();
     
     

@@ -156,18 +156,21 @@ public class Abutton extends JButton{
      
          public void checkCollision(){
        
-       for(int i = 0; i < arena.Arena.screen.gamePanel.stuffBucketSize; i++){
+      // for(int i = 0; i < arena.Arena.screen.gamePanel.stuffBucketSize; i++){
           // for(int j = 0; j < arena.Arena.level; j++){
-       if (this.getBounds().intersects(arena.Arena.screen.gamePanel.stuffBucket.get(i).getBounds())){
+      // if (this.getBounds().intersects(arena.Arena.screen.gamePanel.stuffBucket.get(i).getBounds())){
           // zombiebutton.Arena.screen.stuffBucket[i]  
-                    arena.Arena.screen.gamePanel.stuffBucket.get(i).setVisible(false);
-                    arena.Arena.screen.bucket.treasures[i].setVisible(true);
+                 //   arena.Arena.screen.gamePanel.stuffBucket.get(i).setVisible(false);
+                  //  arena.Arena.screen.bucket.treasures[i].setVisible(true);
                     //.remove(zombiebutton.Arena.screen.gamePanel.stuffBucket[i]); 
-        }     
+       // }     
        
        
-       }
-         }
-       //  }
+       //}
+             
+             
+             
+         }  // end check collision
+  
        
 }

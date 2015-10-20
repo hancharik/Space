@@ -272,19 +272,7 @@ public class Apanel extends JPanel implements ActionListener, KeyListener{
      
      
      
-     public void removeTreasureButtons(){
-         
-           for(int i = 0; i < stuffBucketSize; i++){
-       if (hero.getBounds().intersects(stuffBucket.get(i).getBounds())){
-          // enemiesbutton.Arena.screen.stuffBucket[i]  
-                    stuffBucket.get(i).setVisible(false);
-                    arena.Arena.screen.bucket.treasures[i].setVisible(true);//.remove(enemiesbutton.Arena.screen.gamePanel.stuffBucket[i]); 
-        }     
-       
-       
-       }
-     }
-     
+
      public void moveEnemy(){
        
          
@@ -380,29 +368,6 @@ public class Apanel extends JPanel implements ActionListener, KeyListener{
      }
    }  
  
-   public void win(){
-  int count = 0;
-       for(int i = 0; i < arena.Arena.level; i++){
-          
-       if(arena.Arena.screen.bucket.treasures[i].isVisible()){
-         count++;  
-           }
-       
-       }  
-       
-       if(count == arena.Arena.level){
-           timer.stop();
-          remove(hero);
-           for(int i = 0; i < enemies.size(); i++){
-          remove(enemies.get(i));
-           }
-          add(gameOverButton);
-          gameOverButton.setBackground(Color.green);
-          gameOverButton.setText("You Win! Level " + arena.Arena.level);
-          arena.Arena.level++;
-          gameOverButton.addActionListener(this);
-          repaint();
-       }
-   }
+
     
 }
