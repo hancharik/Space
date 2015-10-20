@@ -27,6 +27,7 @@ public class StartPanel extends JPanel implements ActionListener, ChangeListener
     JButton startAtomButton;
     JButton startChainedParticleButton;
     JButton showrms;
+    JButton startButton;
     JButton quitButton;
     
     JButton bigScreenButton;
@@ -34,8 +35,13 @@ public class StartPanel extends JPanel implements ActionListener, ChangeListener
     JButton fullScreenButton;
     
     JSlider numberOfParticles;
-    
+    JSlider sizeOfParticles;
+    JSlider speedOfParticles;
+    JSlider speedLimitOfParticles;
     JLabel numOfParticles;
+    JLabel speedLimitOfParticlesLabel;
+    JLabel sizeOfParticlesLabel;
+    JLabel speedOfParticlesLabel;
     
     public StartPanel(){
         
@@ -69,17 +75,52 @@ public class StartPanel extends JPanel implements ActionListener, ChangeListener
        fullScreenButton.addActionListener(this);
        add(fullScreenButton);
        
-        numberOfParticles = new JSlider(JSlider.HORIZONTAL, 1, 6000, 3000);
+        numberOfParticles = new JSlider(JSlider.HORIZONTAL, 1, 6000, arena.Arena.globalAmountOfEnemies);
         numberOfParticles.addChangeListener(this);
         numberOfParticles.setMajorTickSpacing(100);
         numberOfParticles.setPaintTicks(true);
         numberOfParticles.setBounds(10, 330, 400, 40);// horizontal
         //numberOfParticles.setBounds(10, 160, 40, 200);// vertical
         add(numberOfParticles);
-        numOfParticles = new JLabel("# of particles");
-        numOfParticles.setBounds(10, 390, 100, 40);
-        add(numOfParticles);
         
+        sizeOfParticles = new JSlider(JSlider.HORIZONTAL, 1, 80, arena.Arena.globalPlayerSize);
+        sizeOfParticles.addChangeListener(this);
+        sizeOfParticles.setMajorTickSpacing(100);
+        sizeOfParticles.setPaintTicks(true);
+        sizeOfParticles.setBounds(10, 380, 400, 40);// horizontal
+        //numberOfParticles.setBounds(10, 160, 40, 200);// vertical
+        add(sizeOfParticles);
+        
+        speedOfParticles = new JSlider(JSlider.HORIZONTAL, 1, 1000, arena.Arena.globalTimerSpeed);
+        speedOfParticles.addChangeListener(this);
+        speedOfParticles.setMajorTickSpacing(100);
+        speedOfParticles.setPaintTicks(true);
+        speedOfParticles.setBounds(10, 430, 400, 40);// horizontal
+        //numberOfParticles.setBounds(10, 160, 40, 200);// vertical
+        add(speedOfParticles);
+        
+        speedLimitOfParticles = new JSlider(JSlider.HORIZONTAL, 1, 100, arena.Arena.globalSpeedlimit);
+        speedLimitOfParticles.addChangeListener(this);
+        speedLimitOfParticles.setMajorTickSpacing(100);
+        speedLimitOfParticles.setPaintTicks(true);
+        speedLimitOfParticles.setBounds(10, 480, 400, 40);// horizontal
+        //numberOfParticles.setBounds(10, 160, 40, 200);// vertical
+        add(speedLimitOfParticles);
+        
+        
+        numOfParticles = new JLabel(arena.Arena.globalAmountOfEnemies + " particles");
+        numOfParticles.setBounds(410, 330, 100, 40);
+     
+        add(numOfParticles);
+        sizeOfParticlesLabel = new JLabel("size: " + arena.Arena.globalPlayerSize );
+        sizeOfParticlesLabel.setBounds(410, 380, 100, 40);
+        add(sizeOfParticlesLabel);
+        speedOfParticlesLabel = new JLabel("speed: " + arena.Arena.globalTimerSpeed);
+        speedOfParticlesLabel.setBounds(410, 430, 100, 40);
+        add(speedOfParticlesLabel);
+         speedLimitOfParticlesLabel = new JLabel("speed limit: " + arena.Arena.globalSpeedlimit);
+        speedLimitOfParticlesLabel.setBounds(410, 480, 100, 40);
+        add(speedLimitOfParticlesLabel);
         
        showrms = new JButton();
        checkrmsPic();
@@ -91,6 +132,11 @@ public class StartPanel extends JPanel implements ActionListener, ChangeListener
        quitButton.setBounds(10, 160, 80, 40);
        quitButton.addActionListener(this);
        add(quitButton);
+       
+       startButton = new JButton("start");
+       startButton.setBounds(10, 200, 80, 40);
+       startButton.addActionListener(this);
+       add(startButton);
        
     }  // end constructor
 
@@ -110,8 +156,8 @@ public class StartPanel extends JPanel implements ActionListener, ChangeListener
            
               arena.Arena.globalPlayerSize = 4;
                arena.Arena.globalHeroSize = checkForStallman(32);
-    //arena.Arena.globalPlayerSizeMultiplier = 8;
-  // arena.Arena.globalAmountOfEnemies = 6000;
+    arena.Arena.globalPlayerSizeMultiplier = 8;
+   arena.Arena.globalAmountOfEnemies = 6000;
     arena.Arena.globalSingularGravity = true;
     arena.Arena.particles = true;
     arena.Arena.globalEnemySpeed = 1;
@@ -145,9 +191,9 @@ public class StartPanel extends JPanel implements ActionListener, ChangeListener
                    
               arena.Arena.globalPlayerSize = 12;
     arena.Arena.globalHeroSize = checkForStallman(20);
-//arena.Arena.globalPlayerSizeMultiplier = 2;
-  // arena.Arena.globalAmountOfEnemies = (int)(Math.random() * 9) + 1;
-    arena.Arena.globalSingularGravity = true;
+arena.Arena.globalPlayerSizeMultiplier = 2;
+ arena.Arena.globalAmountOfEnemies = (int)(Math.random() * 9) + 1;
+    
     
     arena.Arena.globalEnemySpeed = 1;
     
@@ -180,16 +226,16 @@ public class StartPanel extends JPanel implements ActionListener, ChangeListener
             
            arena.Arena.globalSingularGravity = false;
            arena.Arena.particles = true;
-                      arena.Arena.globalPlayerSize = 6;
+                 arena.Arena.globalPlayerSize = 6;
     arena.Arena.globalHeroSize = checkForStallman(18);
-  // arena.Arena.globalAmountOfEnemies = 1000;
+ arena.Arena.globalAmountOfEnemies = 1000;
   
     
-    arena.Arena.globalEnemySpeed = 1;
+ arena.Arena.globalEnemySpeed = 1;
     
-   arena.Arena.globalheroSpeed = 10;
+  arena.Arena.globalheroSpeed = 10;
   arena.Arena.globalTimerSpeed = 1;
-  arena.Arena.globalSpeedlimit = 12;// + heroSize;// douglas adams is max
+ arena.Arena.globalSpeedlimit = 32;// + heroSize;// douglas adams is max
    arena.Arena.globalMinSpeed = 2;
    
     arena.Arena.screen.start(); 
@@ -205,12 +251,14 @@ public class StartPanel extends JPanel implements ActionListener, ChangeListener
               //showrms.setText("Hiding rms");
                 showrms.setIcon(new ImageIcon("images/Eric.png")); 
            arena.Arena.showStallman = false;   
+           arena.Arena.globalSingularGravity = false;
             }else{
             
            //System.exit();
             //showrms.setText("Showing rms");
            showrms.setIcon(new ImageIcon("images/rms200x100.png"));
            arena.Arena.showStallman = true;
+           arena.Arena.globalSingularGravity = true;
             }
        	}
         
@@ -248,6 +296,11 @@ public class StartPanel extends JPanel implements ActionListener, ChangeListener
             
        	}
         
+        if (obj == startButton){
+            
+            arena.Arena.screen.start(); 
+            
+       	}
     } // end action event
     
     
@@ -289,7 +342,19 @@ public void checkrmsPic(){
             arena.Arena.globalAmountOfEnemies = (int)source.getValue();
             numOfParticles.setText(arena.Arena.globalAmountOfEnemies + " particles");
         }
-    }
+        if (source == sizeOfParticles) {
+            arena.Arena.globalPlayerSize  = (int)source.getValue();
+            sizeOfParticlesLabel.setText("size: " + arena.Arena.globalPlayerSize );
+        }
+        if (source == speedOfParticles) {
+            arena.Arena.globalTimerSpeed = (int)source.getValue();
+            speedOfParticlesLabel.setText("speed: " + arena.Arena.globalTimerSpeed);
+        }
+        if (source == speedLimitOfParticles) {
+            arena.Arena.globalSpeedlimit = (int)source.getValue();
+            speedLimitOfParticlesLabel.setText("speed limit: " + arena.Arena.globalSpeedlimit);
+        }
+    } // end state changed
 
     
 } // end

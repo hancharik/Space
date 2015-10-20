@@ -75,7 +75,7 @@ public class Apanel extends JPanel implements ActionListener, KeyListener{
       
       createTreasureButtons();
       
-      singularGravity = arena.Arena.globalSingularGravity;
+      
       //addTreasureButtons();
        //hideTreasureButtons();
        //timerSpeed = 2;//0 - (arena.Arena.level * 2);//100 - (arena.Arena.level * 8);// 100-20 raange, based on 1-10
@@ -86,6 +86,25 @@ public class Apanel extends JPanel implements ActionListener, KeyListener{
        
     }
  
+    public void setVariables(){
+        
+        singularGravity = arena.Arena.globalSingularGravity;
+          playerSize = arena.Arena.globalPlayerSize;
+   amountOfEnemies= arena.Arena.globalAmountOfEnemies;
+     heroSize = arena.Arena.globalHeroSize;
+     //int heroSize = amountOfEnemies;
+    
+     enemySpeed = arena.Arena.globalEnemySpeed;
+    
+    heroSpeed = 10;
+    timerSpeed = arena.Arena.globalTimerSpeed;
+     speedlimit = arena.Arena.globalSpeedlimit;// + heroSize;// douglas adams is max
+     minSpeed = arena.Arena.globalMinSpeed;
+        
+    }
+    
+    
+    
     public void addHero(){
         Xcord = arena.Arena.screen.width/2 - 40;
          Ycord = arena.Arena.screen.height/2 - 60;
@@ -284,7 +303,7 @@ public class Apanel extends JPanel implements ActionListener, KeyListener{
            // moveX = enemies.get(i).getX() - enemies.get(enemies.size()-1).getX();
            // moveY = enemies.get(i).getY() - enemies.get(enemies.size()-1).getY(); 
        int move = enemySpeed;
-        if(!singularGravity){
+        if(!arena.Arena.globalSingularGravity){
        if(i > 0){
             moveX = enemies.get(i).getX() - enemies.get(i-1).getX();
             moveY = enemies.get(i).getY() - enemies.get(i-1).getY(); 

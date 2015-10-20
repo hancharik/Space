@@ -110,7 +110,7 @@ public class Abutton extends JButton{
             whatsMyColor = Color.RED; 
          }else if(speedLimit * 100 > lim * 70){
            whatsMyColor = Color.ORANGE;  
-         }else if(speedLimit * 100 > lim * 60){
+         }else if(speedLimit * 100 > lim * 50){
            whatsMyColor = Color.YELLOW;  
          }else if(speedLimit * 100 > lim * 40){
             whatsMyColor = Color.GREEN; 
@@ -119,7 +119,7 @@ public class Abutton extends JButton{
          }else if(speedLimit * 100 > lim * 20){
            whatsMyColor = Color.MAGENTA;  
          }else{
-           whatsMyColor = Color.MAGENTA;   
+           whatsMyColor = Color.BLACK;   
          }
              
          
