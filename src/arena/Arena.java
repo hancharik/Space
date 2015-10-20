@@ -15,6 +15,8 @@ package arena;
 public class Arena {
 
     public static Aframe screen;
+    public static int height = 1000;
+    public static int width = 1880;
     public static int level = 1;
     
     public static int globalPlayerSize = 16;

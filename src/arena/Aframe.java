@@ -14,8 +14,8 @@ import javax.swing.JFrame;
 public class Aframe extends JFrame{
     
     
-    int height = 1000;
-    int width = 1880;
+    int height = arena.Arena.height;
+    int width = arena.Arena.width;
     
     
     BucketPanel bucket;// = new BucketPanel();

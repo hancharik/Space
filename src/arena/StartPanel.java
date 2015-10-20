@@ -24,6 +24,9 @@ public class StartPanel extends JPanel implements ActionListener{
     JButton showrms;
     JButton quitButton;
     
+    JButton bigScreenButton;
+    JButton littleScreenButton;
+    
     
     
     
@@ -45,6 +48,20 @@ public class StartPanel extends JPanel implements ActionListener{
        startChainedParticleButton.addActionListener(this);
        add(startChainedParticleButton); 
         
+       
+       bigScreenButton = new JButton("Big Screen");
+       bigScreenButton.setBounds(10, 10, 120, 40);
+       bigScreenButton.addActionListener(this);
+       add(bigScreenButton);
+       littleScreenButton = new JButton("Little Screen");
+       littleScreenButton.setBounds(10, 60, 120, 40);
+       littleScreenButton.addActionListener(this);
+       add(littleScreenButton);
+       
+       
+       
+       
+       
        showrms = new JButton();
        checkrmsPic();
        showrms.setBounds(580, 200, 200, 100);
@@ -167,7 +184,7 @@ public class StartPanel extends JPanel implements ActionListener{
             
             if(arena.Arena.showStallman){
               //showrms.setText("Hiding rms");
-                showrms.setIcon(new ImageIcon("images/treasure.png")); 
+                showrms.setIcon(new ImageIcon("images/Eric.png")); 
            arena.Arena.showStallman = false;   
             }else{
             
@@ -179,7 +196,20 @@ public class StartPanel extends JPanel implements ActionListener{
        	}
         
         
-        
+       if (obj == bigScreenButton){
+            
+            arena.Arena.height = 1000;
+            arena.Arena.width= 1880;
+             arena.Arena.screen.dispose();
+            arena.Arena.screen = new Aframe();
+       	}
+        if (obj == littleScreenButton){
+            
+          arena.Arena.height = 500;
+            arena.Arena.width= 940;
+             arena.Arena.screen.dispose();
+            arena.Arena.screen = new Aframe();
+       	}
         
         
         
@@ -217,7 +247,7 @@ public void checkrmsPic(){
             
            //System.exit();
             //showrms.setText("Showing rms");
-            showrms.setIcon(new ImageIcon("images/treasure.png"));
+            showrms.setIcon(new ImageIcon("images/Eric.png"));
           
             }
     
