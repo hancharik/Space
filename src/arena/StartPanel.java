@@ -141,8 +141,8 @@ public class StartPanel extends JPanel implements ActionListener{
     
    arena.Arena.globalheroSpeed = 10;
   arena.Arena.globalTimerSpeed = 1;
-  arena.Arena.globalSpeedlimit = 42;// + heroSize;// douglas adams is max
-   arena.Arena.globalMinSpeed = 6;
+  arena.Arena.globalSpeedlimit = 12;// + heroSize;// douglas adams is max
+   arena.Arena.globalMinSpeed = 2;
     arena.Arena.screen.start(); 
            
             
