@@ -41,13 +41,13 @@ public class Aframe extends JFrame{
     public void startPanel(){
         
         getContentPane().removeAll();
-        getContentPane().setLayout(new BorderLayout());
-                setSize (width, height);
+        //getContentPane().setLayout(new BorderLayout());
+               // setSize (width, height);
                 startPanel = new StartPanel();
 		getContentPane().add(startPanel,"Center");
-                setDefaultCloseOperation(EXIT_ON_CLOSE);
+                //setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setVisible(true);
-        
+        gamePanel.hero.requestFocus();
         
     }
     
@@ -59,7 +59,7 @@ public class Aframe extends JFrame{
      public void start(){
          
                 getContentPane().remove(startPanel);
-                bucket = new BucketPanel();
+                //bucket = new BucketPanel();
                 gamePanel = new Apanel();
                 getContentPane().add(gamePanel,"Center");
                 //getContentPane().add(bucket,"West");
@@ -72,8 +72,8 @@ public class Aframe extends JFrame{
      public void restart(){
          
                 getContentPane().remove(gamePanel);
-                getContentPane().remove(bucket);
-                bucket = new BucketPanel();
+                //getContentPane().remove(bucket);
+               // bucket = new BucketPanel();
                 gamePanel = new Apanel();
                 getContentPane().add(gamePanel, "Center");
                // getContentPane().add(bucket, "West");
