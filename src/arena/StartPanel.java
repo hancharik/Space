@@ -7,6 +7,7 @@ package arena;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
 import javax.swing.JPanel;
@@ -43,11 +44,9 @@ public class StartPanel extends JPanel implements ActionListener{
        startChainedParticleButton.setBounds(380, 200, 200, 100);
        startChainedParticleButton.addActionListener(this);
        add(startChainedParticleButton); 
-       if(arena.Arena.showStallman){   
-       showrms = new JButton("Showing rms");
-       }else{
-         showrms = new JButton("Hiding rms");  
-       }
+        
+       showrms = new JButton();
+       checkrmsPic();
        showrms.setBounds(580, 200, 200, 100);
        showrms.addActionListener(this);
        add(showrms); 
@@ -166,13 +165,15 @@ public class StartPanel extends JPanel implements ActionListener{
         if (obj == showrms){
             
             
-            if(showrms.getText().equals("Showing rms")){
-              showrms.setText("Hiding rms");
+            if(arena.Arena.showStallman){
+              //showrms.setText("Hiding rms");
+                showrms.setIcon(new ImageIcon("images/treasure.png")); 
            arena.Arena.showStallman = false;   
             }else{
             
            //System.exit();
-            showrms.setText("Showing rms");
+            //showrms.setText("Showing rms");
+           showrms.setIcon(new ImageIcon("images/rms200x100.png"));
            arena.Arena.showStallman = true;
             }
        	}
@@ -194,19 +195,34 @@ public class StartPanel extends JPanel implements ActionListener{
     
   public int checkForStallman(int rtn){
       
-      int size = 0;
+      int size = 80;
       
       if(arena.Arena.showStallman){
        size = 60;   
       }else{
-       arena.Arena.globalHeroSize = rtn;   
+       size = rtn;   
       }
       
       return size;
       
   }  
     
+public void checkrmsPic(){
     
+     if(arena.Arena.showStallman){
+              //showrms.setText("Hiding rms");
+                showrms.setIcon(new ImageIcon("images/rms200x100.png"));
+             
+            }else{
+            
+           //System.exit();
+            //showrms.setText("Showing rms");
+            showrms.setIcon(new ImageIcon("images/treasure.png"));
+          
+            }
+    
+    
+}    
 
     
 } // end
