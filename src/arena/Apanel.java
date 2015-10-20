@@ -21,17 +21,17 @@ import javax.swing.Timer;
  */
 public class Apanel extends JPanel implements ActionListener, KeyListener{
     
-    int playerSize = 6;
-    int amountOfEnemies = 1000;
-    int heroSize = playerSize*2;
+    int playerSize = arena.Arena.globalPlayerSize;
+    int amountOfEnemies = arena.Arena.globalAmountOfEnemies;
+    int heroSize = playerSize*arena.Arena.globalPlayerSizeMultiplier;
      //int heroSize = amountOfEnemies;
     
-    int enemySpeed = 1;
+    int enemySpeed = arena.Arena.globalEnemySpeed;
     
     int heroSpeed = 10;
-    int timerSpeed = 1;
-    int speedlimit = 12;// + heroSize;// douglas adams is max
-    int minSpeed = 2;
+    int timerSpeed = arena.Arena.globalTimerSpeed;
+    int speedlimit = arena.Arena.globalSpeedlimit;// + heroSize;// douglas adams is max
+    int minSpeed = arena.Arena.globalMinSpeed;
     Abutton hero;
     ArrayList<Abutton> enemies = new ArrayList();
      ArrayList<Abutton> stuffBucket = new ArrayList();
@@ -90,6 +90,7 @@ public class Apanel extends JPanel implements ActionListener, KeyListener{
         hero = new Abutton();
         hero.setBounds(Xcord, Ycord, heroSize, heroSize);
         hero.setBackground(Color.green);
+        hero.addActionListener(this);
         hero.addKeyListener(this);
        // hero.makeHero();
         add(hero);   
@@ -141,21 +142,18 @@ public class Apanel extends JPanel implements ActionListener, KeyListener{
        	}
         
         
-        if (obj == hero){
-       		
-       		
-       	}
+       
    
 
-		if (obj == gameOverButton) //t)
+		if (obj == hero) //t)
 		{
                     timer.stop();
                     
-                    if(nextLevel == false){
+                    //if(nextLevel == false){
                   arena.Arena.screen.startPanel();
-                    }else{
-                  arena.Arena.screen.restart();
-                    }
+                  //  }else{
+               //  arena.Arena.screen.restart();
+                //    }
                 
 		}
     
