@@ -33,7 +33,8 @@ public class StartPanel extends JPanel implements ActionListener, ChangeListener
     JButton bigScreenButton;
     JButton littleScreenButton;
     JButton fullScreenButton;
-    
+    JButton linearMovementButton;
+    JButton centeredGravityButton;
     JSlider numberOfParticles;
     JSlider sizeOfParticles;
     JSlider speedOfParticles;
@@ -49,29 +50,29 @@ public class StartPanel extends JPanel implements ActionListener, ChangeListener
        setLayout(null);
        setBackground(Color.black);
        startPlanetButton = new JButton("Start Planets");
-       startPlanetButton.setBounds(180, 10, 120, 40);
+       startPlanetButton.setBounds(column(2), row(1), 120, 40);
        startPlanetButton.addActionListener(this);
        add(startPlanetButton); 
        startAtomButton = new JButton("Start Atom");
-       startAtomButton.setBounds(180, 60, 120, 40);
+       startAtomButton.setBounds(column(2), row(2), 120, 40);
        startAtomButton.addActionListener(this);
        add(startAtomButton); 
        startChainedParticleButton = new JButton("Start Chained Particles");
-       startChainedParticleButton.setBounds(180, 110, 220, 40);
+       startChainedParticleButton.setBounds(column(2), row(3), 220, 40);
        startChainedParticleButton.addActionListener(this);
        add(startChainedParticleButton); 
         
        
        bigScreenButton = new JButton("Big Screen");
-       bigScreenButton.setBounds(10, 10, 120, 40);
+       bigScreenButton.setBounds(column(1), row(1), 120, 40);
        bigScreenButton.addActionListener(this);
        add(bigScreenButton);
        littleScreenButton = new JButton("Little Screen");
-       littleScreenButton.setBounds(10, 60, 120, 40);
+       littleScreenButton.setBounds(column(1), row(2), 120, 40);
        littleScreenButton.addActionListener(this);
        add(littleScreenButton);
        fullScreenButton = new JButton("Full Screen");
-       fullScreenButton.setBounds(10, 110, 120, 40);
+       fullScreenButton.setBounds(column(1), row(3), 120, 40);
        fullScreenButton.addActionListener(this);
        add(fullScreenButton);
        
@@ -79,15 +80,15 @@ public class StartPanel extends JPanel implements ActionListener, ChangeListener
         numberOfParticles.addChangeListener(this);
         numberOfParticles.setMajorTickSpacing(100);
         numberOfParticles.setPaintTicks(true);
-        numberOfParticles.setBounds(10, 330, 400, 40);// horizontal
-        //numberOfParticles.setBounds(10, 160, 40, 200);// vertical
+        numberOfParticles.setBounds(column(1), 330, 400, 40);// horizontal
+        //numberOfParticles.setBounds(column(1), 160, 40, 200);// vertical
         add(numberOfParticles);
         
         sizeOfParticles = new JSlider(JSlider.HORIZONTAL, 1, 80, arena.Arena.globalPlayerSize);
         sizeOfParticles.addChangeListener(this);
         sizeOfParticles.setMajorTickSpacing(100);
         sizeOfParticles.setPaintTicks(true);
-        sizeOfParticles.setBounds(10, 380, 400, 40);// horizontal
+        sizeOfParticles.setBounds(column(1), 380, 400, 40);// horizontal
         //numberOfParticles.setBounds(10, 160, 40, 200);// vertical
         add(sizeOfParticles);
         
@@ -95,7 +96,7 @@ public class StartPanel extends JPanel implements ActionListener, ChangeListener
         speedOfParticles.addChangeListener(this);
         speedOfParticles.setMajorTickSpacing(100);
         speedOfParticles.setPaintTicks(true);
-        speedOfParticles.setBounds(10, 430, 400, 40);// horizontal
+        speedOfParticles.setBounds(column(1), 430, 400, 40);// horizontal
         //numberOfParticles.setBounds(10, 160, 40, 200);// vertical
         add(speedOfParticles);
         
@@ -103,40 +104,51 @@ public class StartPanel extends JPanel implements ActionListener, ChangeListener
         speedLimitOfParticles.addChangeListener(this);
         speedLimitOfParticles.setMajorTickSpacing(100);
         speedLimitOfParticles.setPaintTicks(true);
-        speedLimitOfParticles.setBounds(10, 480, 400, 40);// horizontal
+        speedLimitOfParticles.setBounds(column(1), 480, 400, 40);// horizontal
         //numberOfParticles.setBounds(10, 160, 40, 200);// vertical
         add(speedLimitOfParticles);
         
         
         numOfParticles = new JLabel(arena.Arena.globalAmountOfEnemies + " particles");
-        numOfParticles.setBounds(410, 330, 100, 40);
+        numOfParticles.setBounds(column(3), 330, 100, 40);
      
         add(numOfParticles);
         sizeOfParticlesLabel = new JLabel("size: " + arena.Arena.globalPlayerSize );
-        sizeOfParticlesLabel.setBounds(410, 380, 100, 40);
+        sizeOfParticlesLabel.setBounds(column(3), 380, 100, 40);
         add(sizeOfParticlesLabel);
         speedOfParticlesLabel = new JLabel("speed: " + arena.Arena.globalTimerSpeed);
-        speedOfParticlesLabel.setBounds(410, 430, 100, 40);
+        speedOfParticlesLabel.setBounds(column(3), 430, 100, 40);
         add(speedOfParticlesLabel);
          speedLimitOfParticlesLabel = new JLabel("speed limit: " + arena.Arena.globalSpeedlimit);
-        speedLimitOfParticlesLabel.setBounds(410, 480, 100, 40);
+        speedLimitOfParticlesLabel.setBounds(column(3), 480, 100, 40);
         add(speedLimitOfParticlesLabel);
         
        showrms = new JButton();
        checkrmsPic();
-       showrms.setBounds(180, 160, 200, 100);
+       showrms.setBounds(column(2), 160, 200, 100);
        showrms.addActionListener(this);
        add(showrms); 
         
        quitButton = new JButton("quit");
-       quitButton.setBounds(10, 160, 80, 40);
+       quitButton.setBounds(column(2), row(7), 80, 40);
        quitButton.addActionListener(this);
        add(quitButton);
        
        startButton = new JButton("start");
-       startButton.setBounds(10, 200, 80, 40);
+       startButton.setBounds(column(1), row(7), 80, 40);
        startButton.addActionListener(this);
        add(startButton);
+       
+       
+       linearMovementButton = new JButton("linear movement = " + arena.Arena.linearMovement);
+       linearMovementButton.setBounds(column(1), row(4), 200, 40);
+       linearMovementButton.addActionListener(this);
+       add(linearMovementButton);
+       
+       centeredGravityButton = new JButton("singular gravity = " + arena.Arena.globalSingularGravity);
+       centeredGravityButton.setBounds(column(1), row(5), 200, 40);
+       centeredGravityButton.addActionListener(this);
+       add(centeredGravityButton);
        
     }  // end constructor
 
@@ -251,14 +263,14 @@ arena.Arena.globalPlayerSizeMultiplier = 2;
               //showrms.setText("Hiding rms");
                 showrms.setIcon(new ImageIcon("images/Eric.png")); 
            arena.Arena.showStallman = false;   
-           arena.Arena.globalSingularGravity = false;
+          // arena.Arena.globalSingularGravity = false;
             }else{
             
            //System.exit();
             //showrms.setText("Showing rms");
            showrms.setIcon(new ImageIcon("images/rms200x100.png"));
            arena.Arena.showStallman = true;
-           arena.Arena.globalSingularGravity = true;
+          // arena.Arena.globalSingularGravity = true;
             }
        	}
         
@@ -299,6 +311,27 @@ arena.Arena.globalPlayerSizeMultiplier = 2;
         if (obj == startButton){
             
             arena.Arena.screen.start(); 
+            
+       	}
+        if (obj == centeredGravityButton){
+            
+           if(arena.Arena.globalSingularGravity){
+            arena.Arena.globalSingularGravity = false; 
+            centeredGravityButton.setText("singular gravity = " + arena.Arena.globalSingularGravity);
+            }else{
+              arena.Arena.globalSingularGravity = true; 
+              centeredGravityButton.setText("singular gravity = " + arena.Arena.globalSingularGravity);
+            } 
+            
+       	}
+        if (obj == linearMovementButton){
+            if(arena.Arena.linearMovement){
+            arena.Arena.linearMovement = false; 
+            linearMovementButton.setText("linear movement = " + arena.Arena.linearMovement);
+            }else{
+              arena.Arena.linearMovement = true; 
+              linearMovementButton.setText("linear movement = " + arena.Arena.linearMovement);
+            }
             
        	}
     } // end action event
@@ -356,5 +389,35 @@ public void checkrmsPic(){
         }
     } // end state changed
 
+  
+        
+                //////////////////////////////////////////////////////////////////////////////////////////////////////////
+ 
+private int row(int r){
+    int pixelNumber = ((r-1)*46)+10;
+    return pixelNumber;
+}   
+
+private int column(int c){ 
+    int columnPixelNumber = 0;
     
+    switch(c){  // these arent in cardinal order, i've been readjusting layouts
+        case 1: columnPixelNumber = 10; break;
+        case 2: columnPixelNumber = 260; break;
+        case 3: columnPixelNumber = 410; break;
+        case 4: columnPixelNumber = 90; break;
+    }
+    return columnPixelNumber;
+} // end column
+    
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
+     
+        
+        
+        
+        
+        
+        
+        
 } // end
