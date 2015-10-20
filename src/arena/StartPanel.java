@@ -68,7 +68,7 @@ public class StartPanel extends JPanel implements ActionListener{
     arena.Arena.globalPlayerSizeMultiplier = 2;
    arena.Arena.globalAmountOfEnemies = 6000;
     arena.Arena.globalSingularGravity = true;
-    
+    arena.Arena.particles = true;
     arena.Arena.globalEnemySpeed = 1;
     
    arena.Arena.globalheroSpeed = 10;
@@ -96,7 +96,7 @@ public class StartPanel extends JPanel implements ActionListener{
         if (obj == startPlanetButton){
             
           arena.Arena.globalSingularGravity = true;
-          
+          arena.Arena.particles = false;
                    
               arena.Arena.globalPlayerSize = 26;
     arena.Arena.globalPlayerSizeMultiplier = 3;
@@ -132,6 +132,7 @@ public class StartPanel extends JPanel implements ActionListener{
         if (obj == startChainedParticleButton){
             
            arena.Arena.globalSingularGravity = false;
+           arena.Arena.particles = true;
                       arena.Arena.globalPlayerSize = 6;
     arena.Arena.globalPlayerSizeMultiplier = 3;
    arena.Arena.globalAmountOfEnemies = 1000;

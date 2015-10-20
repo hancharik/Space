@@ -21,7 +21,7 @@ public class Arena {
     public static int globalPlayerSizeMultiplier = 3;
    public static int globalAmountOfEnemies = 1000;
     public static boolean globalSingularGravity = true;
-    
+     public static boolean particles = false;
     public static int globalEnemySpeed = 1;
     
    public static int globalheroSpeed = 10;

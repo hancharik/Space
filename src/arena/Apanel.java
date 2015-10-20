@@ -104,11 +104,22 @@ public class Apanel extends JPanel implements ActionListener, KeyListener{
          for(int i = 0; i < amountOfEnemies; i++){
              Xcord = hero.getX() - ((int)(Math.random() * 200) + 1);//(int) (Math.random() * (arena.Arena.screen.width-300)) + 200;
          Ycord = hero.getY() - ((int)(Math.random() * 100) + 100);//(int) (Math.random() * (arena.Arena.screen.height-300)) + 200;
+         int xsp = 30;
+         int ysp = -10;
+         
+         if(arena.Arena.particles){
+             Xcord = (int) (Math.random() * (arena.Arena.screen.width-300)) + 200;
+         Ycord = (int) (Math.random() * (arena.Arena.screen.height-300)) + 200;  
+          xsp = 0;
+          ysp = 0;
+         }
           Abutton a = new Abutton();
          
         //enemies.get(i) = new Abutton();
         a.setBounds(Xcord, Ycord, playerSize, playerSize);
         a.setBackground(Color.red);
+        a.xVel = xsp;
+        a.yVel = ysp;
         a.addActionListener(this);
        // a.makeZombie();
         a.speedLimit = (int)(Math.random() * speedlimit) + minSpeed;
