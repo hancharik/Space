@@ -36,15 +36,15 @@ public class StartPanel extends JPanel implements ActionListener{
        setLayout(null);
        setBackground(Color.black);
        startPlanetButton = new JButton("Start Planets");
-       startPlanetButton.setBounds(380, 80, 200, 100);
+       startPlanetButton.setBounds(380, 80, 120, 40);
        startPlanetButton.addActionListener(this);
        add(startPlanetButton); 
        startAtomButton = new JButton("Start Atom");
-       startAtomButton.setBounds(580, 80, 200, 100);
+       startAtomButton.setBounds(580, 80, 120, 40);
        startAtomButton.addActionListener(this);
        add(startAtomButton); 
        startChainedParticleButton = new JButton("Start Chained Particles");
-       startChainedParticleButton.setBounds(380, 200, 200, 100);
+       startChainedParticleButton.setBounds(380, 200, 220, 40);
        startChainedParticleButton.addActionListener(this);
        add(startChainedParticleButton); 
         
@@ -64,12 +64,12 @@ public class StartPanel extends JPanel implements ActionListener{
        
        showrms = new JButton();
        checkrmsPic();
-       showrms.setBounds(580, 200, 200, 100);
+       showrms.setBounds(580, 300, 200, 100);
        showrms.addActionListener(this);
        add(showrms); 
         
        quitButton = new JButton("quit");
-       quitButton.setBounds(380, 360, 320, 100);
+       quitButton.setBounds(380, 360, 80, 40);
        quitButton.addActionListener(this);
        add(quitButton);
        

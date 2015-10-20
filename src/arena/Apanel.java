@@ -87,8 +87,8 @@ public class Apanel extends JPanel implements ActionListener, KeyListener{
     }
  
     public void addHero(){
-        Xcord = arena.Arena.screen.width/2;
-         Ycord = arena.Arena.screen.height/2;
+        Xcord = arena.Arena.screen.width/2 - 40;
+         Ycord = arena.Arena.screen.height/2 - 60;
          //heroSize = arena.Arena.globalHeroSize;
         hero = new Abutton();
         hero.setBounds(Xcord, Ycord, heroSize, heroSize);
