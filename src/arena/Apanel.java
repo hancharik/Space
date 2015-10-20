@@ -42,7 +42,7 @@ public class Apanel extends JPanel implements ActionListener, KeyListener{
     //BucketPanel bucket = new BucketPanel();
     
     Timer timer;
-    boolean nextLevel = true;
+    boolean singularGravity = true;
     
     
     int Xcord;// = (int) (Math.random() * 400) + 1;
@@ -74,6 +74,8 @@ public class Apanel extends JPanel implements ActionListener, KeyListener{
       addEnemies();
       
       createTreasureButtons();
+      
+      singularGravity = arena.Arena.globalSingularGravity;
       //addTreasureButtons();
        //hideTreasureButtons();
        //timerSpeed = 2;//0 - (arena.Arena.level * 2);//100 - (arena.Arena.level * 8);// 100-20 raange, based on 1-10
@@ -149,7 +151,7 @@ public class Apanel extends JPanel implements ActionListener, KeyListener{
 		{
                     timer.stop();
                     
-                    //if(nextLevel == false){
+                    //if(singularGravity == false){
                   arena.Arena.screen.startPanel();
                   //  }else{
                //  arena.Arena.screen.restart();
@@ -279,13 +281,14 @@ public class Apanel extends JPanel implements ActionListener, KeyListener{
            // moveX = enemies.get(i).getX() - enemies.get(enemies.size()-1).getX();
            // moveY = enemies.get(i).getY() - enemies.get(enemies.size()-1).getY(); 
        int move = enemySpeed;
-       
+        if(!singularGravity){
        if(i > 0){
             moveX = enemies.get(i).getX() - enemies.get(i-1).getX();
             moveY = enemies.get(i).getY() - enemies.get(i-1).getY(); 
            
           // move = enemySpeed - i;
        }
+        }
   //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
        /*
         if (moveX > 0){
@@ -349,7 +352,7 @@ public class Apanel extends JPanel implements ActionListener, KeyListener{
           remove(enemies.get(i));
           add(gameOverButton);
           gameOverButton.setText("You Lose! Level " + arena.Arena.level);
-          nextLevel = false;
+          //singularGravity = false;
           //gameOverButton.removeActionListener(this);
           hideTreasureButtons();
           repaint();
