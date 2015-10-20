@@ -28,6 +28,7 @@ public class Arena {
     public static boolean globalSingularGravity = true;
      public static boolean particles = false;
      public static boolean showStallman = false;
+     public static boolean linearMovement = false;
      
      
      public static int globalHeroSize = 20;// * globalPlayerSizeMultiplier;

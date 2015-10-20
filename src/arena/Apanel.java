@@ -302,17 +302,27 @@ public class Apanel extends JPanel implements ActionListener, KeyListener{
        // chase the tail!
            // moveX = enemies.get(i).getX() - enemies.get(enemies.size()-1).getX();
            // moveY = enemies.get(i).getY() - enemies.get(enemies.size()-1).getY(); 
-       int move = enemySpeed;
-        if(!arena.Arena.globalSingularGravity){
-       if(i > 0){
-            moveX = enemies.get(i).getX() - enemies.get(i-1).getX();
-            moveY = enemies.get(i).getY() - enemies.get(i-1).getY(); 
-           
-          // move = enemySpeed - i;
-       }
-        }
+      
+       
+       
+                if(!arena.Arena.globalSingularGravity){
+                        if(i > 0){
+                             moveX = enemies.get(i).getX() - enemies.get(i-1).getX();
+                             moveY = enemies.get(i).getY() - enemies.get(i-1).getY(); 
+
+                           // move = enemySpeed - i;
+                        }
+                }
+                
+                
+            if(arena.Arena.linearMovement){
+                
+             
   //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-       /*
+       
+                
+                 int move = enemySpeed;
+                
         if (moveX > 0){
                     if(Math.abs(moveX - move)>move){
                    enemies.get(i).setBounds(enemies.get(i).getX() - move, enemies.get(i).getY(), playerSize, playerSize); 
@@ -333,11 +343,13 @@ public class Apanel extends JPanel implements ActionListener, KeyListener{
                         }
                 }
        
-              */
+              
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////  
                 
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        if (moveX > 0){
+        } else{ 
+                
+                if (moveX > 0){
                    
                    enemies.get(i).xVel--;
                 }else{
@@ -354,6 +366,11 @@ public class Apanel extends JPanel implements ActionListener, KeyListener{
                //  enemies.get(0).setBackground(Color.WHITE);
                 enemies.get(i).move();
                 enemies.get(i).checkCollision();
+            }
+            
+            
+            
+            
             }  // end for loop
        
    }   // end move enemy
