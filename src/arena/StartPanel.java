@@ -9,14 +9,18 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 
 import javax.swing.JPanel;
+import javax.swing.JSlider;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 /**
  *
  * @author Mark
  */
-public class StartPanel extends JPanel implements ActionListener{
+public class StartPanel extends JPanel implements ActionListener, ChangeListener{
 
     JButton startPlanetButton;
     JButton startAtomButton;
@@ -27,8 +31,9 @@ public class StartPanel extends JPanel implements ActionListener{
     JButton bigScreenButton;
     JButton littleScreenButton;
     
+    JSlider numberOfParticles;
     
-    
+    JLabel numOfParticles;
     
     public StartPanel(){
         
@@ -59,9 +64,17 @@ public class StartPanel extends JPanel implements ActionListener{
        add(littleScreenButton);
        
        
-       
-       
-       
+        numberOfParticles = new JSlider(JSlider.VERTICAL, 1, 600, 9);
+        numberOfParticles.addChangeListener(this);
+        numberOfParticles.setMajorTickSpacing(100);
+        numberOfParticles.setPaintTicks(true);
+        numberOfParticles.setBounds(10, 120, 40, 200);
+        add(numberOfParticles);
+        numOfParticles = new JLabel("Num of particles");
+        numOfParticles.setBounds(10, 340, 100, 40);
+        add(numOfParticles);
+        
+        
        showrms = new JButton();
        checkrmsPic();
        showrms.setBounds(580, 300, 200, 100);
@@ -73,7 +86,7 @@ public class StartPanel extends JPanel implements ActionListener{
        quitButton.addActionListener(this);
        add(quitButton);
        
-    }
+    }  // end constructor
 
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -92,7 +105,7 @@ public class StartPanel extends JPanel implements ActionListener{
               arena.Arena.globalPlayerSize = 4;
                arena.Arena.globalHeroSize = checkForStallman(32);
     //arena.Arena.globalPlayerSizeMultiplier = 8;
-   arena.Arena.globalAmountOfEnemies = 6000;
+  // arena.Arena.globalAmountOfEnemies = 6000;
     arena.Arena.globalSingularGravity = true;
     arena.Arena.particles = true;
     arena.Arena.globalEnemySpeed = 1;
@@ -127,7 +140,7 @@ public class StartPanel extends JPanel implements ActionListener{
               arena.Arena.globalPlayerSize = 12;
     arena.Arena.globalHeroSize = checkForStallman(20);
 //arena.Arena.globalPlayerSizeMultiplier = 2;
-   arena.Arena.globalAmountOfEnemies = (int)(Math.random() * 9) + 1;
+  // arena.Arena.globalAmountOfEnemies = (int)(Math.random() * 9) + 1;
     arena.Arena.globalSingularGravity = true;
     
     arena.Arena.globalEnemySpeed = 1;
@@ -163,7 +176,7 @@ public class StartPanel extends JPanel implements ActionListener{
            arena.Arena.particles = true;
                       arena.Arena.globalPlayerSize = 6;
     arena.Arena.globalHeroSize = checkForStallman(18);
-   arena.Arena.globalAmountOfEnemies = 1000;
+  // arena.Arena.globalAmountOfEnemies = 1000;
   
     
     arena.Arena.globalEnemySpeed = 1;
@@ -253,6 +266,15 @@ public void checkrmsPic(){
     
     
 }    
+
+    @Override
+        public void stateChanged(ChangeEvent e) {
+        JSlider source = (JSlider)e.getSource();
+        if (source == numberOfParticles) {
+            arena.Arena.globalAmountOfEnemies = (int)source.getValue();
+            numOfParticles.setText(arena.Arena.globalAmountOfEnemies + " particles");
+        }
+    }
 
     
 } // end

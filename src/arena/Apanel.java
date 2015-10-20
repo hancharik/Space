@@ -22,7 +22,7 @@ import javax.swing.Timer;
 public class Apanel extends JPanel implements ActionListener, KeyListener{
     
     int playerSize = arena.Arena.globalPlayerSize;
-    int amountOfEnemies = arena.Arena.globalAmountOfEnemies;
+    int amountOfEnemies;// = arena.Arena.globalAmountOfEnemies;
     int heroSize = arena.Arena.globalHeroSize;
      //int heroSize = amountOfEnemies;
     
@@ -103,6 +103,7 @@ public class Apanel extends JPanel implements ActionListener, KeyListener{
   
       public void addEnemies(){
           
+          amountOfEnemies = arena.Arena.globalAmountOfEnemies;
          
          for(int i = 0; i < amountOfEnemies; i++){
              Xcord = hero.getX() - ((int)(Math.random() * 200) + 1);//(int) (Math.random() * (arena.Arena.screen.width-300)) + 200;
