@@ -43,15 +43,15 @@ public class StartPanel extends JPanel implements ActionListener, ChangeListener
        setLayout(null);
        setBackground(Color.black);
        startPlanetButton = new JButton("Start Planets");
-       startPlanetButton.setBounds(380, 80, 120, 40);
+       startPlanetButton.setBounds(180, 10, 120, 40);
        startPlanetButton.addActionListener(this);
        add(startPlanetButton); 
        startAtomButton = new JButton("Start Atom");
-       startAtomButton.setBounds(580, 80, 120, 40);
+       startAtomButton.setBounds(180, 60, 120, 40);
        startAtomButton.addActionListener(this);
        add(startAtomButton); 
        startChainedParticleButton = new JButton("Start Chained Particles");
-       startChainedParticleButton.setBounds(380, 200, 220, 40);
+       startChainedParticleButton.setBounds(180, 110, 220, 40);
        startChainedParticleButton.addActionListener(this);
        add(startChainedParticleButton); 
         
@@ -69,11 +69,12 @@ public class StartPanel extends JPanel implements ActionListener, ChangeListener
        fullScreenButton.addActionListener(this);
        add(fullScreenButton);
        
-        numberOfParticles = new JSlider(JSlider.VERTICAL, 1, 600, 9);
+        numberOfParticles = new JSlider(JSlider.HORIZONTAL, 1, 6000, 3000);
         numberOfParticles.addChangeListener(this);
         numberOfParticles.setMajorTickSpacing(100);
         numberOfParticles.setPaintTicks(true);
-        numberOfParticles.setBounds(10, 160, 40, 200);
+        numberOfParticles.setBounds(10, 330, 400, 40);// horizontal
+        //numberOfParticles.setBounds(10, 160, 40, 200);// vertical
         add(numberOfParticles);
         numOfParticles = new JLabel("# of particles");
         numOfParticles.setBounds(10, 390, 100, 40);
@@ -82,12 +83,12 @@ public class StartPanel extends JPanel implements ActionListener, ChangeListener
         
        showrms = new JButton();
        checkrmsPic();
-       showrms.setBounds(580, 300, 200, 100);
+       showrms.setBounds(180, 160, 200, 100);
        showrms.addActionListener(this);
        add(showrms); 
         
        quitButton = new JButton("quit");
-       quitButton.setBounds(380, 360, 80, 40);
+       quitButton.setBounds(10, 160, 80, 40);
        quitButton.addActionListener(this);
        add(quitButton);
        
