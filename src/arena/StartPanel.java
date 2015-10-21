@@ -26,6 +26,7 @@ public class StartPanel extends JPanel implements ActionListener, ChangeListener
     JButton startPlanetButton;
     JButton startAtomButton;
     JButton startChainedParticleButton;
+    JButton stallmanHaloButton;
     JButton showrms;
     JButton startButton;
     JButton quitButton;
@@ -70,7 +71,10 @@ public class StartPanel extends JPanel implements ActionListener, ChangeListener
        startChainedParticleButton.setBounds(column(2), row(3), 220, 40);
        startChainedParticleButton.addActionListener(this);
        add(startChainedParticleButton); 
-        
+       stallmanHaloButton = new JButton("Stallman Halo");
+       stallmanHaloButton.setBounds(column(2), row(4), 220, 40);
+       stallmanHaloButton.addActionListener(this);
+       add(stallmanHaloButton); 
        
        bigScreenButton = new JButton("Big Screen");
        bigScreenButton.setBounds(column(1), row(1), 120, 40);
@@ -109,7 +113,7 @@ public class StartPanel extends JPanel implements ActionListener, ChangeListener
         //numberOfParticles.setBounds(column(1), 160, 40, 200);// vertical
         add(sizeOfGravityWell);
         
-        massOfCenter = new JSlider(JSlider.HORIZONTAL, 1, 100, arena.Arena.massOfCenter);
+        massOfCenter = new JSlider(JSlider.HORIZONTAL, 1, 20, arena.Arena.massOfCenter);
         massOfCenter.addChangeListener(this);
         massOfCenter.setMajorTickSpacing(100);
         massOfCenter.setPaintTicks(true);
@@ -171,7 +175,7 @@ public class StartPanel extends JPanel implements ActionListener, ChangeListener
         
        showrms = new JButton();
        checkrmsPic();
-       showrms.setBounds(column(2), row(4), 200, 100);
+       showrms.setBounds(column(2), row(5), 200, 100);
        showrms.addActionListener(this);
        add(showrms); 
         
@@ -284,20 +288,26 @@ arena.Arena.globalPlayerSizeMultiplier = 2;
        	}// end start planet button
         
         
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
+        if (obj == stallmanHaloButton){
+            
+           arena.Arena.globalSingularGravity = true;
+           arena.Arena.particles = true;
+                 arena.Arena.globalPlayerSize = 4;
+    arena.Arena.showStallman = true;//.globalHeroSize = checkForStallman(18);
+ arena.Arena.globalAmountOfEnemies = 6000;
+  arena.Arena.gravityGetsStronger = true;
+  arena.Arena.massOfCenter = 3;  
+ arena.Arena.globalEnemySpeed = 1;
+  arena.Arena.gravityWellDistance = 555;  
+  arena.Arena.globalheroSpeed = 10;
+  arena.Arena.globalTimerSpeed = 1;
+ arena.Arena.globalSpeedlimit = 42;// + heroSize;// douglas adams 42 is max
+   arena.Arena.globalMinSpeed = 12;
+   
+    arena.Arena.screen.start(); 
+           
+            
+       	} // end stallman halo
         
         
         if (obj == startChainedParticleButton){
