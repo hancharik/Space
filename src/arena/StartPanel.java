@@ -120,23 +120,25 @@ public class StartPanel extends JPanel implements ActionListener, ChangeListener
         add(speedLimitMinOfParticles);
         
         
-        numOfParticles = new JLabel(arena.Arena.globalAmountOfEnemies + " particles");
-        numOfParticles.setBounds(column(3), row(8), 100, 40);
+        numOfParticles = new JLabel("<html><h2><font color='white'># of particles: </font><font color='red'>" + arena.Arena.globalAmountOfEnemies + "</font><h2></html>");
+        numOfParticles.setBounds(column(3), row(8), 220, 40);
      
         add(numOfParticles);
-        sizeOfParticlesLabel = new JLabel("size: " + arena.Arena.globalPlayerSize );
-        sizeOfParticlesLabel.setBounds(column(3), row(9), 100, 40);
+        sizeOfParticlesLabel = new JLabel("<html><h2><font color='white'>size: </font><font color='red'>" + arena.Arena.globalPlayerSize + "</font><h2></html>");
+        sizeOfParticlesLabel.setBounds(column(3), row(9), 220, 40);
         add(sizeOfParticlesLabel);
-        speedOfParticlesMaxLabel = new JLabel("speed: " + arena.Arena.globalTimerSpeed);
-        speedOfParticlesMaxLabel.setBounds(column(3), row(10), 100, 40);
+        //speedOfParticlesMaxLabel = new JLabel("speed: " + arena.Arena.globalTimerSpeed);
+        speedOfParticlesMaxLabel = new JLabel("<html><h2><font color='white'>speed: </font><font color='red'>" + arena.Arena.globalTimerSpeed + "</font><h2></html>");
+        speedOfParticlesMaxLabel.setBounds(column(3), row(10), 220, 40);
         add(speedOfParticlesMaxLabel);
         
-         speedLimitMaxOfParticlesLabel = new JLabel("max speed limit: " + arena.Arena.globalSpeedlimit);
-        speedLimitMaxOfParticlesLabel.setBounds(column(3), row(11), 160, 40);
+         speedLimitMaxOfParticlesLabel = new JLabel("<html><h2><font color='white'>max speed limit: </font><font color='red'>" + arena.Arena.globalSpeedlimit + "</font><h2></html>");
+        speedLimitMaxOfParticlesLabel.setBounds(column(3), row(11), 220, 40);
         add(speedLimitMaxOfParticlesLabel);
         
-         speedLimitMinOfParticlesLabel = new JLabel("min speed limit: " + arena.Arena.globalMinSpeed);
-        speedLimitMinOfParticlesLabel.setBounds(column(3), row(12), 160, 40);
+         speedLimitMinOfParticlesLabel = new JLabel("<html><h2><font color='white'>min speed limit: </font><font color='red'>" + arena.Arena.globalMinSpeed + "</font><h2></html>");
+        speedLimitMinOfParticlesLabel.setBounds(column(3), row(12), 2200, 40);
+        speedLimitMinOfParticlesLabel.setBackground(Color.red);
         add(speedLimitMinOfParticlesLabel);
         
        showrms = new JButton();
@@ -411,23 +413,25 @@ public void checkrmsPic(){
         JSlider source = (JSlider)e.getSource();
         if (source == numberOfParticles) {
             arena.Arena.globalAmountOfEnemies = (int)source.getValue();
-            numOfParticles.setText(arena.Arena.globalAmountOfEnemies + " particles");
+            //numOfParticles.setText(arena.Arena.globalAmountOfEnemies + " particles");
+            numOfParticles.setText("<html><h2><font color='white'># of particles: </font><font color='red'>" + arena.Arena.globalAmountOfEnemies + "</font><h2></html>");
         }
         if (source == sizeOfParticles) {
             arena.Arena.globalPlayerSize  = (int)source.getValue();
-            sizeOfParticlesLabel.setText("size: " + arena.Arena.globalPlayerSize );
+            
+            sizeOfParticlesLabel.setText("<html><h2><font color='white'>size: </font><font color='red'>" + arena.Arena.globalPlayerSize + "</font><h2></html>");
         }
         if (source == speedOfParticles) {
             arena.Arena.globalTimerSpeed = (int)source.getValue();
-            speedOfParticlesMaxLabel.setText("speed: " + arena.Arena.globalTimerSpeed);
+            speedOfParticlesMaxLabel.setText("<html><h2><font color='white'>speed: </font><font color='red'>" + arena.Arena.globalTimerSpeed + "</font><h2></html>");
         }
         if (source == speedLimitMaxOfParticles) {
             arena.Arena.globalSpeedlimit = (int)source.getValue();
-            speedLimitMaxOfParticlesLabel.setText("max speed limit: " + arena.Arena.globalSpeedlimit);
+            speedLimitMaxOfParticlesLabel.setText("<html><h2><font color='white'>max speed limit: </font><font color='red'>" + arena.Arena.globalSpeedlimit + "</font></h2></html>");
         }
          if (source == speedLimitMinOfParticles) {
             arena.Arena.globalMinSpeed = (int)source.getValue();
-            speedLimitMinOfParticlesLabel.setText("min speed limit: " + arena.Arena.globalMinSpeed);
+            speedLimitMinOfParticlesLabel.setText("<html><h2><font color='white'>min speed limit: </font><font color='red'>" + arena.Arena.globalMinSpeed + "</font></h2></html>");
         }
     } // end state changed
 
