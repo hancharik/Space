@@ -20,7 +20,7 @@ public class Arena {
     public static int level = 1;
     
     public static int globalPlayerSize = 16;
-    public static int globalPlayerSizeMultiplier = 3;
+   
    public static int globalAmountOfEnemies = 1000;
    
    public static int gravityWellDistance = 200;
@@ -32,15 +32,30 @@ public class Arena {
      public static boolean linearMovement = false;  // when true, this is our original movement 
      public static boolean gravityGetsStronger = true;
      
-     public static int globalHeroSize = 20;// * globalPlayerSizeMultiplier;
+     
      public static int globalStallmanSize = 80;// * globalPlayerSizeMultiplier;
     public static int globalEnemySpeed = 1;
     
-   public static int globalheroSpeed = 10;
+  
   public static int globalTimerSpeed = 1;
   public static  int globalSpeedlimit = 12;// + heroSize;// douglas adams is max
    public static int globalMinSpeed = 2;
     
+   
+   // these have yet to be added to the start panel
+    public static int globalPlayerSizeMultiplier = 3;
+    public static int globalheroSpeed = 10;
+   public static int globalHeroSize = 20;// * globalPlayerSizeMultiplier;
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
     public static void main(String[] args) {
        
         
