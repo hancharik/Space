@@ -447,7 +447,7 @@ private int column(int c){
         //case 1: columnPixelNumber = (arena.Arena.width/8)*1; break;
             
             case 1: columnPixelNumber = 10; break;
-                case 2: columnPixelNumber = (arena.Arena.width/7)*1; break;
+                case 2: columnPixelNumber = (arena.Arena.width/7)*1 + 200; break;
         //case 2: columnPixelNumber = 260; break;
         case 3: columnPixelNumber = ((arena.Arena.width/7)*2) - 100; break;
         case 4: columnPixelNumber = 90; break;
