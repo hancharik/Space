@@ -207,6 +207,15 @@ public class StartPanel extends JPanel implements ActionListener, ChangeListener
        add(relativeGravityButton);
        
        
+       if(!arena.Arena.gravityGetsStronger){
+        sizeOfGravityWell.setVisible(false);
+            massOfCenter.setVisible(false);
+            sizeOfGravityWellLabel.setVisible(false);
+            massOfCenterLabel.setVisible(false);
+       }
+       
+       
+       
     }  // end constructor
 
     @Override
