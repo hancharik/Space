@@ -32,7 +32,7 @@ public class Aframe extends JFrame  implements MouseListener{
         
 		super ("BES Particle Simulator");
                 getContentPane().setLayout(new BorderLayout());
-                setSize (width, height);
+                setExtendedState(JFrame.MAXIMIZED_BOTH);//setSize (width, height);
                 addMouseListener(this);
                 startPanel = new StartPanel();
 		getContentPane().add(startPanel,"Center");

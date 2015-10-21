@@ -59,35 +59,35 @@ public class StartPanel extends JPanel implements ActionListener, ChangeListener
        super();
        setLayout(null);
        setBackground(Color.black);
-       startPlanetButton = new JButton("Start Planets");
-       startPlanetButton.setBounds(column(2), row(1), 120, 40);
+       startPlanetButton = new JButton("Solar System");
+       startPlanetButton.setBounds(column(2), row(2), 160, 40);
        startPlanetButton.addActionListener(this);
        add(startPlanetButton); 
-       startAtomButton = new JButton("Start Atom");
-       startAtomButton.setBounds(column(2), row(2), 120, 40);
+       startAtomButton = new JButton("Electron Cloud");
+       startAtomButton.setBounds(column(2), row(3), 160, 40);
        startAtomButton.addActionListener(this);
        add(startAtomButton); 
-       startChainedParticleButton = new JButton("Start Chained Particles");
-       startChainedParticleButton.setBounds(column(2), row(3), 220, 40);
+       startChainedParticleButton = new JButton("Chained Particles");
+       startChainedParticleButton.setBounds(column(2), row(4), 160, 40);
        startChainedParticleButton.addActionListener(this);
        add(startChainedParticleButton); 
        stallmanHaloButton = new JButton("Stallman Halo");
-       stallmanHaloButton.setBounds(column(2), row(4), 220, 40);
+       stallmanHaloButton.setBounds(column(2), row(5), 160, 40);
        stallmanHaloButton.addActionListener(this);
        add(stallmanHaloButton); 
        
        bigScreenButton = new JButton("Big Screen");
        bigScreenButton.setBounds(column(1), row(1), 120, 40);
        bigScreenButton.addActionListener(this);
-       add(bigScreenButton);
+       //add(bigScreenButton);
        littleScreenButton = new JButton("Little Screen");
        littleScreenButton.setBounds(column(1), row(2), 120, 40);
        littleScreenButton.addActionListener(this);
-       add(littleScreenButton);
+       //add(littleScreenButton);
        fullScreenButton = new JButton("Full Screen");
        fullScreenButton.setBounds(column(1), row(3), 120, 40);
        fullScreenButton.addActionListener(this);
-       add(fullScreenButton);
+       //add(fullScreenButton);
        
         numberOfParticles = new JSlider(JSlider.HORIZONTAL, 1, 6000, arena.Arena.globalAmountOfEnemies);
         numberOfParticles.addChangeListener(this);
@@ -175,38 +175,38 @@ public class StartPanel extends JPanel implements ActionListener, ChangeListener
         
        showrms = new JButton();
        checkrmsPic();
-       showrms.setBounds(column(2), row(5), 200, 100);
+       showrms.setBounds(column(1), row(1), 200, 100);
        showrms.addActionListener(this);
        add(showrms); 
         
        quitButton = new JButton("quit");
-       quitButton.setBounds(column(2), row(15), 80, 40);
+       quitButton.setBounds(column(2), row(16), 80, 40);
        quitButton.addActionListener(this);
        add(quitButton);
        
        startButton = new JButton("start");
-       startButton.setBounds(column(1), row(15), 80, 40);
+       startButton.setBounds(column(2), row(15), 80, 40);
        startButton.addActionListener(this);
        add(startButton);
        
        
        linearMovementButton = new JButton("linear movement = " + arena.Arena.linearMovement);
-       linearMovementButton.setBounds(column(1), row(4), 200, 40);
+       linearMovementButton.setBounds(column(4), row(4), 180, 40);
        linearMovementButton.addActionListener(this);
        add(linearMovementButton);
        
        centeredGravityButton = new JButton("singular gravity = " + arena.Arena.globalSingularGravity);
-       centeredGravityButton.setBounds(column(1), row(5), 200, 40);
+       centeredGravityButton.setBounds(column(1), row(4), 180, 40);
        centeredGravityButton.addActionListener(this);
        add(centeredGravityButton);
        
        fixedParticleButton = new JButton("diffuse particles = " + arena.Arena.particles);
-       fixedParticleButton.setBounds(column(1), row(6), 200, 40);
+       fixedParticleButton.setBounds(column(4), row(3), 180, 40);
        fixedParticleButton.addActionListener(this);
        add(fixedParticleButton);
        
        relativeGravityButton = new JButton("relative gravity = " + arena.Arena.gravityGetsStronger);
-       relativeGravityButton.setBounds(column(1), row(7), 200, 40);
+       relativeGravityButton.setBounds(column(1), row(3), 180, 40);
        relativeGravityButton.addActionListener(this);
        add(relativeGravityButton);
        
@@ -243,7 +243,7 @@ public class StartPanel extends JPanel implements ActionListener, ChangeListener
     arena.Arena.globalSingularGravity = true;
     arena.Arena.particles = true;
     arena.Arena.globalEnemySpeed = 1;
-    
+    arena.Arena.gravityGetsStronger = false;
    arena.Arena.globalheroSpeed = 10;
   arena.Arena.globalTimerSpeed = 1;
   arena.Arena.globalSpeedlimit = 42;// + heroSize;// douglas adams is max
@@ -534,7 +534,7 @@ private int column(int c){
                 case 2: columnPixelNumber = (arena.Arena.width/7)*1 + 200; break;
         //case 2: columnPixelNumber = 260; break;
         case 3: columnPixelNumber = ((arena.Arena.width/7)*2) - 100; break;
-        case 4: columnPixelNumber = 90; break;
+        case 4: columnPixelNumber  = (arena.Arena.width/7)*1 - 60; break;
     }
     return columnPixelNumber;
 } // end column
