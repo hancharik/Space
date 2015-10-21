@@ -43,6 +43,10 @@ public class StartPanel extends JPanel implements ActionListener, ChangeListener
     JSlider speedOfParticles;
     JSlider speedLimitMaxOfParticles;
     JSlider speedLimitMinOfParticles;
+    JSlider sizeOfGravityWell;
+    JSlider massOfCenter;
+    JLabel sizeOfGravityWellLabel;
+    JLabel massOfCenterLabel;
     JLabel numOfParticles;
     JLabel speedLimitMaxOfParticlesLabel;
     JLabel sizeOfParticlesLabel;
@@ -85,7 +89,7 @@ public class StartPanel extends JPanel implements ActionListener, ChangeListener
         numberOfParticles.addChangeListener(this);
         numberOfParticles.setMajorTickSpacing(100);
         numberOfParticles.setPaintTicks(true);
-        numberOfParticles.setBounds(column(1), row(8), 400, 40);// horizontal
+        numberOfParticles.setBounds(column(1), row(10), 400, 40);// horizontal
         //numberOfParticles.setBounds(column(1), 160, 40, 200);// vertical
         add(numberOfParticles);
         
@@ -93,15 +97,31 @@ public class StartPanel extends JPanel implements ActionListener, ChangeListener
         sizeOfParticles.addChangeListener(this);
         sizeOfParticles.setMajorTickSpacing(100);
         sizeOfParticles.setPaintTicks(true);
-        sizeOfParticles.setBounds(column(1), row(9), 400, 40);// horizontal
+        sizeOfParticles.setBounds(column(1), row(11), 400, 40);// horizontal
         //numberOfParticles.setBounds(10, 160, 40, 200);// vertical
         add(sizeOfParticles);
+        
+        sizeOfGravityWell = new JSlider(JSlider.HORIZONTAL, 1, 600, arena.Arena.gravityWellDistance);
+        sizeOfGravityWell.addChangeListener(this);
+        sizeOfGravityWell.setMajorTickSpacing(100);
+        sizeOfGravityWell.setPaintTicks(true);
+        sizeOfGravityWell.setBounds(column(1), row(8), 400, 40);// horizontal
+        //numberOfParticles.setBounds(column(1), 160, 40, 200);// vertical
+        add(sizeOfGravityWell);
+        
+        massOfCenter = new JSlider(JSlider.HORIZONTAL, 1, 100, arena.Arena.massOfCenter);
+        massOfCenter.addChangeListener(this);
+        massOfCenter.setMajorTickSpacing(100);
+        massOfCenter.setPaintTicks(true);
+        massOfCenter.setBounds(column(1), row(9), 400, 40);// horizontal
+        //numberOfParticles.setBounds(10, 160, 40, 200);// vertical
+        add(massOfCenter);
         
         speedOfParticles = new JSlider(JSlider.HORIZONTAL, 1, 1000, arena.Arena.globalTimerSpeed);
         speedOfParticles.addChangeListener(this);
         speedOfParticles.setMajorTickSpacing(100);
         speedOfParticles.setPaintTicks(true);
-        speedOfParticles.setBounds(column(1), row(10), 400, 40);// horizontal
+        speedOfParticles.setBounds(column(1), row(14), 400, 40);// horizontal
         //numberOfParticles.setBounds(10, 160, 40, 200);// vertical
         add(speedOfParticles);
         
@@ -109,7 +129,7 @@ public class StartPanel extends JPanel implements ActionListener, ChangeListener
         speedLimitMaxOfParticles.addChangeListener(this);
         speedLimitMaxOfParticles.setMajorTickSpacing(100);
         speedLimitMaxOfParticles.setPaintTicks(true);
-        speedLimitMaxOfParticles.setBounds(column(1), row(11), 400, 40);// horizontal
+        speedLimitMaxOfParticles.setBounds(column(1), row(12), 400, 40);// horizontal
         //numberOfParticles.setBounds(10, 160, 40, 200);// vertical
         add(speedLimitMaxOfParticles);
         
@@ -117,29 +137,35 @@ public class StartPanel extends JPanel implements ActionListener, ChangeListener
         speedLimitMinOfParticles.addChangeListener(this);
         speedLimitMinOfParticles.setMajorTickSpacing(100);
         speedLimitMinOfParticles.setPaintTicks(true);
-        speedLimitMinOfParticles.setBounds(column(1), row(12), 400, 40);// horizontal
+        speedLimitMinOfParticles.setBounds(column(1), row(13), 400, 40);// horizontal
         //numberOfParticles.setBounds(10, 160, 40, 200);// vertical
         add(speedLimitMinOfParticles);
         
+        sizeOfGravityWellLabel = new JLabel("<html><h2><font color='white'>size of gravity well: </font><font color='red'>" + arena.Arena.gravityWellDistance + "</font><h2></html>");
+        sizeOfGravityWellLabel.setBounds(column(3), row(8), 220, 40);
+        add(sizeOfGravityWellLabel);
+        massOfCenterLabel = new JLabel("<html><h2><font color='white'>mass: </font><font color='red'>" + arena.Arena.massOfCenter + "</font><h2></html>");
+        massOfCenterLabel.setBounds(column(3), row(9), 220, 40);
+        add(massOfCenterLabel);
         
         numOfParticles = new JLabel("<html><h2><font color='white'># of particles: </font><font color='red'>" + arena.Arena.globalAmountOfEnemies + "</font><h2></html>");
-        numOfParticles.setBounds(column(3), row(8), 220, 40);
+        numOfParticles.setBounds(column(3), row(10), 220, 40);
      
         add(numOfParticles);
         sizeOfParticlesLabel = new JLabel("<html><h2><font color='white'>size: </font><font color='red'>" + arena.Arena.globalPlayerSize + "</font><h2></html>");
-        sizeOfParticlesLabel.setBounds(column(3), row(9), 220, 40);
+        sizeOfParticlesLabel.setBounds(column(3), row(11), 220, 40);
         add(sizeOfParticlesLabel);
         //speedOfParticlesMaxLabel = new JLabel("speed: " + arena.Arena.globalTimerSpeed);
-        speedOfParticlesMaxLabel = new JLabel("<html><h2><font color='white'>speed: </font><font color='red'>" + arena.Arena.globalTimerSpeed + "</font><h2></html>");
-        speedOfParticlesMaxLabel.setBounds(column(3), row(10), 220, 40);
+        speedOfParticlesMaxLabel = new JLabel("<html><h2><font color='white'>ms per cycle: </font><font color='red'>" + arena.Arena.globalTimerSpeed + "</font><h2></html>");
+        speedOfParticlesMaxLabel.setBounds(column(3), row(14), 220, 40);
         add(speedOfParticlesMaxLabel);
         
          speedLimitMaxOfParticlesLabel = new JLabel("<html><h2><font color='white'>max speed limit: </font><font color='red'>" + arena.Arena.globalSpeedlimit + "</font><h2></html>");
-        speedLimitMaxOfParticlesLabel.setBounds(column(3), row(11), 220, 40);
+        speedLimitMaxOfParticlesLabel.setBounds(column(3), row(12), 220, 40);
         add(speedLimitMaxOfParticlesLabel);
         
          speedLimitMinOfParticlesLabel = new JLabel("<html><h2><font color='white'>min speed limit: </font><font color='red'>" + arena.Arena.globalMinSpeed + "</font><h2></html>");
-        speedLimitMinOfParticlesLabel.setBounds(column(3), row(12), 2200, 40);
+        speedLimitMinOfParticlesLabel.setBounds(column(3), row(13), 2200, 40);
         speedLimitMinOfParticlesLabel.setBackground(Color.red);
         add(speedLimitMinOfParticlesLabel);
         
@@ -429,6 +455,15 @@ public void checkrmsPic(){
     @Override
         public void stateChanged(ChangeEvent e) {
         JSlider source = (JSlider)e.getSource();
+       
+        if (source == sizeOfGravityWell) {
+            arena.Arena.gravityWellDistance = (int)source.getValue();
+            sizeOfGravityWellLabel.setText("<html><h2><font color='white'>size of gravity well: </font><font color='red'>" + arena.Arena.gravityWellDistance + "</font><h2></html>");
+        }
+         if (source == massOfCenter) {
+            arena.Arena.massOfCenter = (int)source.getValue();
+            massOfCenterLabel.setText("<html><h2><font color='white'>mass: </font><font color='red'>" + arena.Arena.massOfCenter + "</font><h2></html>");
+        }
         if (source == numberOfParticles) {
             arena.Arena.globalAmountOfEnemies = (int)source.getValue();
             //numOfParticles.setText(arena.Arena.globalAmountOfEnemies + " particles");
@@ -441,7 +476,7 @@ public void checkrmsPic(){
         }
         if (source == speedOfParticles) {
             arena.Arena.globalTimerSpeed = (int)source.getValue();
-            speedOfParticlesMaxLabel.setText("<html><h2><font color='white'>speed: </font><font color='red'>" + arena.Arena.globalTimerSpeed + "</font><h2></html>");
+            speedOfParticlesMaxLabel.setText("<html><h2><font color='white'>ms per cycle: </font><font color='red'>" + arena.Arena.globalTimerSpeed + "</font><h2></html>");
         }
         if (source == speedLimitMaxOfParticles) {
             arena.Arena.globalSpeedlimit = (int)source.getValue();

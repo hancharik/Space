@@ -381,20 +381,36 @@ public class Apanel extends JPanel implements ActionListener, KeyListener, Mouse
     public int getDistance(int x, int y, int dx, int dy){
         
         int forceAmount = 1;
+        double gravityWell = arena.Arena.gravityWellDistance;
+        double mass = arena.Arena.massOfCenter;
         double distance = Math.sqrt((dx-x)*(dx-x)+(dy-y)*(dy-y));
-        if(distance < 100.0){
-           forceAmount = 2; 
-        }if(distance < 80.0){
-          forceAmount = 4; 
+        if(distance < gravityWell){
+           forceAmount = (int)(mass * .2); 
         }
-        if(distance < 60.0){
-           forceAmount = 6; 
+        if(distance < gravityWell * .9){
+          forceAmount = (int)(mass * .3); 
         }
-        if(distance < 40.0){
-            forceAmount = 12;
+        if(distance < gravityWell * .8){
+           forceAmount = (int)(mass * .4); 
         }
-        
-        
+        if(distance < gravityWell * .7){
+            forceAmount = (int)(mass * .5); 
+        }
+        if(distance < gravityWell * .6){
+            forceAmount = (int)(mass * .6); 
+        }
+        if(distance < gravityWell * .5){
+          forceAmount = (int)(mass * .7); 
+        }
+        if(distance < gravityWell * .4){
+           forceAmount = (int)(mass * .8); 
+        }
+        if(distance < gravityWell * .3){
+            forceAmount = (int)(mass * .9); 
+        }
+        if(distance < gravityWell * .2){
+            forceAmount = (int)(mass); 
+        }
         
        return forceAmount; 
     } //end get distance

@@ -23,7 +23,8 @@ public class Arena {
     public static int globalPlayerSizeMultiplier = 3;
    public static int globalAmountOfEnemies = 1000;
    
-   
+   public static int gravityWellDistance = 200;
+    public static int massOfCenter = 10;
    
     public static boolean globalSingularGravity = true; // when true, there is one point of gravity, when false, chained gravity
      public static boolean particles = false;  // when true, particles start everywhere
