@@ -38,11 +38,13 @@ public class StartPanel extends JPanel implements ActionListener, ChangeListener
     JSlider numberOfParticles;
     JSlider sizeOfParticles;
     JSlider speedOfParticles;
-    JSlider speedLimitOfParticles;
+    JSlider speedLimitMaxOfParticles;
+    JSlider speedLimitMinOfParticles;
     JLabel numOfParticles;
-    JLabel speedLimitOfParticlesLabel;
+    JLabel speedLimitMaxOfParticlesLabel;
     JLabel sizeOfParticlesLabel;
-    JLabel speedOfParticlesLabel;
+    JLabel speedOfParticlesMaxLabel;
+    JLabel speedLimitMinOfParticlesLabel;
     
     public StartPanel(){
         
@@ -80,7 +82,7 @@ public class StartPanel extends JPanel implements ActionListener, ChangeListener
         numberOfParticles.addChangeListener(this);
         numberOfParticles.setMajorTickSpacing(100);
         numberOfParticles.setPaintTicks(true);
-        numberOfParticles.setBounds(column(1), 330, 400, 40);// horizontal
+        numberOfParticles.setBounds(column(1), row(8), 400, 40);// horizontal
         //numberOfParticles.setBounds(column(1), 160, 40, 200);// vertical
         add(numberOfParticles);
         
@@ -88,7 +90,7 @@ public class StartPanel extends JPanel implements ActionListener, ChangeListener
         sizeOfParticles.addChangeListener(this);
         sizeOfParticles.setMajorTickSpacing(100);
         sizeOfParticles.setPaintTicks(true);
-        sizeOfParticles.setBounds(column(1), 380, 400, 40);// horizontal
+        sizeOfParticles.setBounds(column(1), row(9), 400, 40);// horizontal
         //numberOfParticles.setBounds(10, 160, 40, 200);// vertical
         add(sizeOfParticles);
         
@@ -96,46 +98,59 @@ public class StartPanel extends JPanel implements ActionListener, ChangeListener
         speedOfParticles.addChangeListener(this);
         speedOfParticles.setMajorTickSpacing(100);
         speedOfParticles.setPaintTicks(true);
-        speedOfParticles.setBounds(column(1), 430, 400, 40);// horizontal
+        speedOfParticles.setBounds(column(1), row(10), 400, 40);// horizontal
         //numberOfParticles.setBounds(10, 160, 40, 200);// vertical
         add(speedOfParticles);
         
-        speedLimitOfParticles = new JSlider(JSlider.HORIZONTAL, 1, 100, arena.Arena.globalSpeedlimit);
-        speedLimitOfParticles.addChangeListener(this);
-        speedLimitOfParticles.setMajorTickSpacing(100);
-        speedLimitOfParticles.setPaintTicks(true);
-        speedLimitOfParticles.setBounds(column(1), 480, 400, 40);// horizontal
+        speedLimitMaxOfParticles = new JSlider(JSlider.HORIZONTAL, 1, 100, arena.Arena.globalSpeedlimit);
+        speedLimitMaxOfParticles.addChangeListener(this);
+        speedLimitMaxOfParticles.setMajorTickSpacing(100);
+        speedLimitMaxOfParticles.setPaintTicks(true);
+        speedLimitMaxOfParticles.setBounds(column(1), row(11), 400, 40);// horizontal
         //numberOfParticles.setBounds(10, 160, 40, 200);// vertical
-        add(speedLimitOfParticles);
+        add(speedLimitMaxOfParticles);
+        
+        speedLimitMinOfParticles = new JSlider(JSlider.HORIZONTAL, 1, 20, arena.Arena.globalMinSpeed);
+        speedLimitMinOfParticles.addChangeListener(this);
+        speedLimitMinOfParticles.setMajorTickSpacing(100);
+        speedLimitMinOfParticles.setPaintTicks(true);
+        speedLimitMinOfParticles.setBounds(column(1), row(12), 400, 40);// horizontal
+        //numberOfParticles.setBounds(10, 160, 40, 200);// vertical
+        add(speedLimitMinOfParticles);
         
         
         numOfParticles = new JLabel(arena.Arena.globalAmountOfEnemies + " particles");
-        numOfParticles.setBounds(column(3), 330, 100, 40);
+        numOfParticles.setBounds(column(3), row(8), 100, 40);
      
         add(numOfParticles);
         sizeOfParticlesLabel = new JLabel("size: " + arena.Arena.globalPlayerSize );
-        sizeOfParticlesLabel.setBounds(column(3), 380, 100, 40);
+        sizeOfParticlesLabel.setBounds(column(3), row(9), 100, 40);
         add(sizeOfParticlesLabel);
-        speedOfParticlesLabel = new JLabel("speed: " + arena.Arena.globalTimerSpeed);
-        speedOfParticlesLabel.setBounds(column(3), 430, 100, 40);
-        add(speedOfParticlesLabel);
-         speedLimitOfParticlesLabel = new JLabel("speed limit: " + arena.Arena.globalSpeedlimit);
-        speedLimitOfParticlesLabel.setBounds(column(3), 480, 100, 40);
-        add(speedLimitOfParticlesLabel);
+        speedOfParticlesMaxLabel = new JLabel("speed: " + arena.Arena.globalTimerSpeed);
+        speedOfParticlesMaxLabel.setBounds(column(3), row(10), 100, 40);
+        add(speedOfParticlesMaxLabel);
+        
+         speedLimitMaxOfParticlesLabel = new JLabel("max speed limit: " + arena.Arena.globalSpeedlimit);
+        speedLimitMaxOfParticlesLabel.setBounds(column(3), row(11), 160, 40);
+        add(speedLimitMaxOfParticlesLabel);
+        
+         speedLimitMinOfParticlesLabel = new JLabel("min speed limit: " + arena.Arena.globalMinSpeed);
+        speedLimitMinOfParticlesLabel.setBounds(column(3), row(12), 160, 40);
+        add(speedLimitMinOfParticlesLabel);
         
        showrms = new JButton();
        checkrmsPic();
-       showrms.setBounds(column(2), 160, 200, 100);
+       showrms.setBounds(column(2), row(4), 200, 100);
        showrms.addActionListener(this);
        add(showrms); 
         
        quitButton = new JButton("quit");
-       quitButton.setBounds(column(2), row(7), 80, 40);
+       quitButton.setBounds(column(2), row(15), 80, 40);
        quitButton.addActionListener(this);
        add(quitButton);
        
        startButton = new JButton("start");
-       startButton.setBounds(column(1), row(7), 80, 40);
+       startButton.setBounds(column(1), row(15), 80, 40);
        startButton.addActionListener(this);
        add(startButton);
        
@@ -263,14 +278,14 @@ arena.Arena.globalPlayerSizeMultiplier = 2;
               //showrms.setText("Hiding rms");
                 showrms.setIcon(new ImageIcon("images/Eric.png")); 
            arena.Arena.showStallman = false;   
-          // arena.Arena.globalSingularGravity = false;
+           arena.Arena.particles = false;
             }else{
             
            //System.exit();
             //showrms.setText("Showing rms");
            showrms.setIcon(new ImageIcon("images/rms200x100.png"));
            arena.Arena.showStallman = true;
-          // arena.Arena.globalSingularGravity = true;
+         arena.Arena.particles = true;
             }
        	}
         
@@ -291,12 +306,15 @@ arena.Arena.globalPlayerSizeMultiplier = 2;
        	}
             if (obj == fullScreenButton){
             
-            
-            arena.Arena.screen.dispose();
-            arena.Arena.screen = new Aframe();
             arena.Arena.screen.setExtendedState(JFrame.MAXIMIZED_BOTH); 
             arena.Arena.height = arena.Arena.screen.getHeight();
             arena.Arena.width= arena.Arena.screen.getWidth();
+            arena.Arena.screen.dispose();
+            arena.Arena.screen = new Aframe();
+            arena.Arena.screen.setExtendedState(JFrame.MAXIMIZED_BOTH); 
+           // arena.Arena.height = arena.Arena.screen.getHeight();
+           // arena.Arena.width= arena.Arena.screen.getWidth();
+            
             arena.Arena.screen.setVisible(true);
        	}
         
@@ -381,11 +399,15 @@ public void checkrmsPic(){
         }
         if (source == speedOfParticles) {
             arena.Arena.globalTimerSpeed = (int)source.getValue();
-            speedOfParticlesLabel.setText("speed: " + arena.Arena.globalTimerSpeed);
+            speedOfParticlesMaxLabel.setText("speed: " + arena.Arena.globalTimerSpeed);
         }
-        if (source == speedLimitOfParticles) {
+        if (source == speedLimitMaxOfParticles) {
             arena.Arena.globalSpeedlimit = (int)source.getValue();
-            speedLimitOfParticlesLabel.setText("speed limit: " + arena.Arena.globalSpeedlimit);
+            speedLimitMaxOfParticlesLabel.setText("max speed limit: " + arena.Arena.globalSpeedlimit);
+        }
+         if (source == speedLimitMinOfParticles) {
+            arena.Arena.globalMinSpeed = (int)source.getValue();
+            speedLimitMinOfParticlesLabel.setText("min speed limit: " + arena.Arena.globalMinSpeed);
         }
     } // end state changed
 
@@ -394,7 +416,7 @@ public void checkrmsPic(){
                 //////////////////////////////////////////////////////////////////////////////////////////////////////////
  
 private int row(int r){
-    int pixelNumber = ((r-1)*46)+10;
+    int pixelNumber = ((r-1)*arena.Arena.height/16)+10;
     return pixelNumber;
 }   
 
@@ -402,9 +424,12 @@ private int column(int c){
     int columnPixelNumber = 0;
     
     switch(c){  // these arent in cardinal order, i've been readjusting layouts
-        case 1: columnPixelNumber = 10; break;
-        case 2: columnPixelNumber = 260; break;
-        case 3: columnPixelNumber = 410; break;
+        //case 1: columnPixelNumber = (arena.Arena.width/8)*1; break;
+            
+            case 1: columnPixelNumber = 10; break;
+                case 2: columnPixelNumber = (arena.Arena.width/7)*1; break;
+        //case 2: columnPixelNumber = 260; break;
+        case 3: columnPixelNumber = ((arena.Arena.width/7)*2) - 100; break;
         case 4: columnPixelNumber = 90; break;
     }
     return columnPixelNumber;

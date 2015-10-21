@@ -25,13 +25,14 @@ public class Arena {
    
    
    
-    public static boolean globalSingularGravity = true;
-     public static boolean particles = false;
+    public static boolean globalSingularGravity = true; // when true, there is one point of gravity, when false, chained gravity
+     public static boolean particles = false;  // when true, particles start everywhere
      public static boolean showStallman = false;
-     public static boolean linearMovement = false;
+     public static boolean linearMovement = false;  // when true, this is our original movement 
      
      
      public static int globalHeroSize = 20;// * globalPlayerSizeMultiplier;
+     public static int globalStallmanSize = 80;// * globalPlayerSizeMultiplier;
     public static int globalEnemySpeed = 1;
     
    public static int globalheroSpeed = 10;
