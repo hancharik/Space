@@ -412,9 +412,17 @@ arena.Arena.globalPlayerSizeMultiplier = 2;
             if(arena.Arena.gravityGetsStronger){
             arena.Arena.gravityGetsStronger = false; 
             relativeGravityButton.setText("relative gravity = " + arena.Arena.gravityGetsStronger);
+            sizeOfGravityWell.setVisible(false);
+            massOfCenter.setVisible(false);
+            sizeOfGravityWellLabel.setVisible(false);
+            massOfCenterLabel.setVisible(false);
             }else{
               arena.Arena.gravityGetsStronger = true; 
               relativeGravityButton.setText("relative gravity = " + arena.Arena.gravityGetsStronger);
+                sizeOfGravityWell.setVisible(true);
+                massOfCenter.setVisible(true);
+                sizeOfGravityWellLabel.setVisible(true);
+                massOfCenterLabel.setVisible(true);
             }
             
        	}

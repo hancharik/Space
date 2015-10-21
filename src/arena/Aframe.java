@@ -30,7 +30,7 @@ public class Aframe extends JFrame  implements MouseListener{
     
     public Aframe(){
         
-		super ("Arena");
+		super ("BES Particle Simulator");
                 getContentPane().setLayout(new BorderLayout());
                 setSize (width, height);
                 addMouseListener(this);
