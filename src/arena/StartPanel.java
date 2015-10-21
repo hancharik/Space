@@ -35,6 +35,7 @@ public class StartPanel extends JPanel implements ActionListener, ChangeListener
     JButton fullScreenButton;
     JButton linearMovementButton;
     JButton centeredGravityButton;
+    JButton fixedParticleButton;
     JSlider numberOfParticles;
     JSlider sizeOfParticles;
     JSlider speedOfParticles;
@@ -165,6 +166,11 @@ public class StartPanel extends JPanel implements ActionListener, ChangeListener
        centeredGravityButton.addActionListener(this);
        add(centeredGravityButton);
        
+       fixedParticleButton = new JButton("fixed particles = " + arena.Arena.globalSingularGravity);
+       fixedParticleButton.setBounds(column(1), row(6), 200, 40);
+       fixedParticleButton.addActionListener(this);
+       add(fixedParticleButton);
+       
     }  // end constructor
 
     @Override
@@ -276,16 +282,16 @@ arena.Arena.globalPlayerSizeMultiplier = 2;
             
             if(arena.Arena.showStallman){
               //showrms.setText("Hiding rms");
-                showrms.setIcon(new ImageIcon("images/Eric.png")); 
+                showrms.setIcon(new ImageIcon("images/be200x100.png")); 
            arena.Arena.showStallman = false;   
-           arena.Arena.particles = false;
+           //arena.Arena.particles = false;
             }else{
             
            //System.exit();
             //showrms.setText("Showing rms");
            showrms.setIcon(new ImageIcon("images/rms200x100.png"));
            arena.Arena.showStallman = true;
-         arena.Arena.particles = true;
+        // arena.Arena.particles = true;
             }
        	}
         
@@ -342,6 +348,7 @@ arena.Arena.globalPlayerSizeMultiplier = 2;
             } 
             
        	}
+        
         if (obj == linearMovementButton){
             if(arena.Arena.linearMovement){
             arena.Arena.linearMovement = false; 
@@ -352,6 +359,19 @@ arena.Arena.globalPlayerSizeMultiplier = 2;
             }
             
        	}
+        
+        if (obj == fixedParticleButton){
+            if(arena.Arena.particles){
+            arena.Arena.particles = false; 
+            fixedParticleButton.setText("fixed particles = " + arena.Arena.particles);
+            }else{
+              arena.Arena.particles = true; 
+              fixedParticleButton.setText("fixed particles = " + arena.Arena.particles);
+            }
+            
+       	}
+        
+        
     } // end action event
     
     
@@ -379,7 +399,7 @@ public void checkrmsPic(){
             
            //System.exit();
             //showrms.setText("Showing rms");
-            showrms.setIcon(new ImageIcon("images/Eric.png"));
+            showrms.setIcon(new ImageIcon("images/be200x100.png"));
           
             }
     
