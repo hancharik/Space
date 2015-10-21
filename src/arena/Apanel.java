@@ -9,6 +9,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -19,7 +22,7 @@ import javax.swing.Timer;
  *
  * @author Mark
  */
-public class Apanel extends JPanel implements ActionListener, KeyListener{
+public class Apanel extends JPanel implements ActionListener, KeyListener, MouseListener {
     
     int playerSize = arena.Arena.globalPlayerSize;
     int amountOfEnemies;// = arena.Arena.globalAmountOfEnemies;
@@ -61,7 +64,7 @@ public class Apanel extends JPanel implements ActionListener, KeyListener{
        
        setLayout(null);
        setBackground(Color.black);
-       
+        addMouseListener(this);
        gameOverButton.setBackground(Color.red);
        gameOverButton.setText("GAME OVER");
        gameOverButton.setBounds(600, 500, 200, 100);
@@ -73,7 +76,16 @@ public class Apanel extends JPanel implements ActionListener, KeyListener{
         
       addEnemies();
       
-      createTreasureButtons();
+      
+      //addMouseListener(this);
+      addMouseListener(new MouseAdapter() {
+			public void mousePressed(MouseEvent e) {
+				hero.setBounds(e.getX(), e.getY(), heroSize, heroSize);
+     hero.setBackground(Color.red);
+			}
+		});
+      
+     // createTreasureButtons();
       
       
       //addTreasureButtons();
@@ -83,7 +95,7 @@ public class Apanel extends JPanel implements ActionListener, KeyListener{
        timer = new Timer( timerSpeed, this);
        timer.start();
        hero.requestFocus();
-       
+       //requestFocus();
     }
  
     public void setVariables(){
@@ -134,8 +146,8 @@ public class Apanel extends JPanel implements ActionListener, KeyListener{
          int ysp = -10;
          
          if(arena.Arena.particles){
-             Xcord = (int) (Math.random() * (arena.Arena.screen.width-300)) + 200;
-         Ycord = (int) (Math.random() * (arena.Arena.screen.height-300)) + 200;  
+             Xcord = (int) (Math.random() * (arena.Arena.screen.width)) + 1;
+         Ycord = (int) (Math.random() * (arena.Arena.screen.height)) + 1;  
           xsp = 0;
           ysp = 0;
          }
@@ -219,6 +231,14 @@ public class Apanel extends JPanel implements ActionListener, KeyListener{
                         
                   arena.Arena.screen.restart();      
 		}
+                
+                if(k == e.VK_R){
+                        
+                     Xcord = (int) (Math.random() * (arena.Arena.screen.width-300)) + 200;
+                    Ycord = (int) (Math.random() * (arena.Arena.screen.height-300)) + 200; 
+                    hero.setBounds(Xcord, Ycord, heroSize, heroSize);
+		} 
+                
     }
 
     @Override
@@ -242,6 +262,20 @@ public class Apanel extends JPanel implements ActionListener, KeyListener{
                         
                   arena.Arena.screen.restart();      
 		}
+                
+                
+               if(k == e.VK_R){
+                        
+                     Xcord = (int) (Math.random() * (arena.Arena.screen.width-300)) + 200;
+                    Ycord = (int) (Math.random() * (arena.Arena.screen.height-300)) + 200; 
+                    hero.setBounds(Xcord, Ycord, heroSize, heroSize);
+		} 
+                
+                
+                
+                
+                
+                
     }
 
     @Override
@@ -251,47 +285,8 @@ public class Apanel extends JPanel implements ActionListener, KeyListener{
     
     }
  
-    
-          
-  public void createTreasureButtons(){
-      for(int i = 0; i < stuffBucketSize; i++){
-          Abutton stuff = new Abutton(); 
-          stuff.makeTreasure();
-          stuff.setBackground(Color.yellow);
-//stuff.setIcon(stuff.icons[i]);
-          stuffBucket.add(stuff);
-          //enemiesbutton.Arena.screen.bucket.treasures[i] = stuff;
-      }
-       
-   } 
-    
-     public void addTreasureButtons(){
-      for(int i = 0; i < stuffBucketSize; i++){
-          
-         Xcord = (int) (Math.random() * (arena.Arena.screen.width - 200)) + 100;
-         Ycord = (int) (Math.random() * (arena.Arena.screen.height - 200)) + 100;// int Ycord = (int) (Math.random() * enemiesbutton.Arena.screen.height) + 1;
-          
-         // enemiesbutton.Arena.screen.bucket.treasures[i].setBounds(Xcord, Ycord, 60, 60);
-         //add(enemiesbutton.Arena.screen.bucket.treasures[i]);
-          stuffBucket.get(i).setBounds(Xcord, Ycord, playerSize, playerSize);
-         add(stuffBucket.get(i));
-      }
-       
-   }   
-   
-     
-          public void hideTreasureButtons(){
-         
-           for(int i = 0; i < stuffBucketSize; i++){
-       
-                  remove(stuffBucket.get(i));// enemiesbutton.Arena.screen.bucket.removeButton(i);//treasures[i].setVisible(false);//.remove(enemiesbutton.Arena.screen.gamePanel.stuffBucket[i]); 
-       
-       
-       
-       }
-     }
-     
-     
+
+
      
      
 
@@ -396,7 +391,7 @@ public class Apanel extends JPanel implements ActionListener, KeyListener{
           gameOverButton.setText("You Lose! Level " + arena.Arena.level);
           //singularGravity = false;
           //gameOverButton.removeActionListener(this);
-          hideTreasureButtons();
+          //hideTreasureButtons();
           repaint();
           
           
@@ -406,6 +401,34 @@ public class Apanel extends JPanel implements ActionListener, KeyListener{
 
      }
    }  
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+     hero.setBounds(e.getX(), e.getY(), heroSize, heroSize);
+     hero.setBackground(Color.red);
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+         hero.setBounds(e.getX(), e.getY(), heroSize, heroSize);
+          hero.setBackground(Color.red);
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+         hero.setBounds(e.getX(), e.getY(), heroSize, heroSize);
+          hero.setBackground(Color.red);
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
  
 
     

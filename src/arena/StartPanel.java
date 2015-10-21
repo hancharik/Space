@@ -166,7 +166,7 @@ public class StartPanel extends JPanel implements ActionListener, ChangeListener
        centeredGravityButton.addActionListener(this);
        add(centeredGravityButton);
        
-       fixedParticleButton = new JButton("fixed particles = " + arena.Arena.globalSingularGravity);
+       fixedParticleButton = new JButton("diffuse particles = " + arena.Arena.particles);
        fixedParticleButton.setBounds(column(1), row(6), 200, 40);
        fixedParticleButton.addActionListener(this);
        add(fixedParticleButton);
@@ -363,10 +363,10 @@ arena.Arena.globalPlayerSizeMultiplier = 2;
         if (obj == fixedParticleButton){
             if(arena.Arena.particles){
             arena.Arena.particles = false; 
-            fixedParticleButton.setText("fixed particles = " + arena.Arena.particles);
+            fixedParticleButton.setText("diffuse particles = " + arena.Arena.particles);
             }else{
               arena.Arena.particles = true; 
-              fixedParticleButton.setText("fixed particles = " + arena.Arena.particles);
+              fixedParticleButton.setText("diffuse particles = " + arena.Arena.particles);
             }
             
        	}
