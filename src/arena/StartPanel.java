@@ -36,6 +36,8 @@ public class StartPanel extends JPanel implements ActionListener, ChangeListener
     JButton linearMovementButton;
     JButton centeredGravityButton;
     JButton fixedParticleButton;
+    JButton relativeGravityButton;
+    
     JSlider numberOfParticles;
     JSlider sizeOfParticles;
     JSlider speedOfParticles;
@@ -173,6 +175,12 @@ public class StartPanel extends JPanel implements ActionListener, ChangeListener
        fixedParticleButton.addActionListener(this);
        add(fixedParticleButton);
        
+       relativeGravityButton = new JButton("relative gravity = " + arena.Arena.gravityGetsStronger);
+       relativeGravityButton.setBounds(column(1), row(7), 200, 40);
+       relativeGravityButton.addActionListener(this);
+       add(relativeGravityButton);
+       
+       
     }  // end constructor
 
     @Override
@@ -270,7 +278,7 @@ arena.Arena.globalPlayerSizeMultiplier = 2;
     
   arena.Arena.globalheroSpeed = 10;
   arena.Arena.globalTimerSpeed = 1;
- arena.Arena.globalSpeedlimit = 32;// + heroSize;// douglas adams is max
+ arena.Arena.globalSpeedlimit = 12;// + heroSize;// douglas adams 42 is max
    arena.Arena.globalMinSpeed = 2;
    
     arena.Arena.screen.start(); 
@@ -286,14 +294,15 @@ arena.Arena.globalPlayerSizeMultiplier = 2;
               //showrms.setText("Hiding rms");
                 showrms.setIcon(new ImageIcon("images/be200x100.png")); 
            arena.Arena.showStallman = false;   
-           //arena.Arena.particles = false;
+          // arena.Arena.gravityGetsStronger = false;
             }else{
             
            //System.exit();
             //showrms.setText("Showing rms");
            showrms.setIcon(new ImageIcon("images/rms200x100.png"));
            arena.Arena.showStallman = true;
-        // arena.Arena.particles = true;
+                  // arena.Arena.gravityGetsStronger = true;
+
             }
        	}
         
@@ -373,7 +382,16 @@ arena.Arena.globalPlayerSizeMultiplier = 2;
             
        	}
         
-        
+         if (obj == relativeGravityButton){
+            if(arena.Arena.gravityGetsStronger){
+            arena.Arena.gravityGetsStronger = false; 
+            relativeGravityButton.setText("relative gravity = " + arena.Arena.gravityGetsStronger);
+            }else{
+              arena.Arena.gravityGetsStronger = true; 
+              relativeGravityButton.setText("relative gravity = " + arena.Arena.gravityGetsStronger);
+            }
+            
+       	}
     } // end action event
     
     

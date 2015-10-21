@@ -300,7 +300,7 @@ public class Apanel extends JPanel implements ActionListener, KeyListener, Mouse
        // chase the tail!
            // moveX = enemies.get(i).getX() - enemies.get(enemies.size()-1).getX();
            // moveY = enemies.get(i).getY() - enemies.get(enemies.size()-1).getY(); 
-      
+      int amountOfForce = getDistance(enemies.get(i).getX(),enemies.get(i).getY(), hero.getX(), hero.getY());
        
        
                 if(!arena.Arena.globalSingularGravity){
@@ -346,17 +346,20 @@ public class Apanel extends JPanel implements ActionListener, KeyListener, Mouse
                 
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         } else{ 
+                if(!arena.Arena.gravityGetsStronger){
+                amountOfForce = 1;
+                }
                 
                 if (moveX > 0){
                    
-                   enemies.get(i).xVel--;
+                   enemies.get(i).xVel = enemies.get(i).xVel - amountOfForce;
                 }else{
-                   enemies.get(i).xVel++; 
+                   enemies.get(i).xVel = enemies.get(i).xVel + amountOfForce;
                 }
                 if (moveY > 0){
-                    enemies.get(i).yVel--;
+                    enemies.get(i).yVel = enemies.get(i).yVel - amountOfForce;
                 }else{
-                   enemies.get(i).yVel++; 
+                   enemies.get(i).yVel = enemies.get(i).yVel + amountOfForce;
                 }
        
               ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////            
@@ -372,6 +375,39 @@ public class Apanel extends JPanel implements ActionListener, KeyListener, Mouse
             }  // end for loop
        
    }   // end move enemy
+     
+  
+     
+    public int getDistance(int x, int y, int dx, int dy){
+        
+        int forceAmount = 1;
+        double distance = Math.sqrt((dx-x)*(dx-x)+(dy-y)*(dy-y));
+        if(distance < 100.0){
+           forceAmount = 2; 
+        }if(distance < 80.0){
+          forceAmount = 4; 
+        }
+        if(distance < 60.0){
+           forceAmount = 6; 
+        }
+        if(distance < 40.0){
+            forceAmount = 12;
+        }
+        
+        
+        
+       return forceAmount; 
+    } //end get distance
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
      
      
    public void gameOver(){

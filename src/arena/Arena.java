@@ -29,7 +29,7 @@ public class Arena {
      public static boolean particles = false;  // when true, particles start everywhere
      public static boolean showStallman = false;
      public static boolean linearMovement = false;  // when true, this is our original movement 
-     
+     public static boolean gravityGetsStronger = true;
      
      public static int globalHeroSize = 20;// * globalPlayerSizeMultiplier;
      public static int globalStallmanSize = 80;// * globalPlayerSizeMultiplier;
