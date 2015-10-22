@@ -197,7 +197,7 @@ public class Apanel extends JPanel implements ActionListener, KeyListener, Mouse
 		if (obj == hero) //t)
 		{
                     timer.stop();
-                    
+                    space.Space.screen.dispose();
                     //if(singularGravity == false){
                   space.Space.screen.startPanel();
                   //  }else{
