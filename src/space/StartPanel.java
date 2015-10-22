@@ -300,28 +300,68 @@ space.Space.globalParticleSizeMultiplier = 2;
    
     space.Space.screen.start(); 
        	}// end start planet button
+   
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+   ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+   /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////      
+  /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////      
+  ////////////////////                  THE STALLMAN HALO                 //////////////////////////
+  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////      
+        
+        
         
         
         if (obj == stallmanHaloButton){
             
-           space.Space.globalSingularGravity = true;
-           space.Space.particles = true;
-                 space.Space.globalParticleSize = 4;
-    space.Space.showStallman = true;//.globalHelioSize = checkForStallman(18);
- space.Space.globalAmountOfParticles = 6000;
-  space.Space.gravityGetsStronger = true;
-  space.Space.globalParticleMass = 3;  
- space.Space.globalEnemySpeed = 1;
-  space.Space.gravityWellDistance = 555;  
-  space.Space.globalhelioSpeed = 10;
-  space.Space.globalTimerSpeed = 1;
- space.Space.globalSpeedlimit = 42;// + heroSize;// douglas adams 42 is max
-   space.Space.globalMinSpeed = 12;
-   space.Space.gravityGetsStronger = false;
-    space.Space.screen.start(); 
+            
+                space.Space.thereIsAShip = false;
+                space.Space.globalSingularGravity = true;
+                space.Space.particles = true;
+                space.Space.globalParticleSize = 4;
+                space.Space.showStallman = true;//.globalHelioSize = checkForStallman(18);
+                space.Space.globalAmountOfParticles = 6000;
+                space.Space.gravityGetsStronger = true;
+                space.Space.globalParticleMass = 3;  // 3 - super important!
+                space.Space.globalEnemySpeed = 1;
+                space.Space.gravityWellDistance = 555;  
+                space.Space.globalhelioSpeed = 10;
+                space.Space.globalTimerSpeed = 1;
+                space.Space.globalSpeedlimit = 42;// douglas adams (42) is max
+                space.Space.globalMinSpeed = 12;
+                space.Space.gravityGetsStronger = false;
+                space.Space.screen.start(); 
            
             
        	} // end stallman halo
+        
+ ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+   /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////      
+  ////////////////////                  THE STALLMAN HALO                 //////////////////////////
+  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////          
+   ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+   /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////      
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         
         
         if (obj == startChainedParticleButton){
