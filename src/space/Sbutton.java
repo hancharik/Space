@@ -50,12 +50,7 @@ public class Sbutton extends JButton{
     }
    
        
-   public void makeZombie(){
-       
-   
-       this.setIcon(new ImageIcon("images/hook.jpg"));
-       
-  }   
+  
        
      public void makeHero(){
        

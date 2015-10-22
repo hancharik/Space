@@ -213,7 +213,12 @@ public class StartPanel extends JPanel implements ActionListener, ChangeListener
        fixedParticleButton.addActionListener(this);
        add(fixedParticleButton);
        
-       relativeGravityButton = new JButton("relative gravity = " + space.Space.gravityGetsStronger);
+       relativeGravityButton = new JButton();
+       if(space.Space.gravityGetsStronger== false){
+           relativeGravityButton.setText("quantum motion");
+       }else{
+           relativeGravityButton.setText("classical motion");
+       }
        relativeGravityButton.setBounds(column(1), row(3), 180, 40);
        relativeGravityButton.addActionListener(this);
        add(relativeGravityButton);
@@ -455,14 +460,14 @@ space.Space.globalParticleSizeMultiplier = 2;
          if (obj == relativeGravityButton){
             if(space.Space.gravityGetsStronger){
             space.Space.gravityGetsStronger = false; 
-            relativeGravityButton.setText("relative gravity = " + space.Space.gravityGetsStronger);
+            relativeGravityButton.setText("quantum motion");
             massOfCenter.setVisible(false);
             massOfParticles.setVisible(false);
             massOfParticlesLabel.setVisible(false);
             massOfParticlesLabel.setVisible(false);
             }else{
               space.Space.gravityGetsStronger = true; 
-              relativeGravityButton.setText("relative gravity = " + space.Space.gravityGetsStronger);
+              relativeGravityButton.setText("classical motion");
                 massOfCenter.setVisible(true);
                 massOfParticles.setVisible(true);
                 massOfParticlesLabel.setVisible(true);

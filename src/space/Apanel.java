@@ -78,20 +78,32 @@ public class Apanel extends JPanel implements ActionListener, KeyListener, Mouse
       
       
       //addMouseListener(this);
+      
+      
+      
+     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
+      // if we have this, do we need the stuff at the bottom?
       addMouseListener(new MouseAdapter() {
 			public void mousePressed(MouseEvent e) {
-				helio.setBounds(e.getX(), e.getY(), helioSize, helioSize);
-     helio.setBackground(Color.red);
-			}
-		});
+                                    if(space.Space.thereIsAShip){
+                                        ship.setBounds(e.getX(), e.getY(), space.Space.globalShipSize, space.Space.globalShipSize);   
+                                        ship.xVel = 0.0;
+                                        ship.yVel = 0.0;
+                                           }else{
+                                        helio.setBounds(e.getX(), e.getY(), helioSize, helioSize);
+                                            }
+                                    }
+                                });
+   //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////   
       
-     // createTreasureButtons();
       
       
-      //addTreasureButtons();
-       //hideTreasureButtons();
-       //timerSpeed = 2;//0 - (space.Space.level * 2);//100 - (space.Space.level * 8);// 100-20 raange, based on 1-10
-        //timerSpeed = 200 - (space.Space.level * 16);// 100-20 raange, based on 1-10
+      
+      
+      
+      
+      
+
        timer = new Timer( timerSpeed, this);
        timer.start();
        helio.requestFocus();
@@ -673,19 +685,31 @@ public class Apanel extends JPanel implements ActionListener, KeyListener, Mouse
 
     @Override
     public void mouseClicked(MouseEvent e) {
+        if(space.Space.thereIsAShip){
+     ship.setBounds(e.getX(), e.getY(), space.Space.globalShipSize, space.Space.globalShipSize);      
+        }else{
      helio.setBounds(e.getX(), e.getY(), helioSize, helioSize);
+        }
     // helio.setBackground(Color.red);
     }
 
     @Override
     public void mousePressed(MouseEvent e) {
+        if(space.Space.thereIsAShip){
+     ship.setBounds(e.getX(), e.getY(), space.Space.globalShipSize, space.Space.globalShipSize);      
+        }else{
          helio.setBounds(e.getX(), e.getY(), helioSize, helioSize);
+        }
         //  helio.setBackground(Color.red);
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
+        if(space.Space.thereIsAShip){
+     ship.setBounds(e.getX(), e.getY(), space.Space.globalShipSize, space.Space.globalShipSize);      
+        }else{
          helio.setBounds(e.getX(), e.getY(), helioSize, helioSize);
+        }
         // helio.setBackground(Color.red);
     }
 
