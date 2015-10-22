@@ -28,13 +28,14 @@ public class Space {
    public static int globalAmountOfParticles = 1000;
    
    public static int gravityWellDistance = 200;
-    public static int massOfCenter = 10;
+    public static double massOfCenter = 10.0;
    
     public static boolean globalSingularGravity = true; // when true, there is one point of gravity, when false, chained gravity
      public static boolean particles = false;  // when true, particles start everywhere
      public static boolean showStallman = false;
      public static boolean linearMovement = false;  // when true, this is our original movement 
      public static boolean gravityGetsStronger = true;
+     public static boolean allParticlesHaveGravity = true; // leave this off until we get a fast processor!
      
      
      public static int globalStallmanSize = 80;// * globalParticleSizeMultiplier;

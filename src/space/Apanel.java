@@ -36,10 +36,9 @@ public class Apanel extends JPanel implements ActionListener, KeyListener, Mouse
     int speedlimit = space.Space.globalSpeedlimit;// + heroSize;// douglas adams is max
     int minSpeed = space.Space.globalMinSpeed;
     Sbutton hero;
-    ArrayList<Sbutton> enemies = new ArrayList();
-     ArrayList<Sbutton> stuffBucket = new ArrayList();
-     int stuffBucketSize = space.Space.level;
-    JButton gameOverButton = new JButton();
+    ArrayList<Sbutton> particles;// = new ArrayList();
+    
+  
     
     //Abutton[] stuffBucket = new Sbutton[space.Space.level*120];
     //BucketPanel bucket = new BucketPanel();
@@ -65,14 +64,12 @@ public class Apanel extends JPanel implements ActionListener, KeyListener, Mouse
        setLayout(null);
        setBackground(Color.black);
         addMouseListener(this);
-       gameOverButton.setBackground(Color.red);
-       gameOverButton.setText("GAME OVER");
-       gameOverButton.setBounds(600, 500, 200, 100);
-       gameOverButton.addActionListener(this);
+      
       // addEnemies();
       // addEnemies();
+        particles = new ArrayList();
         addHero();
-        
+        particles.add(hero);
         
       addEnemies();
       
@@ -130,9 +127,10 @@ public class Apanel extends JPanel implements ActionListener, KeyListener, Mouse
         if(space.Space.showStallman){
             heroSize = space.Space.globalStallmanSize;
         hero.makeHero();
+        
         }
         hero.setBounds(Xcord, Ycord, heroSize, heroSize);
-        hero.mass = 1000.0;
+        hero.mass = space.Space.massOfCenter;
         add(hero);   
     }
   
@@ -143,8 +141,11 @@ public class Apanel extends JPanel implements ActionListener, KeyListener, Mouse
          for(int i = 0; i < amountOfEnemies; i++){
              Xcord = hero.getX() - ((int)(Math.random() * 200) + 1);//(int) (Math.random() * (space.Space.screen.width-300)) + 200;
          Ycord = hero.getY() - ((int)(Math.random() * 100) + 100);//(int) (Math.random() * (space.Space.screen.height-300)) + 200;
-         int xsp = 30;
-         int ysp = -10;
+         //int xsp = 30;
+         //int ysp = -10;
+         // this is our cast, we "throw" them to try to get an orbit
+         int xsp = 20;
+         int ysp = -1;
          
          if(space.Space.particles){
              Xcord = (int) (Math.random() * (space.Space.screen.width)) + 1;
@@ -154,16 +155,17 @@ public class Apanel extends JPanel implements ActionListener, KeyListener, Mouse
          }
           Sbutton a = new Sbutton();
          
-        //enemies.get(i) = new Sbutton();
+        //particles.get(i) = new Sbutton();
         a.setBounds(Xcord, Ycord, playerSize, playerSize);
         a.setBackground(Color.red);
         a.xVel = xsp;
         a.yVel = ysp;
+        a.mass = space.Space.globalParticleMass;
         a.addActionListener(this);
        // a.makeZombie();
         a.speedLimit = (int)(Math.random() * speedlimit) + minSpeed;
         a.setColor(speedlimit);
-         enemies.add(a);
+         particles.add(a);
         add(a);   
         
          }
@@ -181,16 +183,11 @@ public class Apanel extends JPanel implements ActionListener, KeyListener, Mouse
             
             
             	
-            hero.checkCollision();
-            if(enemies.size()>0){
-            for(int i = 0; i < amountOfEnemies; i++){
-            enemies.get(i).checkCollision();
-            }
-            }
-           // gameOver();
-           // win();
+          
+           
+           //moveParticles();
             moveEnemy();
-            hero.requestFocus();
+            //hero.requestFocus();
        	}
         
         
@@ -286,6 +283,55 @@ public class Apanel extends JPanel implements ActionListener, KeyListener, Mouse
     
     }
  
+    
+    
+    
+    
+     public void moveParticles(){
+       
+         
+         for(int i = 0; i < particles.size(); i++){
+             
+             
+             
+             
+              for(int j = 0; j < particles.size(); j++){
+      /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////   
+                    double totalGravity = 0.0;
+                    int moveX = 0;
+                    int moveY = 0;
+                                   
+                            if(i != j){ // don't calculate gravity on yourself
+                                    totalGravity  = calculateGravity(particles.get(i).getX(),particles.get(i).getY(), particles.get(j).getX(),particles.get(j).getY(), particles.get(i).mass, particles.get(j).mass);
+                                    moveX = (particles.get(i).getX()+ (particles.get(i).getWidth()/2)) - (particles.get(j).getX()+ (particles.get(j).getWidth()/2));
+                                    moveY = (particles.get(i).getY()+ (particles.get(i).getWidth()/2)) - (particles.get(j).getY()+ (particles.get(j).getWidth()/2));
+                                   
+                                   
+                                        
+                                    if (moveX > 0){
+                                       particles.get(i).xVel = particles.get(i).xVel - totalGravity;
+                                    }else if (moveX < 0){
+                                       particles.get(i).xVel = particles.get(i).xVel + totalGravity;
+                                    }else{
+                                      // if zero, do nothing    
+                                    }
+
+                                    if (moveY > 0){
+                                        particles.get(i).yVel = particles.get(i).yVel - totalGravity;
+                                   }else if (moveY < 0){
+                                       particles.get(i).yVel = particles.get(i).yVel + totalGravity;
+                                    }else{
+                                      // if zero, do nothing  
+                                    }
+
+                            }
+                        
+                 } // end for j loop
+             
+            particles.get(i).move();
+            }  // end for i loop
+       
+   }   // end move particle
 
 
      
@@ -294,20 +340,20 @@ public class Apanel extends JPanel implements ActionListener, KeyListener, Mouse
      public void moveEnemy(){
        
          
-         for(int i = 0; i < enemies.size(); i++){
+         for(int i = 0; i < particles.size(); i++){
       /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////   
-       int moveX = (enemies.get(i).getX()+ (playerSize/2)) - (hero.getX() + (heroSize/2));
-       int moveY = (enemies.get(i).getY()+ (playerSize/2)) - (hero.getY()+ (heroSize/2));
+       int moveX = (particles.get(i).getX()+ (playerSize/2)) - (hero.getX() + (heroSize/2));
+       int moveY = (particles.get(i).getY()+ (playerSize/2)) - (hero.getY()+ (heroSize/2));
        // chase the tail!
-           // moveX = enemies.get(i).getX() - enemies.get(enemies.size()-1).getX();
-           // moveY = enemies.get(i).getY() - enemies.get(enemies.size()-1).getY(); 
-      //int amountOfForce = getDistance(enemies.get(i).getX(),enemies.get(i).getY(), hero.getX(), hero.getY());
+           // moveX = particles.get(i).getX() - particles.get(particles.size()-1).getX();
+           // moveY = particles.get(i).getY() - particles.get(particles.size()-1).getY(); 
+      //int amountOfForce = getDistance(particles.get(i).getX(),particles.get(i).getY(), hero.getX(), hero.getY());
       
        
                 if(!space.Space.globalSingularGravity){
                         if(i > 0){
-                             moveX = enemies.get(i).getX() - enemies.get(i-1).getX();
-                             moveY = enemies.get(i).getY() - enemies.get(i-1).getY(); 
+                             moveX = particles.get(i).getX() - particles.get(i-1).getX();
+                             moveY = particles.get(i).getY() - particles.get(i-1).getY(); 
 
                            // move = enemySpeed - i;
                         }
@@ -324,21 +370,21 @@ public class Apanel extends JPanel implements ActionListener, KeyListener, Mouse
                 
         if (moveX > 0){
                     if(Math.abs(moveX - move)>move){
-                   enemies.get(i).setBounds(enemies.get(i).getX() - move, enemies.get(i).getY(), playerSize, playerSize); 
+                   particles.get(i).setBounds(particles.get(i).getX() - move, particles.get(i).getY(), playerSize, playerSize); 
                     }
                 }else{
                     if(Math.abs(moveX - move)>move){
-                  enemies.get(i).setBounds(enemies.get(i).getX() + move, enemies.get(i).getY(), playerSize, playerSize); 
+                  particles.get(i).setBounds(particles.get(i).getX() + move, particles.get(i).getY(), playerSize, playerSize); 
                     }
                 }
                 if (moveY > 0){
                     if(Math.abs(moveY - move)>move){
-                   enemies.get(i).setBounds(enemies.get(i).getX(), enemies.get(i).getY() - move, playerSize, playerSize);
+                   particles.get(i).setBounds(particles.get(i).getX(), particles.get(i).getY() - move, playerSize, playerSize);
                     }
                 }else{
                         if(Math.abs(moveY - move)>move){
                     
-                  enemies.get(i).setBounds(enemies.get(i).getX(), enemies.get(i).getY() + move, playerSize, playerSize);  
+                  particles.get(i).setBounds(particles.get(i).getX(), particles.get(i).getY() + move, playerSize, playerSize);  
                         }
                 }
        
@@ -347,28 +393,54 @@ public class Apanel extends JPanel implements ActionListener, KeyListener, Mouse
                 
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         } else{ 
-                 double amountOfForce = calculateGravity(enemies.get(i).getX(),enemies.get(i).getY(), hero.getX(), hero.getY(), enemies.get(i).mass, hero.mass);
+                 double amountOfForce; 
+                 
+                 amountOfForce = calculateGravity(particles.get(i).getX(),particles.get(i).getY(), hero.getX(), hero.getY(), particles.get(i).mass, hero.mass);
+                 
+                 // check all particles for gravity
+                 double totalGravity = 0.0;
+                 if(space.Space.allParticlesHaveGravity){
+                
+                 
+                        for(int j = 0; j < particles.size(); j++){
+                                   if(i != j){ // don't calculate gravity on yourself
+                                  totalGravity  = calculateGravity(particles.get(i).getX(),particles.get(i).getY(), particles.get(j).getX(),particles.get(j).getY(), particles.get(i).mass, particles.get(j).mass);
+                                  }
+                        }
+                 }
+                 
+                // double  amountOfXForce = calculateSingleVectorGravity(particles.get(i).getX(), hero.getX(),  particles.get(i).mass, hero.mass);
+               // double amountOfYForce = calculateSingleVectorGravity(particles.get(i).getY(), hero.getY(), particles.get(i).mass, hero.mass);
+                 
                 if(!space.Space.gravityGetsStronger){
                 amountOfForce = 1;
                 }
+                if(space.Space.showStallman){
+                amountOfForce = getDistance(particles.get(i).getX(),particles.get(i).getY(), hero.getX(), hero.getY());
+                }
+                // first run gravity on x vector
+               // amountOfForce = calculateSingleVectorGravity(particles.get(i).getX(), hero.getX(),  particles.get(i).mass, hero.mass);
                 
-                if (moveX > 0){
-                   
-                   enemies.get(i).xVel = enemies.get(i).xVel - amountOfForce;
-                }else{
-                   enemies.get(i).xVel = enemies.get(i).xVel + amountOfForce;
-                }
-                if (moveY > 0){
-                    enemies.get(i).yVel = enemies.get(i).yVel - amountOfForce;
-                }else{
-                   enemies.get(i).yVel = enemies.get(i).yVel + amountOfForce;
-                }
-       
+                                    if (moveX > 0){
+                                       particles.get(i).xVel = particles.get(i).xVel - (amountOfForce + totalGravity);
+                                    }else if (moveX < 0){
+                                       particles.get(i).xVel = particles.get(i).xVel + (amountOfForce + totalGravity);
+                                    }else{
+                                      // if zero, do nothing    
+                                    }
+
+                                    if (moveY > 0){
+                                        particles.get(i).yVel = particles.get(i).yVel - (amountOfForce + totalGravity);
+                                   }else if (moveY < 0){
+                                       particles.get(i).yVel = particles.get(i).yVel + (amountOfForce + totalGravity);
+                                    }else{
+                                      // if zero, do nothing  
+                                    }
               ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////            
                 
-               //  enemies.get(0).setBackground(Color.WHITE);
-                enemies.get(i).move();
-                enemies.get(i).checkCollision();
+               //  particles.get(0).setBackground(Color.WHITE);
+                particles.get(i).move();
+                particles.get(i).checkCollision();
             }
             
             
@@ -386,7 +458,7 @@ public class Apanel extends JPanel implements ActionListener, KeyListener, Mouse
         
         
         double gravityWell = space.Space.gravityWellDistance;
-        double mass = space.Space.massOfCenter;
+        double mass = 3;//space.Space.massOfCenter;
         double distance = Math.sqrt((dx-x)*(dx-x)+(dy-y)*(dy-y));
       
         
@@ -436,6 +508,10 @@ public class Apanel extends JPanel implements ActionListener, KeyListener, Mouse
     
     
     
+    
+    
+    
+    
         public double calculateGravity(int x, int y, int dx, int dy, double m1, double m2){
         
         double forceAmount = 1;
@@ -448,6 +524,29 @@ public class Apanel extends JPanel implements ActionListener, KeyListener, Mouse
         
         double gravitationalAttraction = (uniGravConst * m1 * m2) / (distance * distance);
         
+        forceAmount = gravitationalAttraction; 
+        
+        return forceAmount; 
+       
+    } //end calculate gravity
+     
+     
+     
+        
+        
+        
+        
+        
+           public double calculateSingleVectorGravity(int x,  int dx,  double m1, double m2){
+        // i don't know if this is anywhere near right, i think it's correct, it's my feeling - gravity should have different values on x and y
+              // so if you call this on the x and y individually, it should be more accurate movement
+        double forceAmount = 1;
+        
+        double distance = x-dx;
+        double uniGravConst = space.Space.universalGravitationConstant;
+        
+         double gravitationalAttraction = (uniGravConst * m1 * m2) / (distance * distance);
+        
         
         
         forceAmount = gravitationalAttraction; 
@@ -457,11 +556,7 @@ public class Apanel extends JPanel implements ActionListener, KeyListener, Mouse
     
        return forceAmount; 
        
-    } //end calculate gravity
-     
-     
-     
-     
+    } //end calculate gravity  
      
      
      
@@ -471,18 +566,17 @@ public class Apanel extends JPanel implements ActionListener, KeyListener, Mouse
    public void gameOver(){
       
        
-        for(int i = 0; i < enemies.size(); i++){
+        for(int i = 0; i < particles.size(); i++){
             
             
        
-      if (hero.getBounds().intersects(enemies.get(i).getBounds())){
+      if (hero.getBounds().intersects(particles.get(i).getBounds())){
           
           timer.stop();
           
           remove(hero);
-          remove(enemies.get(i));
-          add(gameOverButton);
-          gameOverButton.setText("You Lose! Level " + space.Space.level);
+          remove(particles.get(i));
+          
           //singularGravity = false;
           //gameOverButton.removeActionListener(this);
           //hideTreasureButtons();

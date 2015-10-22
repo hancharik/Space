@@ -44,9 +44,9 @@ public class StartPanel extends JPanel implements ActionListener, ChangeListener
     JSlider speedOfParticles;
     JSlider speedLimitMaxOfParticles;
     JSlider speedLimitMinOfParticles;
-    JSlider sizeOfGravityWell;
     JSlider massOfCenter;
-    JLabel sizeOfGravityWellLabel;
+    JSlider massOfParticles;
+    JLabel massOfParticlesLabel;
     JLabel massOfCenterLabel;
     JLabel numOfParticles;
     JLabel speedLimitMaxOfParticlesLabel;
@@ -89,6 +89,23 @@ public class StartPanel extends JPanel implements ActionListener, ChangeListener
        fullScreenButton.addActionListener(this);
        //add(fullScreenButton);
        
+        
+        massOfCenter = new JSlider(JSlider.HORIZONTAL, 0, 1000, (int)space.Space.massOfCenter);
+        massOfCenter.addChangeListener(this);
+        massOfCenter.setMajorTickSpacing(100);
+        massOfCenter.setPaintTicks(true);
+        massOfCenter.setBounds(column(1), row(8), 400, 40);// horizontal
+        //numberOfParticles.setBounds(column(1), 160, 40, 200);// vertical
+        add(massOfCenter);
+        
+        massOfParticles = new JSlider(JSlider.HORIZONTAL, 1, 1000, (int)space.Space.globalParticleMass);
+        massOfParticles.addChangeListener(this);
+        massOfParticles.setMajorTickSpacing(100);
+        massOfParticles.setPaintTicks(true);
+        massOfParticles.setBounds(column(1), row(9), 400, 40);// horizontal
+        //numberOfParticles.setBounds(10, 160, 40, 200);// vertical
+        add(massOfParticles);
+        
         numberOfParticles = new JSlider(JSlider.HORIZONTAL, 1, 6000, space.Space.globalAmountOfParticles);
         numberOfParticles.addChangeListener(this);
         numberOfParticles.setMajorTickSpacing(100);
@@ -104,22 +121,7 @@ public class StartPanel extends JPanel implements ActionListener, ChangeListener
         sizeOfParticles.setBounds(column(1), row(11), 400, 40);// horizontal
         //numberOfParticles.setBounds(10, 160, 40, 200);// vertical
         add(sizeOfParticles);
-        
-        sizeOfGravityWell = new JSlider(JSlider.HORIZONTAL, 1, 600, space.Space.gravityWellDistance);
-        sizeOfGravityWell.addChangeListener(this);
-        sizeOfGravityWell.setMajorTickSpacing(100);
-        sizeOfGravityWell.setPaintTicks(true);
-        sizeOfGravityWell.setBounds(column(1), row(8), 400, 40);// horizontal
-        //numberOfParticles.setBounds(column(1), 160, 40, 200);// vertical
-        add(sizeOfGravityWell);
-        
-        massOfCenter = new JSlider(JSlider.HORIZONTAL, 1, 20, space.Space.massOfCenter);
-        massOfCenter.addChangeListener(this);
-        massOfCenter.setMajorTickSpacing(100);
-        massOfCenter.setPaintTicks(true);
-        massOfCenter.setBounds(column(1), row(9), 400, 40);// horizontal
-        //numberOfParticles.setBounds(10, 160, 40, 200);// vertical
-        add(massOfCenter);
+       
         
         speedOfParticles = new JSlider(JSlider.HORIZONTAL, 1, 1000, space.Space.globalTimerSpeed);
         speedOfParticles.addChangeListener(this);
@@ -145,12 +147,12 @@ public class StartPanel extends JPanel implements ActionListener, ChangeListener
         //numberOfParticles.setBounds(10, 160, 40, 200);// vertical
         add(speedLimitMinOfParticles);
         
-        sizeOfGravityWellLabel = new JLabel("<html><h2><font color='white'>size of gravity well: </font><font color='red'>" + space.Space.gravityWellDistance + "</font><h2></html>");
-        sizeOfGravityWellLabel.setBounds(column(3), row(8), 220, 40);
-        add(sizeOfGravityWellLabel);
-        massOfCenterLabel = new JLabel("<html><h2><font color='white'>mass: </font><font color='red'>" + space.Space.massOfCenter + "</font><h2></html>");
-        massOfCenterLabel.setBounds(column(3), row(9), 220, 40);
+        massOfCenterLabel = new JLabel("<html><h2><font color='white'>mass of center: </font><font color='red'>" + space.Space.massOfCenter + "</font><h2></html>");
+        massOfCenterLabel.setBounds(column(3), row(8), 220, 40);
         add(massOfCenterLabel);
+        massOfParticlesLabel = new JLabel("<html><h2><font color='white'>mass of particles: </font><font color='red'>" + space.Space.globalParticleMass + "</font><h2></html>");
+        massOfParticlesLabel.setBounds(column(3), row(9), 220, 40);
+        add(massOfParticlesLabel);
         
         numOfParticles = new JLabel("<html><h2><font color='white'># of particles: </font><font color='red'>" + space.Space.globalAmountOfParticles + "</font><h2></html>");
         numOfParticles.setBounds(column(3), row(10), 220, 40);
@@ -212,10 +214,10 @@ public class StartPanel extends JPanel implements ActionListener, ChangeListener
        
        
        if(!space.Space.gravityGetsStronger){
-        sizeOfGravityWell.setVisible(false);
-            massOfCenter.setVisible(false);
-            sizeOfGravityWellLabel.setVisible(false);
-            massOfCenterLabel.setVisible(false);
+        massOfCenter.setVisible(false);
+            massOfParticles.setVisible(false);
+            massOfParticlesLabel.setVisible(false);
+            massOfParticlesLabel.setVisible(false);
        }
        
        
@@ -297,14 +299,14 @@ space.Space.globalParticleSizeMultiplier = 2;
     space.Space.showStallman = true;//.globalHeroSize = checkForStallman(18);
  space.Space.globalAmountOfParticles = 6000;
   space.Space.gravityGetsStronger = true;
-  space.Space.massOfCenter = 3;  
+  space.Space.globalParticleMass = 3;  
  space.Space.globalEnemySpeed = 1;
   space.Space.gravityWellDistance = 555;  
   space.Space.globalheroSpeed = 10;
   space.Space.globalTimerSpeed = 1;
  space.Space.globalSpeedlimit = 42;// + heroSize;// douglas adams 42 is max
    space.Space.globalMinSpeed = 12;
-   
+   space.Space.gravityGetsStronger = false;
     space.Space.screen.start(); 
            
             
@@ -432,17 +434,17 @@ space.Space.globalParticleSizeMultiplier = 2;
             if(space.Space.gravityGetsStronger){
             space.Space.gravityGetsStronger = false; 
             relativeGravityButton.setText("relative gravity = " + space.Space.gravityGetsStronger);
-            sizeOfGravityWell.setVisible(false);
             massOfCenter.setVisible(false);
-            sizeOfGravityWellLabel.setVisible(false);
-            massOfCenterLabel.setVisible(false);
+            massOfParticles.setVisible(false);
+            massOfParticlesLabel.setVisible(false);
+            massOfParticlesLabel.setVisible(false);
             }else{
               space.Space.gravityGetsStronger = true; 
               relativeGravityButton.setText("relative gravity = " + space.Space.gravityGetsStronger);
-                sizeOfGravityWell.setVisible(true);
                 massOfCenter.setVisible(true);
-                sizeOfGravityWellLabel.setVisible(true);
-                massOfCenterLabel.setVisible(true);
+                massOfParticles.setVisible(true);
+                massOfParticlesLabel.setVisible(true);
+                massOfParticlesLabel.setVisible(true);
             }
             
        	}
@@ -484,13 +486,13 @@ public void checkrmsPic(){
         public void stateChanged(ChangeEvent e) {
         JSlider source = (JSlider)e.getSource();
        
-        if (source == sizeOfGravityWell) {
-            space.Space.gravityWellDistance = (int)source.getValue();
-            sizeOfGravityWellLabel.setText("<html><h2><font color='white'>size of gravity well: </font><font color='red'>" + space.Space.gravityWellDistance + "</font><h2></html>");
+        if (source == massOfCenter) {
+            space.Space.massOfCenter = source.getValue();
+            massOfCenterLabel.setText("<html><h2><font color='white'>mass of center: </font><font color='red'>" + space.Space.massOfCenter + "</font><h2></html>");
         }
-         if (source == massOfCenter) {
-            space.Space.massOfCenter = (int)source.getValue();
-            massOfCenterLabel.setText("<html><h2><font color='white'>mass: </font><font color='red'>" + space.Space.massOfCenter + "</font><h2></html>");
+         if (source == massOfParticles) {
+            space.Space.globalParticleMass = source.getValue();
+            massOfParticlesLabel.setText("<html><h2><font color='white'>mass of particles: </font><font color='red'>" + space.Space.globalParticleMass + "</font><h2></html>");
         }
         if (source == numberOfParticles) {
             space.Space.globalAmountOfParticles = (int)source.getValue();
