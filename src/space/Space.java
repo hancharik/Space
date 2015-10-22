@@ -25,6 +25,7 @@ public class Space {
     
     public static int globalParticleSize = 16;
     public static double globalParticleMass = 10.0;
+    public static double globalShipMass = 10.0;
    public static int globalAmountOfParticles = 1000;
    
    public static int gravityWellDistance = 200;

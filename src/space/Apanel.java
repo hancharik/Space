@@ -342,9 +342,15 @@ public class Apanel extends JPanel implements ActionListener, KeyListener, Mouse
                     helio.setBounds(Xcord, Ycord, helioSize, helioSize);
 		} 
                 
+                  if(k == e.VK_Q){
+                        
+                  ship.mass = 0.0;      
+		}
                 
-                
-                
+                  if(k == e.VK_W){
+                        
+                  ship.mass = space.Space.globalShipMass;      
+		}
                 
                 
     }
