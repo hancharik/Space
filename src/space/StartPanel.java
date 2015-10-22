@@ -309,7 +309,7 @@ public class StartPanel extends JPanel implements ActionListener, ChangeListener
           space.Space.globalSingularGravity = true;
           space.Space.gravityGetsStronger = false;
           space.Space.particles = false;
-                   
+           space.Space.thereIsAShip = false;
               space.Space.globalParticleSize = 12;
     space.Space.globalHelioSize = checkForStallman(20);
 space.Space.globalParticleSizeMultiplier = 2;
