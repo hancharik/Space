@@ -57,7 +57,7 @@ public class StartPanel extends JPanel implements ActionListener, ChangeListener
     JLabel speedOfParticlesMaxLabel;
     JLabel speedLimitMinOfParticlesLabel;
     
-    int sliderWidth = (int)((double)space.Space.width*.20);
+    int sliderWidth = (int)(space.Space.width*.18);
     
     
     
@@ -164,35 +164,35 @@ public class StartPanel extends JPanel implements ActionListener, ChangeListener
         add(speedLimitMinOfParticles);
         
         massOfCenterLabel = new JLabel("<html><h2><font color='white'>mass of center: </font><font color='red'>" + space.Space.massOfCenter + "</font><h2></html>");
-        massOfCenterLabel.setBounds(column(3), row(4), 220, 40);
+        massOfCenterLabel.setBounds(column(2), row(4), 220, 40);
         add(massOfCenterLabel);
         
         massOfParticlesLabel = new JLabel("<html><h2><font color='white'>mass of particles: </font><font color='red'>" + space.Space.globalParticleMass + "</font><h2></html>");
-        massOfParticlesLabel.setBounds(column(3), row(5), 220, 40);
+        massOfParticlesLabel.setBounds(column(2), row(5), 220, 40);
         add(massOfParticlesLabel);
         
         massOfShipLabel = new JLabel("<html><h2><font color='white'>mass of ship: </font><font color='red'>" + space.Space.globalShipMass + "</font><h2></html>");
-        massOfShipLabel.setBounds(column(3), row(3), 220, 40);
+        massOfShipLabel.setBounds(column(2), row(3), 220, 40);
         add(massOfShipLabel);
         
         numOfParticles = new JLabel("<html><h2><font color='white'># of particles: </font><font color='red'>" + space.Space.globalAmountOfParticles + "</font><h2></html>");
-        numOfParticles.setBounds(column(3), row(6), 220, 40);
+        numOfParticles.setBounds(column(2), row(6), 220, 40);
      
         add(numOfParticles);
         sizeOfParticlesLabel = new JLabel("<html><h2><font color='white'>size: </font><font color='red'>" + space.Space.globalParticleSize + "</font><h2></html>");
-        sizeOfParticlesLabel.setBounds(column(3), row(7), 220, 40);
+        sizeOfParticlesLabel.setBounds(column(2), row(7), 220, 40);
         add(sizeOfParticlesLabel);
         //speedOfParticlesMaxLabel = new JLabel("speed: " + space.Space.globalTimerSpeed);
         speedOfParticlesMaxLabel = new JLabel("<html><h2><font color='white'>ms per cycle: </font><font color='red'>" + space.Space.globalTimerSpeed + "</font><h2></html>");
-        speedOfParticlesMaxLabel.setBounds(column(3), row(10), 220, 40);
+        speedOfParticlesMaxLabel.setBounds(column(2), row(10), 220, 40);
         add(speedOfParticlesMaxLabel);
         
          speedLimitMaxOfParticlesLabel = new JLabel("<html><h2><font color='white'>max speed limit: </font><font color='red'>" + space.Space.globalSpeedlimit + "</font><h2></html>");
-        speedLimitMaxOfParticlesLabel.setBounds(column(3), row(8), 220, 40);
+        speedLimitMaxOfParticlesLabel.setBounds(column(2), row(8), 220, 40);
         add(speedLimitMaxOfParticlesLabel);
         
          speedLimitMinOfParticlesLabel = new JLabel("<html><h2><font color='white'>min speed limit: </font><font color='red'>" + space.Space.globalMinSpeed + "</font><h2></html>");
-        speedLimitMinOfParticlesLabel.setBounds(column(3), row(9), 2200, 40);
+        speedLimitMinOfParticlesLabel.setBounds(column(2), row(9), 2200, 40);
         speedLimitMinOfParticlesLabel.setBackground(Color.red);
         add(speedLimitMinOfParticlesLabel);
         
@@ -203,7 +203,7 @@ public class StartPanel extends JPanel implements ActionListener, ChangeListener
        add(showrms); 
         
        quitButton = new JButton("quit");
-       quitButton.setBounds(column(6), row(16), 80, 40);
+       quitButton.setBounds(column(6), row(11), 80, 40);
        quitButton.addActionListener(this);
        add(quitButton);
        
@@ -213,7 +213,7 @@ public class StartPanel extends JPanel implements ActionListener, ChangeListener
        add(shipButton);
        
        startButton = new JButton("start");
-       startButton.setBounds(column(2), row(15), 80, 40);
+       startButton.setBounds(column(2), row(11), 80, 40);
        startButton.addActionListener(this);
        add(startButton);
        
@@ -635,7 +635,7 @@ public void checkrmsPic(){
                 //////////////////////////////////////////////////////////////////////////////////////////////////////////
  
 private int row(int r){
-    int pixelNumber = ((r-1)*space.Space.height/16)+20;
+    int pixelNumber = ((r-1)*(int)(space.Space.height/16))+20;
     return pixelNumber;
 }   
 
@@ -645,13 +645,12 @@ private int column(int c){
     switch(c){  // these arent in cardinal order, i've been readjusting layouts
         //case 1: columnPixelNumber = (space.Space.width/8)*1; break;
             
-            case 1: columnPixelNumber  = (int)((double)space.Space.width*.02); break;
-                case 2: columnPixelNumber  = (int)((double)space.Space.width*.12); break;
-        //case 2: columnPixelNumber = 260; break;
-        case 3: columnPixelNumber  = (int)((double)space.Space.width*.24); break;
-        case 4: columnPixelNumber  = (int)((double)space.Space.width*.56); break;
-            case 5: columnPixelNumber  = (int)((double)space.Space.width*.62); break;
-                case 6: columnPixelNumber  = (int)((double)space.Space.width*.7); break;
+                case 1: columnPixelNumber   = (int)(space.Space.width*.02); break;
+                case 2: columnPixelNumber   = (int)(space.Space.width*.22); break;
+                case 3: columnPixelNumber   = (int)(space.Space.width*.32); break;
+                case 4: columnPixelNumber   = (int)(space.Space.width*.42); break;
+                case 5: columnPixelNumber   = (int)(space.Space.width*.52); break;
+                case 6: columnPixelNumber   = (int)(space.Space.width*.62); break;
     }
     return columnPixelNumber;
 } // end column
