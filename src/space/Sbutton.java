@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package arena;
+package space;
 
 import java.awt.Color;
 import javax.swing.Icon;
@@ -13,34 +13,37 @@ import javax.swing.JButton;
  *
  * @author Mark
  */
-public class Abutton extends JButton{
+public class Sbutton extends JButton{
     
-    int size = arena.Arena.level;
-    ImageIcon[] icons = new ImageIcon[size];
-    int xVel = 30;
-    int yVel = -10;
+   
+    
+    double xVel = 30.0;
+    double yVel = -10.0;
     int speedLimit;// = arena.Arena.screen.gamePanel.speedlimit;
-    public Abutton(){
+    double mass;// = space.Space.globalParticleMass;
+    
+    
+    public Sbutton(){
         
         super();
-        
-        randomizeIcons();
+        mass = space.Space.globalParticleMass;
+        //randomizeIcons();
         
     }
     
     public void makeTreasure(){
         
-    this.setIcon(new ImageIcon("images/treasure.png"));
+    //this.setIcon(new ImageIcon("images/treasure.png"));
         //this.setBackground(Color.yellow);
         
     }
     
        public void randomizeIcons(){
                 
-        for(int i = 0; i < size; i++){ 
+      //  for(int i = 0; i < size; i++){ 
                     
-                        icons[i] = new ImageIcon("images/treasure.png");
-       }
+                       // icons[i] = new ImageIcon("images/treasure.png");
+     //  }
         
         
 
@@ -87,7 +90,7 @@ public class Abutton extends JButton{
              yVel = negativeSpeedLimit;
          }
          
-     this.setLocation(this.getX() + xVel, this.getY() + yVel); 
+     this.setLocation(this.getX() + (int)xVel, this.getY() + (int)yVel); 
      
      
      

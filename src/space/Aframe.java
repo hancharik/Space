@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package arena;
+package space;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -17,8 +17,8 @@ import javax.swing.JFrame;
 public class Aframe extends JFrame  implements MouseListener{
     
     
-    int height = arena.Arena.height;
-    int width = arena.Arena.width;
+    int height = space.Space.height;
+    int width = space.Space.width;
     
     
    

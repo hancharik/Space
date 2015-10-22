@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package arena;
+package space;
 
 /**
  *
@@ -12,16 +12,20 @@ package arena;
 
 
 
-public class Arena {
+public class Space {
+    
 
+    public static double universalGravitationConstant = 6.673;
+    public static double universalGravitationConstantMultiplier = .001;  //this is a double value in powers of ten
+    
     public static Aframe screen;
     public static int height = 1000;
     public static int width = 1880;
     public static int level = 1;
     
-    public static int globalPlayerSize = 16;
-   
-   public static int globalAmountOfEnemies = 1000;
+    public static int globalParticleSize = 16;
+    public static double globalParticleMass = 10.0;
+   public static int globalAmountOfParticles = 1000;
    
    public static int gravityWellDistance = 200;
     public static int massOfCenter = 10;
@@ -33,7 +37,7 @@ public class Arena {
      public static boolean gravityGetsStronger = true;
      
      
-     public static int globalStallmanSize = 80;// * globalPlayerSizeMultiplier;
+     public static int globalStallmanSize = 80;// * globalParticleSizeMultiplier;
     public static int globalEnemySpeed = 1;
     
   
@@ -43,9 +47,9 @@ public class Arena {
     
    
    // these have yet to be added to the start panel
-    public static int globalPlayerSizeMultiplier = 3;
+    public static int globalParticleSizeMultiplier = 3;
     public static int globalheroSpeed = 10;
-   public static int globalHeroSize = 20;// * globalPlayerSizeMultiplier;
+   public static int globalHeroSize = 20;// * globalParticleSizeMultiplier;
    
    
    

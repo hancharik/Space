@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package arena;
+package space;
 
 import java.awt.Color;
 import java.awt.event.ActionEvent;
@@ -24,24 +24,24 @@ import javax.swing.Timer;
  */
 public class Apanel extends JPanel implements ActionListener, KeyListener, MouseListener {
     
-    int playerSize = arena.Arena.globalPlayerSize;
-    int amountOfEnemies;// = arena.Arena.globalAmountOfEnemies;
-    int heroSize = arena.Arena.globalHeroSize;
+    int playerSize = space.Space.globalParticleSize;
+    int amountOfEnemies;// = space.Space.globalAmountOfEnemies;
+    int heroSize = space.Space.globalHeroSize;
      //int heroSize = amountOfEnemies;
     
-    int enemySpeed = arena.Arena.globalEnemySpeed;
+    int enemySpeed = space.Space.globalEnemySpeed;
     
     int heroSpeed = 10;
-    int timerSpeed = arena.Arena.globalTimerSpeed;
-    int speedlimit = arena.Arena.globalSpeedlimit;// + heroSize;// douglas adams is max
-    int minSpeed = arena.Arena.globalMinSpeed;
-    Abutton hero;
-    ArrayList<Abutton> enemies = new ArrayList();
-     ArrayList<Abutton> stuffBucket = new ArrayList();
-     int stuffBucketSize = arena.Arena.level;
+    int timerSpeed = space.Space.globalTimerSpeed;
+    int speedlimit = space.Space.globalSpeedlimit;// + heroSize;// douglas adams is max
+    int minSpeed = space.Space.globalMinSpeed;
+    Sbutton hero;
+    ArrayList<Sbutton> enemies = new ArrayList();
+     ArrayList<Sbutton> stuffBucket = new ArrayList();
+     int stuffBucketSize = space.Space.level;
     JButton gameOverButton = new JButton();
     
-    //Abutton[] stuffBucket = new Abutton[arena.Arena.level*120];
+    //Abutton[] stuffBucket = new Sbutton[space.Space.level*120];
     //BucketPanel bucket = new BucketPanel();
     
     Timer timer;
@@ -90,8 +90,8 @@ public class Apanel extends JPanel implements ActionListener, KeyListener, Mouse
       
       //addTreasureButtons();
        //hideTreasureButtons();
-       //timerSpeed = 2;//0 - (arena.Arena.level * 2);//100 - (arena.Arena.level * 8);// 100-20 raange, based on 1-10
-        //timerSpeed = 200 - (arena.Arena.level * 16);// 100-20 raange, based on 1-10
+       //timerSpeed = 2;//0 - (space.Space.level * 2);//100 - (space.Space.level * 8);// 100-20 raange, based on 1-10
+        //timerSpeed = 200 - (space.Space.level * 16);// 100-20 raange, based on 1-10
        timer = new Timer( timerSpeed, this);
        timer.start();
        hero.requestFocus();
@@ -100,60 +100,61 @@ public class Apanel extends JPanel implements ActionListener, KeyListener, Mouse
  
     public void setVariables(){
         
-        singularGravity = arena.Arena.globalSingularGravity;
-          playerSize = arena.Arena.globalPlayerSize;
-   amountOfEnemies= arena.Arena.globalAmountOfEnemies;
-     heroSize = arena.Arena.globalHeroSize;
+        singularGravity = space.Space.globalSingularGravity;
+          playerSize = space.Space.globalParticleSize;
+   amountOfEnemies= space.Space.globalAmountOfParticles;
+     heroSize = space.Space.globalHeroSize;
      //int heroSize = amountOfEnemies;
     
-     enemySpeed = arena.Arena.globalEnemySpeed;
+     enemySpeed = space.Space.globalEnemySpeed;
     
     heroSpeed = 10;
-    timerSpeed = arena.Arena.globalTimerSpeed;
-     speedlimit = arena.Arena.globalSpeedlimit;// + heroSize;// douglas adams is max
-     minSpeed = arena.Arena.globalMinSpeed;
+    timerSpeed = space.Space.globalTimerSpeed;
+     speedlimit = space.Space.globalSpeedlimit;// + heroSize;// douglas adams is max
+     minSpeed = space.Space.globalMinSpeed;
         
     }
     
     
     
     public void addHero(){
-        Xcord = arena.Arena.screen.width/2 - 40;
-         Ycord = arena.Arena.screen.height/2 - 60;
-         //heroSize = arena.Arena.globalHeroSize;
+        Xcord = space.Space.screen.width/2 - 40;
+         Ycord = space.Space.screen.height/2 - 60;
+         //heroSize = space.Space.globalHeroSize;
          
-        hero = new Abutton();
+        hero = new Sbutton();
         hero.setBounds(Xcord, Ycord, heroSize, heroSize);
         hero.setBackground(Color.green);
         hero.addActionListener(this);
         hero.addKeyListener(this);
-        if(arena.Arena.showStallman){
-            heroSize = arena.Arena.globalStallmanSize;
+        if(space.Space.showStallman){
+            heroSize = space.Space.globalStallmanSize;
         hero.makeHero();
         }
         hero.setBounds(Xcord, Ycord, heroSize, heroSize);
+        hero.mass = 1000.0;
         add(hero);   
     }
   
       public void addEnemies(){
           
-          amountOfEnemies = arena.Arena.globalAmountOfEnemies;
+          amountOfEnemies = space.Space.globalAmountOfParticles;
          
          for(int i = 0; i < amountOfEnemies; i++){
-             Xcord = hero.getX() - ((int)(Math.random() * 200) + 1);//(int) (Math.random() * (arena.Arena.screen.width-300)) + 200;
-         Ycord = hero.getY() - ((int)(Math.random() * 100) + 100);//(int) (Math.random() * (arena.Arena.screen.height-300)) + 200;
+             Xcord = hero.getX() - ((int)(Math.random() * 200) + 1);//(int) (Math.random() * (space.Space.screen.width-300)) + 200;
+         Ycord = hero.getY() - ((int)(Math.random() * 100) + 100);//(int) (Math.random() * (space.Space.screen.height-300)) + 200;
          int xsp = 30;
          int ysp = -10;
          
-         if(arena.Arena.particles){
-             Xcord = (int) (Math.random() * (arena.Arena.screen.width)) + 1;
-         Ycord = (int) (Math.random() * (arena.Arena.screen.height)) + 1;  
+         if(space.Space.particles){
+             Xcord = (int) (Math.random() * (space.Space.screen.width)) + 1;
+         Ycord = (int) (Math.random() * (space.Space.screen.height)) + 1;  
           xsp = 0;
           ysp = 0;
          }
-          Abutton a = new Abutton();
+          Sbutton a = new Sbutton();
          
-        //enemies.get(i) = new Abutton();
+        //enemies.get(i) = new Sbutton();
         a.setBounds(Xcord, Ycord, playerSize, playerSize);
         a.setBackground(Color.red);
         a.xVel = xsp;
@@ -201,9 +202,9 @@ public class Apanel extends JPanel implements ActionListener, KeyListener, Mouse
                     timer.stop();
                     
                     //if(singularGravity == false){
-                  arena.Arena.screen.startPanel();
+                  space.Space.screen.startPanel();
                   //  }else{
-               //  arena.Arena.screen.restart();
+               //  space.Space.screen.restart();
                 //    }
                 
 		}
@@ -229,13 +230,13 @@ public class Apanel extends JPanel implements ActionListener, KeyListener, Mouse
                 
                 if(k == e.VK_E){
                         
-                  arena.Arena.screen.restart();      
+                  space.Space.screen.restart();      
 		}
                 
                 if(k == e.VK_R){
                         
-                     Xcord = (int) (Math.random() * (arena.Arena.screen.width-300)) + 200;
-                    Ycord = (int) (Math.random() * (arena.Arena.screen.height-300)) + 200; 
+                     Xcord = (int) (Math.random() * (space.Space.screen.width-300)) + 200;
+                    Ycord = (int) (Math.random() * (space.Space.screen.height-300)) + 200; 
                     hero.setBounds(Xcord, Ycord, heroSize, heroSize);
 		} 
                 
@@ -260,14 +261,14 @@ public class Apanel extends JPanel implements ActionListener, KeyListener, Mouse
 		
                 if(k == e.VK_E){
                         
-                  arena.Arena.screen.restart();      
+                  space.Space.screen.restart();      
 		}
                 
                 
                if(k == e.VK_R){
                         
-                     Xcord = (int) (Math.random() * (arena.Arena.screen.width-300)) + 200;
-                    Ycord = (int) (Math.random() * (arena.Arena.screen.height-300)) + 200; 
+                     Xcord = (int) (Math.random() * (space.Space.screen.width-300)) + 200;
+                    Ycord = (int) (Math.random() * (space.Space.screen.height-300)) + 200; 
                     hero.setBounds(Xcord, Ycord, heroSize, heroSize);
 		} 
                 
@@ -300,10 +301,10 @@ public class Apanel extends JPanel implements ActionListener, KeyListener, Mouse
        // chase the tail!
            // moveX = enemies.get(i).getX() - enemies.get(enemies.size()-1).getX();
            // moveY = enemies.get(i).getY() - enemies.get(enemies.size()-1).getY(); 
-      int amountOfForce = getDistance(enemies.get(i).getX(),enemies.get(i).getY(), hero.getX(), hero.getY());
+      //int amountOfForce = getDistance(enemies.get(i).getX(),enemies.get(i).getY(), hero.getX(), hero.getY());
+      
        
-       
-                if(!arena.Arena.globalSingularGravity){
+                if(!space.Space.globalSingularGravity){
                         if(i > 0){
                              moveX = enemies.get(i).getX() - enemies.get(i-1).getX();
                              moveY = enemies.get(i).getY() - enemies.get(i-1).getY(); 
@@ -313,7 +314,7 @@ public class Apanel extends JPanel implements ActionListener, KeyListener, Mouse
                 }
                 
                 
-            if(arena.Arena.linearMovement){
+            if(space.Space.linearMovement){
                 
              
   //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -346,7 +347,8 @@ public class Apanel extends JPanel implements ActionListener, KeyListener, Mouse
                 
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         } else{ 
-                if(!arena.Arena.gravityGetsStronger){
+                 double amountOfForce = calculateGravity(enemies.get(i).getX(),enemies.get(i).getY(), hero.getX(), hero.getY(), enemies.get(i).mass, hero.mass);
+                if(!space.Space.gravityGetsStronger){
                 amountOfForce = 1;
                 }
                 
@@ -381,9 +383,21 @@ public class Apanel extends JPanel implements ActionListener, KeyListener, Mouse
     public int getDistance(int x, int y, int dx, int dy){
         
         int forceAmount = 1;
-        double gravityWell = arena.Arena.gravityWellDistance;
-        double mass = arena.Arena.massOfCenter;
+        
+        
+        double gravityWell = space.Space.gravityWellDistance;
+        double mass = space.Space.massOfCenter;
         double distance = Math.sqrt((dx-x)*(dx-x)+(dy-y)*(dy-y));
+      
+        
+        
+        
+       
+        
+        
+        
+        
+       
         if(distance < gravityWell){
            forceAmount = (int)(mass * .2); 
         }
@@ -412,10 +426,38 @@ public class Apanel extends JPanel implements ActionListener, KeyListener, Mouse
             forceAmount = (int)(mass); 
         }
         
+        
+        
        return forceAmount; 
     } //end get distance
      
-     
+    
+    
+    
+    
+    
+        public double calculateGravity(int x, int y, int dx, int dy, double m1, double m2){
+        
+        double forceAmount = 1;
+        
+        
+        
+        double distance = Math.sqrt((dx-x)*(dx-x)+(dy-y)*(dy-y));
+        
+        double uniGravConst = space.Space.universalGravitationConstant;
+        
+        double gravitationalAttraction = (uniGravConst * m1 * m2) / (distance * distance);
+        
+        
+        
+        forceAmount = gravitationalAttraction; 
+        
+        
+        
+    
+       return forceAmount; 
+       
+    } //end calculate gravity
      
      
      
@@ -440,7 +482,7 @@ public class Apanel extends JPanel implements ActionListener, KeyListener, Mouse
           remove(hero);
           remove(enemies.get(i));
           add(gameOverButton);
-          gameOverButton.setText("You Lose! Level " + arena.Arena.level);
+          gameOverButton.setText("You Lose! Level " + space.Space.level);
           //singularGravity = false;
           //gameOverButton.removeActionListener(this);
           //hideTreasureButtons();

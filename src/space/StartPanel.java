@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package arena;
+package space;
 
 import java.awt.Color;
 import java.awt.event.ActionEvent;
@@ -89,7 +89,7 @@ public class StartPanel extends JPanel implements ActionListener, ChangeListener
        fullScreenButton.addActionListener(this);
        //add(fullScreenButton);
        
-        numberOfParticles = new JSlider(JSlider.HORIZONTAL, 1, 6000, arena.Arena.globalAmountOfEnemies);
+        numberOfParticles = new JSlider(JSlider.HORIZONTAL, 1, 6000, space.Space.globalAmountOfParticles);
         numberOfParticles.addChangeListener(this);
         numberOfParticles.setMajorTickSpacing(100);
         numberOfParticles.setPaintTicks(true);
@@ -97,7 +97,7 @@ public class StartPanel extends JPanel implements ActionListener, ChangeListener
         //numberOfParticles.setBounds(column(1), 160, 40, 200);// vertical
         add(numberOfParticles);
         
-        sizeOfParticles = new JSlider(JSlider.HORIZONTAL, 1, 80, arena.Arena.globalPlayerSize);
+        sizeOfParticles = new JSlider(JSlider.HORIZONTAL, 1, 80, space.Space.globalParticleSize);
         sizeOfParticles.addChangeListener(this);
         sizeOfParticles.setMajorTickSpacing(100);
         sizeOfParticles.setPaintTicks(true);
@@ -105,7 +105,7 @@ public class StartPanel extends JPanel implements ActionListener, ChangeListener
         //numberOfParticles.setBounds(10, 160, 40, 200);// vertical
         add(sizeOfParticles);
         
-        sizeOfGravityWell = new JSlider(JSlider.HORIZONTAL, 1, 600, arena.Arena.gravityWellDistance);
+        sizeOfGravityWell = new JSlider(JSlider.HORIZONTAL, 1, 600, space.Space.gravityWellDistance);
         sizeOfGravityWell.addChangeListener(this);
         sizeOfGravityWell.setMajorTickSpacing(100);
         sizeOfGravityWell.setPaintTicks(true);
@@ -113,7 +113,7 @@ public class StartPanel extends JPanel implements ActionListener, ChangeListener
         //numberOfParticles.setBounds(column(1), 160, 40, 200);// vertical
         add(sizeOfGravityWell);
         
-        massOfCenter = new JSlider(JSlider.HORIZONTAL, 1, 20, arena.Arena.massOfCenter);
+        massOfCenter = new JSlider(JSlider.HORIZONTAL, 1, 20, space.Space.massOfCenter);
         massOfCenter.addChangeListener(this);
         massOfCenter.setMajorTickSpacing(100);
         massOfCenter.setPaintTicks(true);
@@ -121,7 +121,7 @@ public class StartPanel extends JPanel implements ActionListener, ChangeListener
         //numberOfParticles.setBounds(10, 160, 40, 200);// vertical
         add(massOfCenter);
         
-        speedOfParticles = new JSlider(JSlider.HORIZONTAL, 1, 1000, arena.Arena.globalTimerSpeed);
+        speedOfParticles = new JSlider(JSlider.HORIZONTAL, 1, 1000, space.Space.globalTimerSpeed);
         speedOfParticles.addChangeListener(this);
         speedOfParticles.setMajorTickSpacing(100);
         speedOfParticles.setPaintTicks(true);
@@ -129,7 +129,7 @@ public class StartPanel extends JPanel implements ActionListener, ChangeListener
         //numberOfParticles.setBounds(10, 160, 40, 200);// vertical
         add(speedOfParticles);
         
-        speedLimitMaxOfParticles = new JSlider(JSlider.HORIZONTAL, 1, 100, arena.Arena.globalSpeedlimit);
+        speedLimitMaxOfParticles = new JSlider(JSlider.HORIZONTAL, 1, 100, space.Space.globalSpeedlimit);
         speedLimitMaxOfParticles.addChangeListener(this);
         speedLimitMaxOfParticles.setMajorTickSpacing(100);
         speedLimitMaxOfParticles.setPaintTicks(true);
@@ -137,7 +137,7 @@ public class StartPanel extends JPanel implements ActionListener, ChangeListener
         //numberOfParticles.setBounds(10, 160, 40, 200);// vertical
         add(speedLimitMaxOfParticles);
         
-        speedLimitMinOfParticles = new JSlider(JSlider.HORIZONTAL, 1, 20, arena.Arena.globalMinSpeed);
+        speedLimitMinOfParticles = new JSlider(JSlider.HORIZONTAL, 1, 20, space.Space.globalMinSpeed);
         speedLimitMinOfParticles.addChangeListener(this);
         speedLimitMinOfParticles.setMajorTickSpacing(100);
         speedLimitMinOfParticles.setPaintTicks(true);
@@ -145,30 +145,30 @@ public class StartPanel extends JPanel implements ActionListener, ChangeListener
         //numberOfParticles.setBounds(10, 160, 40, 200);// vertical
         add(speedLimitMinOfParticles);
         
-        sizeOfGravityWellLabel = new JLabel("<html><h2><font color='white'>size of gravity well: </font><font color='red'>" + arena.Arena.gravityWellDistance + "</font><h2></html>");
+        sizeOfGravityWellLabel = new JLabel("<html><h2><font color='white'>size of gravity well: </font><font color='red'>" + space.Space.gravityWellDistance + "</font><h2></html>");
         sizeOfGravityWellLabel.setBounds(column(3), row(8), 220, 40);
         add(sizeOfGravityWellLabel);
-        massOfCenterLabel = new JLabel("<html><h2><font color='white'>mass: </font><font color='red'>" + arena.Arena.massOfCenter + "</font><h2></html>");
+        massOfCenterLabel = new JLabel("<html><h2><font color='white'>mass: </font><font color='red'>" + space.Space.massOfCenter + "</font><h2></html>");
         massOfCenterLabel.setBounds(column(3), row(9), 220, 40);
         add(massOfCenterLabel);
         
-        numOfParticles = new JLabel("<html><h2><font color='white'># of particles: </font><font color='red'>" + arena.Arena.globalAmountOfEnemies + "</font><h2></html>");
+        numOfParticles = new JLabel("<html><h2><font color='white'># of particles: </font><font color='red'>" + space.Space.globalAmountOfParticles + "</font><h2></html>");
         numOfParticles.setBounds(column(3), row(10), 220, 40);
      
         add(numOfParticles);
-        sizeOfParticlesLabel = new JLabel("<html><h2><font color='white'>size: </font><font color='red'>" + arena.Arena.globalPlayerSize + "</font><h2></html>");
+        sizeOfParticlesLabel = new JLabel("<html><h2><font color='white'>size: </font><font color='red'>" + space.Space.globalParticleSize + "</font><h2></html>");
         sizeOfParticlesLabel.setBounds(column(3), row(11), 220, 40);
         add(sizeOfParticlesLabel);
-        //speedOfParticlesMaxLabel = new JLabel("speed: " + arena.Arena.globalTimerSpeed);
-        speedOfParticlesMaxLabel = new JLabel("<html><h2><font color='white'>ms per cycle: </font><font color='red'>" + arena.Arena.globalTimerSpeed + "</font><h2></html>");
+        //speedOfParticlesMaxLabel = new JLabel("speed: " + space.Space.globalTimerSpeed);
+        speedOfParticlesMaxLabel = new JLabel("<html><h2><font color='white'>ms per cycle: </font><font color='red'>" + space.Space.globalTimerSpeed + "</font><h2></html>");
         speedOfParticlesMaxLabel.setBounds(column(3), row(14), 220, 40);
         add(speedOfParticlesMaxLabel);
         
-         speedLimitMaxOfParticlesLabel = new JLabel("<html><h2><font color='white'>max speed limit: </font><font color='red'>" + arena.Arena.globalSpeedlimit + "</font><h2></html>");
+         speedLimitMaxOfParticlesLabel = new JLabel("<html><h2><font color='white'>max speed limit: </font><font color='red'>" + space.Space.globalSpeedlimit + "</font><h2></html>");
         speedLimitMaxOfParticlesLabel.setBounds(column(3), row(12), 220, 40);
         add(speedLimitMaxOfParticlesLabel);
         
-         speedLimitMinOfParticlesLabel = new JLabel("<html><h2><font color='white'>min speed limit: </font><font color='red'>" + arena.Arena.globalMinSpeed + "</font><h2></html>");
+         speedLimitMinOfParticlesLabel = new JLabel("<html><h2><font color='white'>min speed limit: </font><font color='red'>" + space.Space.globalMinSpeed + "</font><h2></html>");
         speedLimitMinOfParticlesLabel.setBounds(column(3), row(13), 2200, 40);
         speedLimitMinOfParticlesLabel.setBackground(Color.red);
         add(speedLimitMinOfParticlesLabel);
@@ -190,28 +190,28 @@ public class StartPanel extends JPanel implements ActionListener, ChangeListener
        add(startButton);
        
        
-       linearMovementButton = new JButton("linear movement = " + arena.Arena.linearMovement);
+       linearMovementButton = new JButton("linear movement = " + space.Space.linearMovement);
        linearMovementButton.setBounds(column(4), row(4), 180, 40);
        linearMovementButton.addActionListener(this);
        add(linearMovementButton);
        
-       centeredGravityButton = new JButton("singular gravity = " + arena.Arena.globalSingularGravity);
+       centeredGravityButton = new JButton("singular gravity = " + space.Space.globalSingularGravity);
        centeredGravityButton.setBounds(column(1), row(4), 180, 40);
        centeredGravityButton.addActionListener(this);
        add(centeredGravityButton);
        
-       fixedParticleButton = new JButton("diffuse particles = " + arena.Arena.particles);
+       fixedParticleButton = new JButton("diffuse particles = " + space.Space.particles);
        fixedParticleButton.setBounds(column(4), row(3), 180, 40);
        fixedParticleButton.addActionListener(this);
        add(fixedParticleButton);
        
-       relativeGravityButton = new JButton("relative gravity = " + arena.Arena.gravityGetsStronger);
+       relativeGravityButton = new JButton("relative gravity = " + space.Space.gravityGetsStronger);
        relativeGravityButton.setBounds(column(1), row(3), 180, 40);
        relativeGravityButton.addActionListener(this);
        add(relativeGravityButton);
        
        
-       if(!arena.Arena.gravityGetsStronger){
+       if(!space.Space.gravityGetsStronger){
         sizeOfGravityWell.setVisible(false);
             massOfCenter.setVisible(false);
             sizeOfGravityWellLabel.setVisible(false);
@@ -232,28 +232,28 @@ public class StartPanel extends JPanel implements ActionListener, ChangeListener
         
        	if (obj == startAtomButton){
             
-          arena.Arena.globalSingularGravity = true;
+          space.Space.globalSingularGravity = true;
            
           
            
-              arena.Arena.globalPlayerSize = 4;
-               arena.Arena.globalHeroSize = checkForStallman(32);
-    arena.Arena.globalPlayerSizeMultiplier = 8;
-   arena.Arena.globalAmountOfEnemies = 6000;
-    arena.Arena.globalSingularGravity = true;
-    arena.Arena.particles = true;
-    arena.Arena.globalEnemySpeed = 1;
-    arena.Arena.gravityGetsStronger = false;
-   arena.Arena.globalheroSpeed = 10;
-  arena.Arena.globalTimerSpeed = 1;
-  arena.Arena.globalSpeedlimit = 42;// + heroSize;// douglas adams is max
-   arena.Arena.globalMinSpeed = 12;
+              space.Space.globalParticleSize = 4;
+               space.Space.globalHeroSize = checkForStallman(32);
+    space.Space.globalParticleSizeMultiplier = 8;
+   space.Space.globalAmountOfParticles = 6000;
+    space.Space.globalSingularGravity = true;
+    space.Space.particles = true;
+    space.Space.globalEnemySpeed = 1;
+    space.Space.gravityGetsStronger = false;
+   space.Space.globalheroSpeed = 10;
+  space.Space.globalTimerSpeed = 1;
+  space.Space.globalSpeedlimit = 42;// + heroSize;// douglas adams is max
+   space.Space.globalMinSpeed = 12;
            
            
            
       
            
-          arena.Arena.screen.start();  
+          space.Space.screen.start();  
            
            
        	}// end start atom button
@@ -268,43 +268,44 @@ public class StartPanel extends JPanel implements ActionListener, ChangeListener
         
         if (obj == startPlanetButton){
             
-          arena.Arena.globalSingularGravity = true;
-          arena.Arena.particles = false;
+          space.Space.globalSingularGravity = true;
+          space.Space.gravityGetsStronger = false;
+          space.Space.particles = false;
                    
-              arena.Arena.globalPlayerSize = 12;
-    arena.Arena.globalHeroSize = checkForStallman(20);
-arena.Arena.globalPlayerSizeMultiplier = 2;
- arena.Arena.globalAmountOfEnemies = (int)(Math.random() * 9) + 1;
+              space.Space.globalParticleSize = 12;
+    space.Space.globalHeroSize = checkForStallman(20);
+space.Space.globalParticleSizeMultiplier = 2;
+ space.Space.globalAmountOfParticles = (int)(Math.random() * 9) + 1;
     
     
-    arena.Arena.globalEnemySpeed = 1;
+    space.Space.globalEnemySpeed = 1;
     
-   arena.Arena.globalheroSpeed = 10;
-  arena.Arena.globalTimerSpeed = 40;
-  arena.Arena.globalSpeedlimit = 32;// + heroSize;// douglas adams is max
-   arena.Arena.globalMinSpeed = 6;
+   space.Space.globalheroSpeed = 10;
+  space.Space.globalTimerSpeed = 40;
+  space.Space.globalSpeedlimit = 32;// + heroSize;// douglas adams is max
+   space.Space.globalMinSpeed = 6;
    
-    arena.Arena.screen.start(); 
+    space.Space.screen.start(); 
        	}// end start planet button
         
         
         if (obj == stallmanHaloButton){
             
-           arena.Arena.globalSingularGravity = true;
-           arena.Arena.particles = true;
-                 arena.Arena.globalPlayerSize = 4;
-    arena.Arena.showStallman = true;//.globalHeroSize = checkForStallman(18);
- arena.Arena.globalAmountOfEnemies = 6000;
-  arena.Arena.gravityGetsStronger = true;
-  arena.Arena.massOfCenter = 3;  
- arena.Arena.globalEnemySpeed = 1;
-  arena.Arena.gravityWellDistance = 555;  
-  arena.Arena.globalheroSpeed = 10;
-  arena.Arena.globalTimerSpeed = 1;
- arena.Arena.globalSpeedlimit = 42;// + heroSize;// douglas adams 42 is max
-   arena.Arena.globalMinSpeed = 12;
+           space.Space.globalSingularGravity = true;
+           space.Space.particles = true;
+                 space.Space.globalParticleSize = 4;
+    space.Space.showStallman = true;//.globalHeroSize = checkForStallman(18);
+ space.Space.globalAmountOfParticles = 6000;
+  space.Space.gravityGetsStronger = true;
+  space.Space.massOfCenter = 3;  
+ space.Space.globalEnemySpeed = 1;
+  space.Space.gravityWellDistance = 555;  
+  space.Space.globalheroSpeed = 10;
+  space.Space.globalTimerSpeed = 1;
+ space.Space.globalSpeedlimit = 42;// + heroSize;// douglas adams 42 is max
+   space.Space.globalMinSpeed = 12;
    
-    arena.Arena.screen.start(); 
+    space.Space.screen.start(); 
            
             
        	} // end stallman halo
@@ -312,21 +313,21 @@ arena.Arena.globalPlayerSizeMultiplier = 2;
         
         if (obj == startChainedParticleButton){
             
-           arena.Arena.globalSingularGravity = false;
-           arena.Arena.particles = true;
-                 arena.Arena.globalPlayerSize = 6;
-    arena.Arena.globalHeroSize = checkForStallman(18);
- arena.Arena.globalAmountOfEnemies = 1000;
+           space.Space.globalSingularGravity = false;
+           space.Space.particles = true;
+                 space.Space.globalParticleSize = 6;
+    space.Space.globalHeroSize = checkForStallman(18);
+ space.Space.globalAmountOfParticles = 1000;
   
     
- arena.Arena.globalEnemySpeed = 1;
+ space.Space.globalEnemySpeed = 1;
     
-  arena.Arena.globalheroSpeed = 10;
-  arena.Arena.globalTimerSpeed = 1;
- arena.Arena.globalSpeedlimit = 12;// + heroSize;// douglas adams 42 is max
-   arena.Arena.globalMinSpeed = 2;
+  space.Space.globalheroSpeed = 10;
+  space.Space.globalTimerSpeed = 1;
+ space.Space.globalSpeedlimit = 12;// + heroSize;// douglas adams 42 is max
+   space.Space.globalMinSpeed = 2;
    
-    arena.Arena.screen.start(); 
+    space.Space.screen.start(); 
            
             
        	}
@@ -335,18 +336,18 @@ arena.Arena.globalPlayerSizeMultiplier = 2;
         if (obj == showrms){
             
             
-            if(arena.Arena.showStallman){
+            if(space.Space.showStallman){
               //showrms.setText("Hiding rms");
                 showrms.setIcon(new ImageIcon("images/be200x100.png")); 
-           arena.Arena.showStallman = false;   
-          // arena.Arena.gravityGetsStronger = false;
+           space.Space.showStallman = false;   
+          // space.Space.gravityGetsStronger = false;
             }else{
             
            //System.exit();
             //showrms.setText("Showing rms");
            showrms.setIcon(new ImageIcon("images/rms200x100.png"));
-           arena.Arena.showStallman = true;
-                  // arena.Arena.gravityGetsStronger = true;
+           space.Space.showStallman = true;
+                  // space.Space.gravityGetsStronger = true;
 
             }
        	}
@@ -354,90 +355,90 @@ arena.Arena.globalPlayerSizeMultiplier = 2;
         
        if (obj == bigScreenButton){
             
-            arena.Arena.height = 1000;
-            arena.Arena.width= 1880;
-             arena.Arena.screen.dispose();
-            arena.Arena.screen = new Aframe();
+            space.Space.height = 1000;
+            space.Space.width= 1880;
+             space.Space.screen.dispose();
+            space.Space.screen = new Aframe();
        	}
         if (obj == littleScreenButton){
             
-          arena.Arena.height = 500;
-            arena.Arena.width= 940;
-             arena.Arena.screen.dispose();
-            arena.Arena.screen = new Aframe();
+          space.Space.height = 500;
+            space.Space.width= 940;
+             space.Space.screen.dispose();
+            space.Space.screen = new Aframe();
        	}
             if (obj == fullScreenButton){
             
-            arena.Arena.screen.setExtendedState(JFrame.MAXIMIZED_BOTH); 
-            arena.Arena.height = arena.Arena.screen.getHeight();
-            arena.Arena.width= arena.Arena.screen.getWidth();
-            arena.Arena.screen.dispose();
-            arena.Arena.screen = new Aframe();
-            arena.Arena.screen.setExtendedState(JFrame.MAXIMIZED_BOTH); 
-           // arena.Arena.height = arena.Arena.screen.getHeight();
-           // arena.Arena.width= arena.Arena.screen.getWidth();
+            space.Space.screen.setExtendedState(JFrame.MAXIMIZED_BOTH); 
+            space.Space.height = space.Space.screen.getHeight();
+            space.Space.width= space.Space.screen.getWidth();
+            space.Space.screen.dispose();
+            space.Space.screen = new Aframe();
+            space.Space.screen.setExtendedState(JFrame.MAXIMIZED_BOTH); 
+           // space.Space.height = space.Space.screen.getHeight();
+           // space.Space.width= space.Space.screen.getWidth();
             
-            arena.Arena.screen.setVisible(true);
+            space.Space.screen.setVisible(true);
        	}
         
        
         if (obj == quitButton){
             
            //System.exit();
-           arena.Arena.screen.dispose();
+           space.Space.screen.dispose();
             
        	}
         
         if (obj == startButton){
             
-            arena.Arena.screen.start(); 
+            space.Space.screen.start(); 
             
        	}
         if (obj == centeredGravityButton){
             
-           if(arena.Arena.globalSingularGravity){
-            arena.Arena.globalSingularGravity = false; 
-            centeredGravityButton.setText("singular gravity = " + arena.Arena.globalSingularGravity);
+           if(space.Space.globalSingularGravity){
+            space.Space.globalSingularGravity = false; 
+            centeredGravityButton.setText("singular gravity = " + space.Space.globalSingularGravity);
             }else{
-              arena.Arena.globalSingularGravity = true; 
-              centeredGravityButton.setText("singular gravity = " + arena.Arena.globalSingularGravity);
+              space.Space.globalSingularGravity = true; 
+              centeredGravityButton.setText("singular gravity = " + space.Space.globalSingularGravity);
             } 
             
        	}
         
         if (obj == linearMovementButton){
-            if(arena.Arena.linearMovement){
-            arena.Arena.linearMovement = false; 
-            linearMovementButton.setText("linear movement = " + arena.Arena.linearMovement);
+            if(space.Space.linearMovement){
+            space.Space.linearMovement = false; 
+            linearMovementButton.setText("linear movement = " + space.Space.linearMovement);
             }else{
-              arena.Arena.linearMovement = true; 
-              linearMovementButton.setText("linear movement = " + arena.Arena.linearMovement);
+              space.Space.linearMovement = true; 
+              linearMovementButton.setText("linear movement = " + space.Space.linearMovement);
             }
             
        	}
         
         if (obj == fixedParticleButton){
-            if(arena.Arena.particles){
-            arena.Arena.particles = false; 
-            fixedParticleButton.setText("diffuse particles = " + arena.Arena.particles);
+            if(space.Space.particles){
+            space.Space.particles = false; 
+            fixedParticleButton.setText("diffuse particles = " + space.Space.particles);
             }else{
-              arena.Arena.particles = true; 
-              fixedParticleButton.setText("diffuse particles = " + arena.Arena.particles);
+              space.Space.particles = true; 
+              fixedParticleButton.setText("diffuse particles = " + space.Space.particles);
             }
             
        	}
         
          if (obj == relativeGravityButton){
-            if(arena.Arena.gravityGetsStronger){
-            arena.Arena.gravityGetsStronger = false; 
-            relativeGravityButton.setText("relative gravity = " + arena.Arena.gravityGetsStronger);
+            if(space.Space.gravityGetsStronger){
+            space.Space.gravityGetsStronger = false; 
+            relativeGravityButton.setText("relative gravity = " + space.Space.gravityGetsStronger);
             sizeOfGravityWell.setVisible(false);
             massOfCenter.setVisible(false);
             sizeOfGravityWellLabel.setVisible(false);
             massOfCenterLabel.setVisible(false);
             }else{
-              arena.Arena.gravityGetsStronger = true; 
-              relativeGravityButton.setText("relative gravity = " + arena.Arena.gravityGetsStronger);
+              space.Space.gravityGetsStronger = true; 
+              relativeGravityButton.setText("relative gravity = " + space.Space.gravityGetsStronger);
                 sizeOfGravityWell.setVisible(true);
                 massOfCenter.setVisible(true);
                 sizeOfGravityWellLabel.setVisible(true);
@@ -452,7 +453,7 @@ arena.Arena.globalPlayerSizeMultiplier = 2;
       
       int size = 80;
       
-      if(arena.Arena.showStallman){
+      if(space.Space.showStallman){
        size = 60;   
       }else{
        size = rtn;   
@@ -464,7 +465,7 @@ arena.Arena.globalPlayerSizeMultiplier = 2;
     
 public void checkrmsPic(){
     
-     if(arena.Arena.showStallman){
+     if(space.Space.showStallman){
               //showrms.setText("Hiding rms");
                 showrms.setIcon(new ImageIcon("images/rms200x100.png"));
              
@@ -484,34 +485,34 @@ public void checkrmsPic(){
         JSlider source = (JSlider)e.getSource();
        
         if (source == sizeOfGravityWell) {
-            arena.Arena.gravityWellDistance = (int)source.getValue();
-            sizeOfGravityWellLabel.setText("<html><h2><font color='white'>size of gravity well: </font><font color='red'>" + arena.Arena.gravityWellDistance + "</font><h2></html>");
+            space.Space.gravityWellDistance = (int)source.getValue();
+            sizeOfGravityWellLabel.setText("<html><h2><font color='white'>size of gravity well: </font><font color='red'>" + space.Space.gravityWellDistance + "</font><h2></html>");
         }
          if (source == massOfCenter) {
-            arena.Arena.massOfCenter = (int)source.getValue();
-            massOfCenterLabel.setText("<html><h2><font color='white'>mass: </font><font color='red'>" + arena.Arena.massOfCenter + "</font><h2></html>");
+            space.Space.massOfCenter = (int)source.getValue();
+            massOfCenterLabel.setText("<html><h2><font color='white'>mass: </font><font color='red'>" + space.Space.massOfCenter + "</font><h2></html>");
         }
         if (source == numberOfParticles) {
-            arena.Arena.globalAmountOfEnemies = (int)source.getValue();
-            //numOfParticles.setText(arena.Arena.globalAmountOfEnemies + " particles");
-            numOfParticles.setText("<html><h2><font color='white'># of particles: </font><font color='red'>" + arena.Arena.globalAmountOfEnemies + "</font><h2></html>");
+            space.Space.globalAmountOfParticles = (int)source.getValue();
+            //numOfParticles.setText(space.Space.globalAmountOfParticles + " particles");
+            numOfParticles.setText("<html><h2><font color='white'># of particles: </font><font color='red'>" + space.Space.globalAmountOfParticles + "</font><h2></html>");
         }
         if (source == sizeOfParticles) {
-            arena.Arena.globalPlayerSize  = (int)source.getValue();
+            space.Space.globalParticleSize  = (int)source.getValue();
             
-            sizeOfParticlesLabel.setText("<html><h2><font color='white'>size: </font><font color='red'>" + arena.Arena.globalPlayerSize + "</font><h2></html>");
+            sizeOfParticlesLabel.setText("<html><h2><font color='white'>size: </font><font color='red'>" + space.Space.globalParticleSize + "</font><h2></html>");
         }
         if (source == speedOfParticles) {
-            arena.Arena.globalTimerSpeed = (int)source.getValue();
-            speedOfParticlesMaxLabel.setText("<html><h2><font color='white'>ms per cycle: </font><font color='red'>" + arena.Arena.globalTimerSpeed + "</font><h2></html>");
+            space.Space.globalTimerSpeed = (int)source.getValue();
+            speedOfParticlesMaxLabel.setText("<html><h2><font color='white'>ms per cycle: </font><font color='red'>" + space.Space.globalTimerSpeed + "</font><h2></html>");
         }
         if (source == speedLimitMaxOfParticles) {
-            arena.Arena.globalSpeedlimit = (int)source.getValue();
-            speedLimitMaxOfParticlesLabel.setText("<html><h2><font color='white'>max speed limit: </font><font color='red'>" + arena.Arena.globalSpeedlimit + "</font></h2></html>");
+            space.Space.globalSpeedlimit = (int)source.getValue();
+            speedLimitMaxOfParticlesLabel.setText("<html><h2><font color='white'>max speed limit: </font><font color='red'>" + space.Space.globalSpeedlimit + "</font></h2></html>");
         }
          if (source == speedLimitMinOfParticles) {
-            arena.Arena.globalMinSpeed = (int)source.getValue();
-            speedLimitMinOfParticlesLabel.setText("<html><h2><font color='white'>min speed limit: </font><font color='red'>" + arena.Arena.globalMinSpeed + "</font></h2></html>");
+            space.Space.globalMinSpeed = (int)source.getValue();
+            speedLimitMinOfParticlesLabel.setText("<html><h2><font color='white'>min speed limit: </font><font color='red'>" + space.Space.globalMinSpeed + "</font></h2></html>");
         }
     } // end state changed
 
@@ -520,7 +521,7 @@ public void checkrmsPic(){
                 //////////////////////////////////////////////////////////////////////////////////////////////////////////
  
 private int row(int r){
-    int pixelNumber = ((r-1)*arena.Arena.height/16)+10;
+    int pixelNumber = ((r-1)*space.Space.height/16)+10;
     return pixelNumber;
 }   
 
@@ -528,13 +529,13 @@ private int column(int c){
     int columnPixelNumber = 0;
     
     switch(c){  // these arent in cardinal order, i've been readjusting layouts
-        //case 1: columnPixelNumber = (arena.Arena.width/8)*1; break;
+        //case 1: columnPixelNumber = (space.Space.width/8)*1; break;
             
             case 1: columnPixelNumber = 10; break;
-                case 2: columnPixelNumber = (arena.Arena.width/7)*1 + 200; break;
+                case 2: columnPixelNumber = (space.Space.width/7)*1 + 200; break;
         //case 2: columnPixelNumber = 260; break;
-        case 3: columnPixelNumber = ((arena.Arena.width/7)*2) - 100; break;
-        case 4: columnPixelNumber  = (arena.Arena.width/7)*1 - 60; break;
+        case 3: columnPixelNumber = ((space.Space.width/7)*2) - 100; break;
+        case 4: columnPixelNumber  = (space.Space.width/7)*1 - 60; break;
     }
     return columnPixelNumber;
 } // end column
