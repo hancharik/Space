@@ -30,6 +30,7 @@ public class StartPanel extends JPanel implements ActionListener, ChangeListener
     JButton showrms;
     JButton startButton;
     JButton quitButton;
+    JButton shipButton;
     
     JButton bigScreenButton;
     JButton littleScreenButton;
@@ -186,6 +187,11 @@ public class StartPanel extends JPanel implements ActionListener, ChangeListener
        quitButton.addActionListener(this);
        add(quitButton);
        
+       shipButton = new JButton("ship = " + space.Space.thereIsAShip);
+       shipButton.setBounds(column(1), row(5), 180, 40);
+       shipButton.addActionListener(this);
+       add(shipButton);
+       
        startButton = new JButton("start");
        startButton.setBounds(column(2), row(15), 80, 40);
        startButton.addActionListener(this);
@@ -239,14 +245,14 @@ public class StartPanel extends JPanel implements ActionListener, ChangeListener
           
            
               space.Space.globalParticleSize = 4;
-               space.Space.globalHeroSize = checkForStallman(32);
+               space.Space.globalHelioSize = checkForStallman(32);
     space.Space.globalParticleSizeMultiplier = 8;
    space.Space.globalAmountOfParticles = 6000;
     space.Space.globalSingularGravity = true;
     space.Space.particles = true;
     space.Space.globalEnemySpeed = 1;
     space.Space.gravityGetsStronger = false;
-   space.Space.globalheroSpeed = 10;
+   space.Space.globalhelioSpeed = 10;
   space.Space.globalTimerSpeed = 1;
   space.Space.globalSpeedlimit = 42;// + heroSize;// douglas adams is max
    space.Space.globalMinSpeed = 12;
@@ -275,14 +281,14 @@ public class StartPanel extends JPanel implements ActionListener, ChangeListener
           space.Space.particles = false;
                    
               space.Space.globalParticleSize = 12;
-    space.Space.globalHeroSize = checkForStallman(20);
+    space.Space.globalHelioSize = checkForStallman(20);
 space.Space.globalParticleSizeMultiplier = 2;
  space.Space.globalAmountOfParticles = (int)(Math.random() * 9) + 1;
     
     
     space.Space.globalEnemySpeed = 1;
     
-   space.Space.globalheroSpeed = 10;
+   space.Space.globalhelioSpeed = 10;
   space.Space.globalTimerSpeed = 40;
   space.Space.globalSpeedlimit = 32;// + heroSize;// douglas adams is max
    space.Space.globalMinSpeed = 6;
@@ -296,13 +302,13 @@ space.Space.globalParticleSizeMultiplier = 2;
            space.Space.globalSingularGravity = true;
            space.Space.particles = true;
                  space.Space.globalParticleSize = 4;
-    space.Space.showStallman = true;//.globalHeroSize = checkForStallman(18);
+    space.Space.showStallman = true;//.globalHelioSize = checkForStallman(18);
  space.Space.globalAmountOfParticles = 6000;
   space.Space.gravityGetsStronger = true;
   space.Space.globalParticleMass = 3;  
  space.Space.globalEnemySpeed = 1;
   space.Space.gravityWellDistance = 555;  
-  space.Space.globalheroSpeed = 10;
+  space.Space.globalhelioSpeed = 10;
   space.Space.globalTimerSpeed = 1;
  space.Space.globalSpeedlimit = 42;// + heroSize;// douglas adams 42 is max
    space.Space.globalMinSpeed = 12;
@@ -318,13 +324,13 @@ space.Space.globalParticleSizeMultiplier = 2;
            space.Space.globalSingularGravity = false;
            space.Space.particles = true;
                  space.Space.globalParticleSize = 6;
-    space.Space.globalHeroSize = checkForStallman(18);
+    space.Space.globalHelioSize = checkForStallman(18);
  space.Space.globalAmountOfParticles = 1000;
   
     
  space.Space.globalEnemySpeed = 1;
     
-  space.Space.globalheroSpeed = 10;
+  space.Space.globalhelioSpeed = 10;
   space.Space.globalTimerSpeed = 1;
  space.Space.globalSpeedlimit = 12;// + heroSize;// douglas adams 42 is max
    space.Space.globalMinSpeed = 2;
@@ -390,6 +396,22 @@ space.Space.globalParticleSizeMultiplier = 2;
            space.Space.screen.dispose();
             
        	}
+        
+        
+         if (obj == shipButton){
+            
+           if(!space.Space.thereIsAShip){
+           space.Space.thereIsAShip = true;
+           shipButton.setText("ship = " + space.Space.thereIsAShip);
+           }else{
+           space.Space.thereIsAShip = false;
+           shipButton.setText("ship = " + space.Space.thereIsAShip);
+           }
+            
+       	}
+        
+        
+        
         
         if (obj == startButton){
             

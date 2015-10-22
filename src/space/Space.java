@@ -35,12 +35,15 @@ public class Space {
      public static boolean showStallman = false;
      public static boolean linearMovement = false;  // when true, this is our original movement 
      public static boolean gravityGetsStronger = true;
-     public static boolean allParticlesHaveGravity = true; // leave this off until we get a fast processor!
-     
+     public static boolean allParticlesHaveGravity = false; // leave this off until we get a fast processor!
+     public static boolean thereIsAShip = false; // leave this off until we get a fast processor!
      
      public static int globalStallmanSize = 80;// * globalParticleSizeMultiplier;
     public static int globalEnemySpeed = 1;
     
+    public static int globalShipSize = 20;
+    
+    public static int globalShipSpeedLimit = 23;
   
   public static int globalTimerSpeed = 1;
   public static  int globalSpeedlimit = 12;// + heroSize;// douglas adams is max
@@ -49,8 +52,8 @@ public class Space {
    
    // these have yet to be added to the start panel
     public static int globalParticleSizeMultiplier = 3;
-    public static int globalheroSpeed = 10;
-   public static int globalHeroSize = 20;// * globalParticleSizeMultiplier;
+    public static int globalhelioSpeed = 10;
+   public static int globalHelioSize = 40;// * globalParticleSizeMultiplier;
    
    
    

@@ -26,16 +26,18 @@ public class Apanel extends JPanel implements ActionListener, KeyListener, Mouse
     
     int playerSize = space.Space.globalParticleSize;
     int amountOfEnemies;// = space.Space.globalAmountOfEnemies;
-    int heroSize = space.Space.globalHeroSize;
-     //int heroSize = amountOfEnemies;
+    int helioSize = space.Space.globalHelioSize;
+    int shipSize = space.Space.globalShipSize;
+     //int helioSize = amountOfEnemies;
     
     int enemySpeed = space.Space.globalEnemySpeed;
     
-    int heroSpeed = 10;
+    int helioSpeed = 10;
     int timerSpeed = space.Space.globalTimerSpeed;
-    int speedlimit = space.Space.globalSpeedlimit;// + heroSize;// douglas adams is max
+    int speedlimit = space.Space.globalSpeedlimit;// + helioSize;// douglas adams is max
     int minSpeed = space.Space.globalMinSpeed;
-    Sbutton hero;
+    Sbutton helio;
+    Sbutton ship;
     ArrayList<Sbutton> particles;// = new ArrayList();
     
   
@@ -64,12 +66,13 @@ public class Apanel extends JPanel implements ActionListener, KeyListener, Mouse
        setLayout(null);
        setBackground(Color.black);
         addMouseListener(this);
+        
+        
       
-      // addEnemies();
-      // addEnemies();
+      
         particles = new ArrayList();
-        addHero();
-        particles.add(hero);
+        addHelio();
+        particles.add(helio);
         
       addEnemies();
       
@@ -77,8 +80,8 @@ public class Apanel extends JPanel implements ActionListener, KeyListener, Mouse
       //addMouseListener(this);
       addMouseListener(new MouseAdapter() {
 			public void mousePressed(MouseEvent e) {
-				hero.setBounds(e.getX(), e.getY(), heroSize, heroSize);
-     hero.setBackground(Color.red);
+				helio.setBounds(e.getX(), e.getY(), helioSize, helioSize);
+     helio.setBackground(Color.red);
 			}
 		});
       
@@ -91,7 +94,7 @@ public class Apanel extends JPanel implements ActionListener, KeyListener, Mouse
         //timerSpeed = 200 - (space.Space.level * 16);// 100-20 raange, based on 1-10
        timer = new Timer( timerSpeed, this);
        timer.start();
-       hero.requestFocus();
+       helio.requestFocus();
        //requestFocus();
     }
  
@@ -100,38 +103,52 @@ public class Apanel extends JPanel implements ActionListener, KeyListener, Mouse
         singularGravity = space.Space.globalSingularGravity;
           playerSize = space.Space.globalParticleSize;
    amountOfEnemies= space.Space.globalAmountOfParticles;
-     heroSize = space.Space.globalHeroSize;
-     //int heroSize = amountOfEnemies;
+     helioSize = space.Space.globalHelioSize;
+     //int helioSize = amountOfEnemies;
     
      enemySpeed = space.Space.globalEnemySpeed;
     
-    heroSpeed = 10;
+    helioSpeed = 10;
     timerSpeed = space.Space.globalTimerSpeed;
-     speedlimit = space.Space.globalSpeedlimit;// + heroSize;// douglas adams is max
+     speedlimit = space.Space.globalSpeedlimit;// + helioSize;// douglas adams is max
      minSpeed = space.Space.globalMinSpeed;
         
     }
     
     
     
-    public void addHero(){
+    public void addHelio(){
+        
+        if(space.Space.thereIsAShip){
+            ship = new Sbutton();
+            ship.setBounds(20, 20, space.Space.globalShipSize, space.Space.globalShipSize);
+            ship.setBackground(Color.GRAY);
+            ship.addActionListener(this);
+            ship.addKeyListener(this);
+            ship.speedLimit = space.Space.globalShipSpeedLimit;
+            ship.xVel = 5.0;
+            ship.yVel = 5.0;
+            particles.add(ship);  // this is how we add movement
+            add(ship);
+      }
+        
         Xcord = space.Space.screen.width/2 - 40;
          Ycord = space.Space.screen.height/2 - 60;
-         //heroSize = space.Space.globalHeroSize;
+         //helioSize = space.Space.globalHelioSize;
          
-        hero = new Sbutton();
-        hero.setBounds(Xcord, Ycord, heroSize, heroSize);
-        hero.setBackground(Color.green);
-        hero.addActionListener(this);
-        hero.addKeyListener(this);
+        helio = new Sbutton();
+        helio.setBounds(Xcord, Ycord, helioSize, helioSize);
+        helio.setBackground(Color.YELLOW);
+        helio.addActionListener(this);
+        helio.addKeyListener(this);
         if(space.Space.showStallman){
-            heroSize = space.Space.globalStallmanSize;
-        hero.makeHero();
+            helioSize = space.Space.globalStallmanSize;
+        helio.makeHero();
         
         }
-        hero.setBounds(Xcord, Ycord, heroSize, heroSize);
-        hero.mass = space.Space.massOfCenter;
-        add(hero);   
+        helio.setBounds(Xcord, Ycord, helioSize, helioSize);
+        helio.mass = space.Space.massOfCenter;
+        add(helio);   
     }
   
       public void addEnemies(){
@@ -139,8 +156,8 @@ public class Apanel extends JPanel implements ActionListener, KeyListener, Mouse
           amountOfEnemies = space.Space.globalAmountOfParticles;
          
          for(int i = 0; i < amountOfEnemies; i++){
-             Xcord = hero.getX() - ((int)(Math.random() * 200) + 1);//(int) (Math.random() * (space.Space.screen.width-300)) + 200;
-         Ycord = hero.getY() - ((int)(Math.random() * 100) + 100);//(int) (Math.random() * (space.Space.screen.height-300)) + 200;
+             Xcord = helio.getX() - ((int)(Math.random() * 200) + 1);//(int) (Math.random() * (space.Space.screen.width-300)) + 200;
+         Ycord = helio.getY() - ((int)(Math.random() * 100) + 100);//(int) (Math.random() * (space.Space.screen.height-300)) + 200;
          //int xsp = 30;
          //int ysp = -10;
          // this is our cast, we "throw" them to try to get an orbit
@@ -187,17 +204,22 @@ public class Apanel extends JPanel implements ActionListener, KeyListener, Mouse
            
            //moveParticles();
             moveEnemy();
-            //hero.requestFocus();
+           // if(space.Space.thereIsAShip){
+             //helio.requestFocus();
+                //ship.requestFocus();
+              //  ship.move();
+           // }
+            
        	}
         
         
        
    
 
-		if (obj == hero) //t)
+		if (obj == helio) //t)
 		{
                     timer.stop();
-                    space.Space.screen.dispose();
+                   // space.Space.screen.dispose();
                     //if(singularGravity == false){
                   space.Space.screen.startPanel();
                   //  }else{
@@ -211,19 +233,43 @@ public class Apanel extends JPanel implements ActionListener, KeyListener, Mouse
     @Override
     public void keyTyped(KeyEvent e) {
         int k = e.getKeyCode();
-	if(k == e.VK_UP){
-			hero.setBounds(hero.getX(), hero.getY() - heroSpeed, heroSize, heroSize);
+		if(k == e.VK_UP){
+                    if(space.Space.thereIsAShip){
+                        ship.yVel--;
+                       // ship.setBounds(ship.getX() , ship.getY() - 10, shipSize, shipSize);
+                    }else{
+			helio.setBounds(helio.getX(), helio.getY() - helioSpeed, helioSize, helioSize);
+                    }
 		}
                 if(k == e.VK_DOWN){
-			hero.setBounds(hero.getX(), hero.getY() + heroSpeed, heroSize, heroSize);
+                        if(space.Space.thereIsAShip){
+                        ship.yVel++;
+                        //ship.setBounds(ship.getX() , ship.getY() + 10, shipSize, shipSize);
+                    }else{
+			helio.setBounds(helio.getX(), helio.getY() + helioSpeed, helioSize, helioSize);
+                    }
 		}
-                if(k == e.VK_LEFT){
-		hero.setBounds(hero.getX() - heroSpeed, hero.getY(), heroSize, heroSize);
-		}
-		if(k == e.VK_RIGHT){
-                    hero.setBounds(hero.getX() + heroSpeed, hero.getY(),heroSize, heroSize);
+			
 		
+                if(k == e.VK_LEFT){
+                            if(space.Space.thereIsAShip){
+                        ship.xVel--;
+                        //ship.setBounds(ship.getX() - 10, ship.getY(), shipSize, shipSize);
+                    }else{
+			helio.setBounds(helio.getX() - helioSpeed, helio.getY(), helioSize, helioSize);
 		}
+                   
+                }
+		
+		if(k == e.VK_RIGHT){
+                               if(space.Space.thereIsAShip){
+                        ship.xVel++;
+                      //  ship.setBounds(ship.getX() + 10, ship.getY(), shipSize, shipSize);
+                    }else{
+			helio.setBounds(helio.getX() + helioSpeed, helio.getY(),helioSize, helioSize);
+		}
+                  
+                }
                 
                 if(k == e.VK_E){
                         
@@ -234,7 +280,7 @@ public class Apanel extends JPanel implements ActionListener, KeyListener, Mouse
                         
                      Xcord = (int) (Math.random() * (space.Space.screen.width-300)) + 200;
                     Ycord = (int) (Math.random() * (space.Space.screen.height-300)) + 200; 
-                    hero.setBounds(Xcord, Ycord, heroSize, heroSize);
+                    helio.setBounds(Xcord, Ycord, helioSize, helioSize);
 		} 
                 
     }
@@ -243,18 +289,45 @@ public class Apanel extends JPanel implements ActionListener, KeyListener, Mouse
     public void keyPressed(KeyEvent e) {
                 int k = e.getKeyCode();
 		if(k == e.VK_UP){
-			hero.setBounds(hero.getX(), hero.getY() - heroSpeed, heroSize, heroSize);
+                    if(space.Space.thereIsAShip){
+                        ship.yVel--;
+                     //   ship.setBounds(ship.getX() , ship.getY() - 10, shipSize, shipSize);
+                    }else{
+			helio.setBounds(helio.getX(), helio.getY() - helioSpeed, helioSize, helioSize);
+                    }
 		}
                 if(k == e.VK_DOWN){
-			hero.setBounds(hero.getX(), hero.getY() + heroSpeed, heroSize, heroSize);
+                        if(space.Space.thereIsAShip){
+                        ship.yVel++;
+                      //  ship.setBounds(ship.getX() , ship.getY() + 10, shipSize, shipSize);
+                    }else{
+			helio.setBounds(helio.getX(), helio.getY() + helioSpeed, helioSize, helioSize);
+                    }
 		}
-                if(k == e.VK_LEFT){
-		hero.setBounds(hero.getX() - heroSpeed, hero.getY(), heroSize, heroSize);
-		}
-		if(k == e.VK_RIGHT){
-                    hero.setBounds(hero.getX() + heroSpeed, hero.getY(),heroSize, heroSize);
+			
 		
+                if(k == e.VK_LEFT){
+                            if(space.Space.thereIsAShip){
+                        ship.xVel--;
+                     //  ship.setBounds(ship.getX() - 10, ship.getY(), shipSize, shipSize);
+                    }else{
+			helio.setBounds(helio.getX() - helioSpeed, helio.getY(), helioSize, helioSize);
 		}
+                   
+                }
+		
+		if(k == e.VK_RIGHT){
+                               if(space.Space.thereIsAShip){
+                        ship.xVel++;
+                     //   ship.setBounds(ship.getX() + 10, ship.getY(), shipSize, shipSize);
+                    }else{
+			helio.setBounds(helio.getX() + helioSpeed, helio.getY(),helioSize, helioSize);
+		}
+                  
+                }
+                    
+		
+		
 		
                 if(k == e.VK_E){
                         
@@ -266,7 +339,7 @@ public class Apanel extends JPanel implements ActionListener, KeyListener, Mouse
                         
                      Xcord = (int) (Math.random() * (space.Space.screen.width-300)) + 200;
                     Ycord = (int) (Math.random() * (space.Space.screen.height-300)) + 200; 
-                    hero.setBounds(Xcord, Ycord, heroSize, heroSize);
+                    helio.setBounds(Xcord, Ycord, helioSize, helioSize);
 		} 
                 
                 
@@ -342,12 +415,12 @@ public class Apanel extends JPanel implements ActionListener, KeyListener, Mouse
          
          for(int i = 0; i < particles.size(); i++){
       /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////   
-       int moveX = (particles.get(i).getX()+ (playerSize/2)) - (hero.getX() + (heroSize/2));
-       int moveY = (particles.get(i).getY()+ (playerSize/2)) - (hero.getY()+ (heroSize/2));
+       int moveX = (particles.get(i).getX()+ (playerSize/2)) - (helio.getX() + (helioSize/2));
+       int moveY = (particles.get(i).getY()+ (playerSize/2)) - (helio.getY()+ (helioSize/2));
        // chase the tail!
            // moveX = particles.get(i).getX() - particles.get(particles.size()-1).getX();
            // moveY = particles.get(i).getY() - particles.get(particles.size()-1).getY(); 
-      //int amountOfForce = getDistance(particles.get(i).getX(),particles.get(i).getY(), hero.getX(), hero.getY());
+      //int amountOfForce = getDistance(particles.get(i).getX(),particles.get(i).getY(), helio.getX(), helio.getY());
       
        
                 if(!space.Space.globalSingularGravity){
@@ -395,7 +468,7 @@ public class Apanel extends JPanel implements ActionListener, KeyListener, Mouse
         } else{ 
                  double amountOfForce; 
                  
-                 amountOfForce = calculateGravity(particles.get(i).getX(),particles.get(i).getY(), hero.getX(), hero.getY(), particles.get(i).mass, hero.mass);
+                 amountOfForce = calculateGravity(particles.get(i).getX(),particles.get(i).getY(), helio.getX(), helio.getY(), particles.get(i).mass, helio.mass);
                  
                  // check all particles for gravity
                  double totalGravity = 0.0;
@@ -409,17 +482,17 @@ public class Apanel extends JPanel implements ActionListener, KeyListener, Mouse
                         }
                  }
                  
-                // double  amountOfXForce = calculateSingleVectorGravity(particles.get(i).getX(), hero.getX(),  particles.get(i).mass, hero.mass);
-               // double amountOfYForce = calculateSingleVectorGravity(particles.get(i).getY(), hero.getY(), particles.get(i).mass, hero.mass);
+                // double  amountOfXForce = calculateSingleVectorGravity(particles.get(i).getX(), helio.getX(),  particles.get(i).mass, helio.mass);
+               // double amountOfYForce = calculateSingleVectorGravity(particles.get(i).getY(), helio.getY(), particles.get(i).mass, helio.mass);
                  
                 if(!space.Space.gravityGetsStronger){
                 amountOfForce = 1;
                 }
                 if(space.Space.showStallman){
-                amountOfForce = getDistance(particles.get(i).getX(),particles.get(i).getY(), hero.getX(), hero.getY());
+                amountOfForce = getDistance(particles.get(i).getX(),particles.get(i).getY(), helio.getX(), helio.getY());
                 }
                 // first run gravity on x vector
-               // amountOfForce = calculateSingleVectorGravity(particles.get(i).getX(), hero.getX(),  particles.get(i).mass, hero.mass);
+               // amountOfForce = calculateSingleVectorGravity(particles.get(i).getX(), helio.getX(),  particles.get(i).mass, helio.mass);
                 
                                     if (moveX > 0){
                                        particles.get(i).xVel = particles.get(i).xVel - (amountOfForce + totalGravity);
@@ -443,11 +516,13 @@ public class Apanel extends JPanel implements ActionListener, KeyListener, Mouse
                 particles.get(i).checkCollision();
             }
             
-            
+           
             
             
             }  // end for loop
-       
+        //if(space.Space.thereIsAShip){
+      // ship.move();
+       // }
    }   // end move enemy
      
   
@@ -570,11 +645,11 @@ public class Apanel extends JPanel implements ActionListener, KeyListener, Mouse
             
             
        
-      if (hero.getBounds().intersects(particles.get(i).getBounds())){
+      if (helio.getBounds().intersects(particles.get(i).getBounds())){
           
           timer.stop();
           
-          remove(hero);
+          remove(helio);
           remove(particles.get(i));
           
           //singularGravity = false;
@@ -592,30 +667,30 @@ public class Apanel extends JPanel implements ActionListener, KeyListener, Mouse
 
     @Override
     public void mouseClicked(MouseEvent e) {
-     hero.setBounds(e.getX(), e.getY(), heroSize, heroSize);
-     hero.setBackground(Color.red);
+     helio.setBounds(e.getX(), e.getY(), helioSize, helioSize);
+    // helio.setBackground(Color.red);
     }
 
     @Override
     public void mousePressed(MouseEvent e) {
-         hero.setBounds(e.getX(), e.getY(), heroSize, heroSize);
-          hero.setBackground(Color.red);
+         helio.setBounds(e.getX(), e.getY(), helioSize, helioSize);
+        //  helio.setBackground(Color.red);
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
-         hero.setBounds(e.getX(), e.getY(), heroSize, heroSize);
-          hero.setBackground(Color.red);
+         helio.setBounds(e.getX(), e.getY(), helioSize, helioSize);
+        // helio.setBackground(Color.red);
     }
 
     @Override
     public void mouseEntered(MouseEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public void mouseExited(MouseEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
  
 
