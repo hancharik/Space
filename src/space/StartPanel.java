@@ -57,38 +57,42 @@ public class StartPanel extends JPanel implements ActionListener, ChangeListener
     JLabel speedOfParticlesMaxLabel;
     JLabel speedLimitMinOfParticlesLabel;
     
+    int sliderWidth = (int)((double)space.Space.width*.20);
+    
+    
+    
     public StartPanel(){
         
        super();
        setLayout(null);
        setBackground(Color.black);
        startPlanetButton = new JButton("Solar System");
-       startPlanetButton.setBounds(column(2), row(2), 160, 40);
+       startPlanetButton.setBounds(column(6), row(2), 160, 40);
        startPlanetButton.addActionListener(this);
        add(startPlanetButton); 
        startAtomButton = new JButton("Electron Cloud");
-       startAtomButton.setBounds(column(2), row(3), 160, 40);
+       startAtomButton.setBounds(column(6), row(3), 160, 40);
        startAtomButton.addActionListener(this);
        add(startAtomButton); 
        startChainedParticleButton = new JButton("Chained Particles");
-       startChainedParticleButton.setBounds(column(2), row(4), 160, 40);
+       startChainedParticleButton.setBounds(column(6), row(4), 160, 40);
        startChainedParticleButton.addActionListener(this);
        add(startChainedParticleButton); 
        stallmanHaloButton = new JButton("Stallman Halo");
-       stallmanHaloButton.setBounds(column(2), row(5), 160, 40);
+       stallmanHaloButton.setBounds(column(6), row(5), 160, 40);
        stallmanHaloButton.addActionListener(this);
        add(stallmanHaloButton); 
        
        bigScreenButton = new JButton("Big Screen");
-       bigScreenButton.setBounds(column(1), row(1), 120, 40);
+       bigScreenButton.setBounds(column(5), row(1), 120, 40);
        bigScreenButton.addActionListener(this);
        //add(bigScreenButton);
        littleScreenButton = new JButton("Little Screen");
-       littleScreenButton.setBounds(column(1), row(2), 120, 40);
+       littleScreenButton.setBounds(column(5), row(2), 120, 40);
        littleScreenButton.addActionListener(this);
        //add(littleScreenButton);
        fullScreenButton = new JButton("Full Screen");
-       fullScreenButton.setBounds(column(1), row(3), 120, 40);
+       fullScreenButton.setBounds(column(5), row(3), 120, 40);
        fullScreenButton.addActionListener(this);
        //add(fullScreenButton);
        
@@ -97,7 +101,7 @@ public class StartPanel extends JPanel implements ActionListener, ChangeListener
         massOfCenter.addChangeListener(this);
         massOfCenter.setMajorTickSpacing(100);
         massOfCenter.setPaintTicks(true);
-        massOfCenter.setBounds(column(1), row(8), 400, 40);// horizontal
+        massOfCenter.setBounds(column(1), row(4), sliderWidth, 40);// horizontal
         //numberOfParticles.setBounds(column(1), 160, 40, 200);// vertical
         add(massOfCenter);
         
@@ -105,7 +109,7 @@ public class StartPanel extends JPanel implements ActionListener, ChangeListener
         massOfParticles.addChangeListener(this);
         massOfParticles.setMajorTickSpacing(100);
         massOfParticles.setPaintTicks(true);
-        massOfParticles.setBounds(column(1), row(9), 400, 40);// horizontal
+        massOfParticles.setBounds(column(1), row(5), sliderWidth, 40);// horizontal
         //numberOfParticles.setBounds(10, 160, 40, 200);// vertical
         add(massOfParticles);
         
@@ -113,7 +117,7 @@ public class StartPanel extends JPanel implements ActionListener, ChangeListener
         massOfShip.addChangeListener(this);
         massOfShip.setMajorTickSpacing(100);
         massOfShip.setPaintTicks(true);
-        massOfShip.setBounds(column(1), row(7), 400, 40);// horizontal
+        massOfShip.setBounds(column(1), row(3), sliderWidth, 40);// horizontal
         //numberOfParticles.setBounds(10, 160, 40, 200);// vertical
         add(massOfShip);
         
@@ -122,7 +126,7 @@ public class StartPanel extends JPanel implements ActionListener, ChangeListener
         numberOfParticles.addChangeListener(this);
         numberOfParticles.setMajorTickSpacing(100);
         numberOfParticles.setPaintTicks(true);
-        numberOfParticles.setBounds(column(1), row(10), 400, 40);// horizontal
+        numberOfParticles.setBounds(column(1), row(6), sliderWidth, 40);// horizontal
         //numberOfParticles.setBounds(column(1), 160, 40, 200);// vertical
         add(numberOfParticles);
         
@@ -130,7 +134,7 @@ public class StartPanel extends JPanel implements ActionListener, ChangeListener
         sizeOfParticles.addChangeListener(this);
         sizeOfParticles.setMajorTickSpacing(100);
         sizeOfParticles.setPaintTicks(true);
-        sizeOfParticles.setBounds(column(1), row(11), 400, 40);// horizontal
+        sizeOfParticles.setBounds(column(1), row(7), sliderWidth, 40);// horizontal
         //numberOfParticles.setBounds(10, 160, 40, 200);// vertical
         add(sizeOfParticles);
        
@@ -139,7 +143,7 @@ public class StartPanel extends JPanel implements ActionListener, ChangeListener
         speedOfParticles.addChangeListener(this);
         speedOfParticles.setMajorTickSpacing(100);
         speedOfParticles.setPaintTicks(true);
-        speedOfParticles.setBounds(column(1), row(14), 400, 40);// horizontal
+        speedOfParticles.setBounds(column(1), row(10), sliderWidth, 40);// horizontal
         //numberOfParticles.setBounds(10, 160, 40, 200);// vertical
         add(speedOfParticles);
         
@@ -147,7 +151,7 @@ public class StartPanel extends JPanel implements ActionListener, ChangeListener
         speedLimitMaxOfParticles.addChangeListener(this);
         speedLimitMaxOfParticles.setMajorTickSpacing(100);
         speedLimitMaxOfParticles.setPaintTicks(true);
-        speedLimitMaxOfParticles.setBounds(column(1), row(12), 400, 40);// horizontal
+        speedLimitMaxOfParticles.setBounds(column(1), row(8), sliderWidth, 40);// horizontal
         //numberOfParticles.setBounds(10, 160, 40, 200);// vertical
         add(speedLimitMaxOfParticles);
         
@@ -155,40 +159,40 @@ public class StartPanel extends JPanel implements ActionListener, ChangeListener
         speedLimitMinOfParticles.addChangeListener(this);
         speedLimitMinOfParticles.setMajorTickSpacing(100);
         speedLimitMinOfParticles.setPaintTicks(true);
-        speedLimitMinOfParticles.setBounds(column(1), row(13), 400, 40);// horizontal
+        speedLimitMinOfParticles.setBounds(column(1), row(9), sliderWidth, 40);// horizontal
         //numberOfParticles.setBounds(10, 160, 40, 200);// vertical
         add(speedLimitMinOfParticles);
         
         massOfCenterLabel = new JLabel("<html><h2><font color='white'>mass of center: </font><font color='red'>" + space.Space.massOfCenter + "</font><h2></html>");
-        massOfCenterLabel.setBounds(column(3), row(8), 220, 40);
+        massOfCenterLabel.setBounds(column(3), row(4), 220, 40);
         add(massOfCenterLabel);
         
         massOfParticlesLabel = new JLabel("<html><h2><font color='white'>mass of particles: </font><font color='red'>" + space.Space.globalParticleMass + "</font><h2></html>");
-        massOfParticlesLabel.setBounds(column(3), row(9), 220, 40);
+        massOfParticlesLabel.setBounds(column(3), row(5), 220, 40);
         add(massOfParticlesLabel);
         
         massOfShipLabel = new JLabel("<html><h2><font color='white'>mass of ship: </font><font color='red'>" + space.Space.globalShipMass + "</font><h2></html>");
-        massOfShipLabel.setBounds(column(3), row(7), 220, 40);
+        massOfShipLabel.setBounds(column(3), row(3), 220, 40);
         add(massOfShipLabel);
         
         numOfParticles = new JLabel("<html><h2><font color='white'># of particles: </font><font color='red'>" + space.Space.globalAmountOfParticles + "</font><h2></html>");
-        numOfParticles.setBounds(column(3), row(10), 220, 40);
+        numOfParticles.setBounds(column(3), row(6), 220, 40);
      
         add(numOfParticles);
         sizeOfParticlesLabel = new JLabel("<html><h2><font color='white'>size: </font><font color='red'>" + space.Space.globalParticleSize + "</font><h2></html>");
-        sizeOfParticlesLabel.setBounds(column(3), row(11), 220, 40);
+        sizeOfParticlesLabel.setBounds(column(3), row(7), 220, 40);
         add(sizeOfParticlesLabel);
         //speedOfParticlesMaxLabel = new JLabel("speed: " + space.Space.globalTimerSpeed);
         speedOfParticlesMaxLabel = new JLabel("<html><h2><font color='white'>ms per cycle: </font><font color='red'>" + space.Space.globalTimerSpeed + "</font><h2></html>");
-        speedOfParticlesMaxLabel.setBounds(column(3), row(14), 220, 40);
+        speedOfParticlesMaxLabel.setBounds(column(3), row(10), 220, 40);
         add(speedOfParticlesMaxLabel);
         
          speedLimitMaxOfParticlesLabel = new JLabel("<html><h2><font color='white'>max speed limit: </font><font color='red'>" + space.Space.globalSpeedlimit + "</font><h2></html>");
-        speedLimitMaxOfParticlesLabel.setBounds(column(3), row(12), 220, 40);
+        speedLimitMaxOfParticlesLabel.setBounds(column(3), row(8), 220, 40);
         add(speedLimitMaxOfParticlesLabel);
         
          speedLimitMinOfParticlesLabel = new JLabel("<html><h2><font color='white'>min speed limit: </font><font color='red'>" + space.Space.globalMinSpeed + "</font><h2></html>");
-        speedLimitMinOfParticlesLabel.setBounds(column(3), row(13), 2200, 40);
+        speedLimitMinOfParticlesLabel.setBounds(column(3), row(9), 2200, 40);
         speedLimitMinOfParticlesLabel.setBackground(Color.red);
         add(speedLimitMinOfParticlesLabel);
         
@@ -199,12 +203,12 @@ public class StartPanel extends JPanel implements ActionListener, ChangeListener
        add(showrms); 
         
        quitButton = new JButton("quit");
-       quitButton.setBounds(column(2), row(16), 80, 40);
+       quitButton.setBounds(column(6), row(16), 80, 40);
        quitButton.addActionListener(this);
        add(quitButton);
        
        shipButton = new JButton("ship = " + space.Space.thereIsAShip);
-       shipButton.setBounds(column(1), row(5), 180, 40);
+       shipButton.setBounds(column(4), row(5), 180, 40);
        shipButton.addActionListener(this);
        add(shipButton);
        
@@ -215,12 +219,12 @@ public class StartPanel extends JPanel implements ActionListener, ChangeListener
        
        
        linearMovementButton = new JButton("linear movement = " + space.Space.linearMovement);
-       linearMovementButton.setBounds(column(4), row(4), 180, 40);
+       linearMovementButton.setBounds(column(4), row(9), 180, 40);
        linearMovementButton.addActionListener(this);
        add(linearMovementButton);
        
        centeredGravityButton = new JButton("singular gravity = " + space.Space.globalSingularGravity);
-       centeredGravityButton.setBounds(column(1), row(4), 180, 40);
+       centeredGravityButton.setBounds(column(4), row(4), 180, 40);
        centeredGravityButton.addActionListener(this);
        add(centeredGravityButton);
        
@@ -235,7 +239,7 @@ public class StartPanel extends JPanel implements ActionListener, ChangeListener
        }else{
            relativeGravityButton.setText("classical motion");
        }
-       relativeGravityButton.setBounds(column(1), row(3), 180, 40);
+       relativeGravityButton.setBounds(column(4), row(2), 180, 40);
        relativeGravityButton.addActionListener(this);
        add(relativeGravityButton);
        
@@ -631,7 +635,7 @@ public void checkrmsPic(){
                 //////////////////////////////////////////////////////////////////////////////////////////////////////////
  
 private int row(int r){
-    int pixelNumber = ((r-1)*space.Space.height/16)+10;
+    int pixelNumber = ((r-1)*space.Space.height/16)+20;
     return pixelNumber;
 }   
 
@@ -641,11 +645,13 @@ private int column(int c){
     switch(c){  // these arent in cardinal order, i've been readjusting layouts
         //case 1: columnPixelNumber = (space.Space.width/8)*1; break;
             
-            case 1: columnPixelNumber = 10; break;
-                case 2: columnPixelNumber = (space.Space.width/7)*1 + 200; break;
+            case 1: columnPixelNumber  = (int)((double)space.Space.width*.02); break;
+                case 2: columnPixelNumber  = (int)((double)space.Space.width*.12); break;
         //case 2: columnPixelNumber = 260; break;
-        case 3: columnPixelNumber = ((space.Space.width/7)*2) - 100; break;
-        case 4: columnPixelNumber  = (space.Space.width/7)*1 - 60; break;
+        case 3: columnPixelNumber  = (int)((double)space.Space.width*.24); break;
+        case 4: columnPixelNumber  = (int)((double)space.Space.width*.56); break;
+            case 5: columnPixelNumber  = (int)((double)space.Space.width*.62); break;
+                case 6: columnPixelNumber  = (int)((double)space.Space.width*.7); break;
     }
     return columnPixelNumber;
 } // end column

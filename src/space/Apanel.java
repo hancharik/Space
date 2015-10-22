@@ -5,6 +5,7 @@
 package space;
 
 import java.awt.Color;
+import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -722,7 +723,20 @@ public class Apanel extends JPanel implements ActionListener, KeyListener, Mouse
     public void mouseExited(MouseEvent e) {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
- 
+ //http://stackoverflow.com/questions/20011091/move-over-a-jpanel-with-mouse-dragged
+                public void mouseDragged(MouseEvent e) {
+                   // Point p = e.getPoint();
+                    //int x = p.x - startPoint.x;
+                   // int y = p.y - startPoint.x;
+                   // offset = new Point(x, y);
+                     //ship.setBounds((int) me.getPoint().getX(), (int) me.getPoint().getY(), space.Space.globalShipSize, space.Space.globalShipSize);  
+                   // repaint();
+                }
+       
+      public void mouseMoved(MouseEvent me) {
+   ship.setBounds((int) me.getPoint().getX(), (int) me.getPoint().getY(), space.Space.globalShipSize, space.Space.globalShipSize);  
+    repaint();
+  }
 
     
 }
