@@ -47,6 +47,8 @@ public class StartPanel extends JPanel implements ActionListener, ChangeListener
     JSlider speedLimitMinOfParticles;
     JSlider massOfCenter;
     JSlider massOfParticles;
+    JSlider massOfShip;
+    JLabel massOfShipLabel;
     JLabel massOfParticlesLabel;
     JLabel massOfCenterLabel;
     JLabel numOfParticles;
@@ -107,6 +109,15 @@ public class StartPanel extends JPanel implements ActionListener, ChangeListener
         //numberOfParticles.setBounds(10, 160, 40, 200);// vertical
         add(massOfParticles);
         
+        massOfShip = new JSlider(JSlider.HORIZONTAL, 1, 1000, (int)space.Space.globalParticleMass);
+        massOfShip.addChangeListener(this);
+        massOfShip.setMajorTickSpacing(100);
+        massOfShip.setPaintTicks(true);
+        massOfShip.setBounds(column(1), row(7), 400, 40);// horizontal
+        //numberOfParticles.setBounds(10, 160, 40, 200);// vertical
+        add(massOfShip);
+        
+        
         numberOfParticles = new JSlider(JSlider.HORIZONTAL, 1, 6000, space.Space.globalAmountOfParticles);
         numberOfParticles.addChangeListener(this);
         numberOfParticles.setMajorTickSpacing(100);
@@ -151,9 +162,14 @@ public class StartPanel extends JPanel implements ActionListener, ChangeListener
         massOfCenterLabel = new JLabel("<html><h2><font color='white'>mass of center: </font><font color='red'>" + space.Space.massOfCenter + "</font><h2></html>");
         massOfCenterLabel.setBounds(column(3), row(8), 220, 40);
         add(massOfCenterLabel);
+        
         massOfParticlesLabel = new JLabel("<html><h2><font color='white'>mass of particles: </font><font color='red'>" + space.Space.globalParticleMass + "</font><h2></html>");
         massOfParticlesLabel.setBounds(column(3), row(9), 220, 40);
         add(massOfParticlesLabel);
+        
+        massOfShipLabel = new JLabel("<html><h2><font color='white'>mass of ship: </font><font color='red'>" + space.Space.globalShipMass + "</font><h2></html>");
+        massOfShipLabel.setBounds(column(3), row(7), 220, 40);
+        add(massOfShipLabel);
         
         numOfParticles = new JLabel("<html><h2><font color='white'># of particles: </font><font color='red'>" + space.Space.globalAmountOfParticles + "</font><h2></html>");
         numOfParticles.setBounds(column(3), row(10), 220, 40);
@@ -225,13 +241,18 @@ public class StartPanel extends JPanel implements ActionListener, ChangeListener
        
        
        if(!space.Space.gravityGetsStronger){
-        massOfCenter.setVisible(false);
+            massOfCenter.setVisible(false);
+            massOfShip.setVisible(false);
+            massOfShipLabel.setVisible(false);
             massOfParticles.setVisible(false);
-            massOfParticlesLabel.setVisible(false);
+            massOfCenterLabel.setVisible(false);
             massOfParticlesLabel.setVisible(false);
        }
        
-       
+                if(!space.Space.thereIsAShip){
+                massOfShip.setVisible(false);
+                massOfShipLabel.setVisible(false);
+                }
        
     }  // end constructor
 
@@ -448,9 +469,15 @@ space.Space.globalParticleSizeMultiplier = 2;
            if(!space.Space.thereIsAShip){
            space.Space.thereIsAShip = true;
            shipButton.setText("ship = " + space.Space.thereIsAShip);
+           if(space.Space.gravityGetsStronger){
+           massOfShip.setVisible(true);
+            massOfShipLabel.setVisible(true);
+           }
            }else{
            space.Space.thereIsAShip = false;
            shipButton.setText("ship = " + space.Space.thereIsAShip);
+           massOfShip.setVisible(false);
+            massOfShipLabel.setVisible(false);
            }
             
        	}
@@ -503,15 +530,25 @@ space.Space.globalParticleSizeMultiplier = 2;
             relativeGravityButton.setText("quantum motion");
             massOfCenter.setVisible(false);
             massOfParticles.setVisible(false);
+            massOfCenterLabel.setVisible(false);
             massOfParticlesLabel.setVisible(false);
-            massOfParticlesLabel.setVisible(false);
+            if(space.Space.thereIsAShip){
+            massOfShip.setVisible(false);
+            massOfShipLabel.setVisible(false);
+            }
+            
+            
             }else{
               space.Space.gravityGetsStronger = true; 
               relativeGravityButton.setText("classical motion");
                 massOfCenter.setVisible(true);
                 massOfParticles.setVisible(true);
+                massOfCenterLabel.setVisible(true);
                 massOfParticlesLabel.setVisible(true);
-                massOfParticlesLabel.setVisible(true);
+                if(space.Space.thereIsAShip){
+                massOfShip.setVisible(true);
+                massOfShipLabel.setVisible(true);
+                }
             }
             
        	}
@@ -553,6 +590,10 @@ public void checkrmsPic(){
         public void stateChanged(ChangeEvent e) {
         JSlider source = (JSlider)e.getSource();
        
+               if (source == massOfShip) {
+            space.Space.globalShipMass = source.getValue();
+            massOfShipLabel.setText("<html><h2><font color='white'>mass of ship: </font><font color='red'>" + space.Space.globalShipMass + "</font><h2></html>");
+        }
         if (source == massOfCenter) {
             space.Space.massOfCenter = source.getValue();
             massOfCenterLabel.setText("<html><h2><font color='white'>mass of center: </font><font color='red'>" + space.Space.massOfCenter + "</font><h2></html>");
